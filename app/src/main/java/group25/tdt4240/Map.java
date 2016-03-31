@@ -5,7 +5,7 @@ package group25.tdt4240;
  */
 public class Map {
 	
-	public ArrayList<Tile> Tiles;
-	public ArrayList<Entity> Entities;
+	public ArrayList<Tile> tiles;
+	public ArrayList<Entity> entities;
 	
 }

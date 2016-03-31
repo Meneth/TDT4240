@@ -5,6 +5,6 @@ import group25.tdt4240.entity.Entity;
 /**
  * Created by Meneth on 2016-03-31.
  */
-public class Tower extends Entity{
+public abstract class Tower extends Entity {
 
 }

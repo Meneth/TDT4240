@@ -7,6 +7,6 @@ import sheep.game.Sprite;
  */
 
 
-public abstract class Entity extends Sprite{
+public abstract class Entity extends Sprite {
 
 }

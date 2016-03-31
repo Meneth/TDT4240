@@ -5,8 +5,9 @@ package group25.tdt4240.state;
  */
 
 import group25.tdt4240.Map;
+import sheep.game.State;
 
-public class PlayState {
+public class PlayState extends State {
     private Map currentMap;
 
     PlayState(){

@@ -1,15 +1,13 @@
 package group25.tdt4240;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
+import android.util.AttributeSet;
 
-public class TDGame extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tdgame);
-
-
+/**
+ * Created by Meneth on 2016-03-31.
+ */
+public class TDGame extends sheep.game.Game {
+    public TDGame(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 }

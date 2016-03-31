@@ -1,7 +1,9 @@
 package group25.tdt4240.entity.projectile;
 
+import group25.tdt4240.entity.MovableEntity;
+
 /**
  * Created by Meneth on 2016-03-31.
  */
-public class Projectile {
+public class Projectile extends MovableEntity{
 }

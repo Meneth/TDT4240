@@ -7,7 +7,7 @@ package group25.tdt4240.state;
 import group25.tdt4240.Map;
 import sheep.game.State;
 
-public class PlayState extends State {
+public class PlayState extends SuperState {
     private Map currentMap;
 
     PlayState(){

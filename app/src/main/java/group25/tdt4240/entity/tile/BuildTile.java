@@ -1,5 +1,6 @@
 package group25.tdt4240.entity.tile;
 
+
 import android.view.MotionEvent;
 
 import group25.tdt4240.entity.Clickable;
@@ -9,6 +10,7 @@ import sheep.graphics.Image;
 /**
  * Created by Meneth on 2016-03-31.
  */
+
 public class BuildTile extends Tile implements Clickable {
     private Tower tower;
 
@@ -44,9 +46,11 @@ public class BuildTile extends Tile implements Clickable {
         return (tower != null);
     }
 
+
     @Override
     public boolean onTouchDown(MotionEvent event) {
         // TODO
         return false;
     }
+
 }

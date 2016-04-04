@@ -38,6 +38,7 @@ public class PathTile extends Tile {
         this.exitTile = exit;
     }
 
+
     /**
      *
      * @param monsters Collection of the monsters on the map

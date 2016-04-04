@@ -12,7 +12,7 @@ import sheep.graphics.Image;
 
 public abstract class Entity extends Sprite {
     private final Image image;
-
+    
     /**
      *
      * @param image The image the sprite is to be generated from

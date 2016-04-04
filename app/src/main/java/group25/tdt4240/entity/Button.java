@@ -14,6 +14,10 @@ public class Button extends Entity implements Clickable {
         super(image);
     }
 
+    /**
+     *
+     * @param canvas Current canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         // TODO - Write draw

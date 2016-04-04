@@ -13,17 +13,29 @@ import sheep.graphics.Image;
 public abstract class Entity extends Sprite {
     private final Image image;
 
+    /**
+     *
+     * @param image The image the sprite is to be generated from
+     */
     public Entity(Image image) {
         super(image);
         this.image = image;
     }
 
+    /**
+     *
+     * @param canvas Current canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         // TODO - Possibly add something here
     }
 
+    /**
+     *
+     * @param dt
+     */
     @Override
     public void update(float dt) {
         super.update(dt);

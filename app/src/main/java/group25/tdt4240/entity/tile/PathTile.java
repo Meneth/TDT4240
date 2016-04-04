@@ -24,7 +24,7 @@ public class PathTile extends Tile {
 
     /**
      *
-     * @param image
+     * @param image   The image the sprite is to be generated from
      * @param x       X position in map grid
      * @param y       Y position in map grid
      * @param entries All the path tiles that lead to this one
@@ -38,6 +38,11 @@ public class PathTile extends Tile {
         this.exitTile = exit;
     }
 
+    /**
+     *
+     * @param monsters Collection of the monsters on the map
+     * @return The monsters on this tile
+     */
     public ArrayList<Monster> getContainedMonsters(ArrayList<Monster> monsters){
         ArrayList<Monster> _m = new ArrayList<Monster>();
         for (Monster m: monsters){

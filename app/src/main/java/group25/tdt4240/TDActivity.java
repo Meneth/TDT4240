@@ -1,7 +1,10 @@
 package group25.tdt4240;
 
 
+import android.app.Activity;
 import android.os.Bundle;
+
+import group25.tdt4240.state.TitleState;
 import sheep.game.*;
 
 public class TDActivity extends Activity {

@@ -1,17 +1,20 @@
 package group25.tdt4240;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
+import android.os.Bundle;
 import sheep.game.*;
 
-public class TDActivity extends AppCompatActivity {
+public class TDActivity extends Activity {
     private Game game;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tdgame);
-
+     // Create the game.
+      Game game = new Game(this, null);
+        // Push the main state.
+         game.pushState(new TitleState());
+        // View the game.
+          setContentView(game);
     }
 }

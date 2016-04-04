@@ -18,9 +18,47 @@ public abstract class Tower extends Entity implements Clickable {
         super(image);
     }
 
+
+    public enum Priority {
+        CLOSEST,
+        FURTHEST,
+        FIRST,
+        LAST,
+        HIGHEST_HP,
+        LOWEST_HP,
+        STRONGEST,
+        WEAKEST
+    }
+
+    public abstract int getCost();
+    public abstract int getNextUpgradeCost();
+
+
+    public abstract Priority getPriority();
+    public abstract void upgrade();
+
+    //Time between each shot
+    public abstract float getCooldown();
+    public abstract float setCooldown(float c);
+
+    public abstract float getDamage();
+    public abstract float setDamage(float d);
+
+
+
+    public void Fire() {
+        switch (getPriority()){
+            // TODO
+        }
+    }
+
+
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        // TODO
-        return false;
+        if(this.getBoundingBox().contains(event.getX(), event.getY())) {
+            // TODO
+            return true;
+        }
+        else return false;
     }
 }

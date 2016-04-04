@@ -5,5 +5,5 @@ import sheep.game.State;
 /**
  * Created by Meneth on 2016-03-31.
  */
-public class SettingsState extends State {
+public class SettingsState extends SuperState {
 }

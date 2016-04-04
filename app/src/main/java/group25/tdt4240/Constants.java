@@ -5,6 +5,9 @@ package group25.tdt4240;
  */
 public class Constants {
 
-    public static float TILE_WIDTH = 30;
-    public static float TILE_HEIGHT = 30;
+    public static float SCREEN_WIDTH = 1000;
+    public static float SCREEN_HEIGHT = 1000;
+
+    public static float TILE_HEIGHT = 100;
+    public static float TILE_WIDTH = 100;
 }

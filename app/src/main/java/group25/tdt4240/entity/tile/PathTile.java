@@ -22,10 +22,14 @@ public class PathTile extends Tile {
     private ArrayList<PathTile> entryTiles;
     private PathTile exitTile;
 
-    //x:        X position in map grid
-    //y:        Y position in map grid
-    //entries:  All the path tiles that lead to this one
-    //exit:     The path tile this one leads to
+    /**
+     *
+     * @param image
+     * @param x       X position in map grid
+     * @param y       Y position in map grid
+     * @param entries All the path tiles that lead to this one
+     * @param exit    The path tile this one leads to
+     */
     public PathTile(Image image, float x, float y, ArrayList<PathTile> entries, PathTile exit){
         super(image);
         this.setPosition(x,y);

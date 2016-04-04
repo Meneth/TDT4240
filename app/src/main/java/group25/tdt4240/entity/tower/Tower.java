@@ -7,6 +7,10 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public abstract class Tower extends Entity {
+    /**
+     *
+     * @param image The image the sprite is to be generated from
+     */
     public Tower(Image image) {
         super(image);
     }

@@ -8,7 +8,10 @@ import sheep.gui.Widget;
  * Created by Meneth on 2016-03-31.
  */
 public class Button extends Widget {
-
+    /**
+     *
+     * @param canvas Current canvas
+     */
     @Override
     public void draw(Canvas canvas) {
         // TODO - Write draw

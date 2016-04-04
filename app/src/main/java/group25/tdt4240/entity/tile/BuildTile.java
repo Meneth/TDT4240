@@ -9,20 +9,36 @@ import sheep.graphics.Image;
 public class BuildTile extends Tile {
     private Tower tower;
 
+    /**
+     *
+     * @param image The image the sprite is to be generated from
+     */
     public BuildTile(Image image){
         super(image);
     }
 
+    /**
+     *
+     * @return The tower that is built
+     */
     public Tower getTower() {
         return tower;
     }
+
+    /**
+     *
+     * @param tower Set current tower
+     */
     public void setTower(Tower tower) {
         this.tower = tower;
     }
+
+    /**
+     *
+     * @return If the tile is vacant
+     */
     public boolean isBuilt(){
         return (tower != null);
     }
-
-
 
 }

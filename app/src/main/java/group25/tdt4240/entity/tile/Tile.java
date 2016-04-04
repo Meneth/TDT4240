@@ -7,7 +7,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public class Tile extends Entity {
-    public Tile(Image Image){
+    public Tile(Image image){
         super(image);
     }
 }

@@ -8,9 +8,7 @@ import java.util.List;
 
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Entity;
-import sheep.game.Layer;
 import sheep.game.State;
-import sheep.game.World;
 import sheep.input.TouchListener;
 
 /**
@@ -53,6 +51,12 @@ public class SuperState extends State {
     public void update(float dt){
         for (Entity entity : entities)
             entity.update(dt);
+    }
+
+    public void addEntities(Entity...entities) {
+        for (Entity entity: entities) {
+            addEntity(entity);
+        }
     }
 
     public void addEntity(Entity entity) {

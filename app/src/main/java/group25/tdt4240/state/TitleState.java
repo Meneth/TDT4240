@@ -23,12 +23,7 @@ public class TitleState extends SuperState implements TouchListener{
         playButton.setPosition(1, 1);
         settingsButton.setPosition(1, 1);
         aboutButton.setPosition(1, 1);
-    }
-
-    public void draw(Canvas canvas){
-        playButton.draw(canvas);
-        settingsButton.draw(canvas);
-        aboutButton.draw(canvas);
+        addEntities(playButton, settingsButton, aboutButton);
     }
 
     public boolean onTouchUp(MotionEvent event){
@@ -53,5 +48,7 @@ public class TitleState extends SuperState implements TouchListener{
     }
 
     public void update(float dt){
+        super.update(dt);
+        // TODO - Title updating
     }
 }

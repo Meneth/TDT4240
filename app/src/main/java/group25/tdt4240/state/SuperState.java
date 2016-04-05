@@ -49,6 +49,12 @@ public class SuperState extends State {
             entity.draw(canvas);
     }
 
+    @Override
+    public void update(float dt){
+        for (Entity entity : entities)
+            entity.update(dt);
+    }
+
     public void addEntity(Entity entity) {
         entities.add(entity);
         if (entity instanceof Clickable)

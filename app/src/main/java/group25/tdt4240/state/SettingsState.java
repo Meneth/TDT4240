@@ -2,6 +2,8 @@ package group25.tdt4240.state;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+
+import group25.tdt4240.R;
 import group25.tdt4240.entity.Button;
 import sheep.graphics.Image;
 
@@ -9,7 +11,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public class SettingsState extends SuperState {
-    private Image returnButtonImage = new Image();
+    private Image returnButtonImage = new Image(R.drawable.playbutton);
     Button returnButton = new Button(returnButtonImage);
 
     public SettingsState(){
@@ -36,6 +38,6 @@ public class SettingsState extends SuperState {
 
     public void draw(Canvas canvas) {
         //Draw buttons
-        playButton.draw(canvas);
+        returnButton.draw(canvas);
     }
 }

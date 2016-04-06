@@ -14,11 +14,11 @@ public class TDActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     // Create the game.
-      Game game = new Game(this, null);
+        // Create the game.
+        Game game = new Game(this, null);
         // Push the main state.
-         game.pushState(new TitleState());
+        game.pushState(new TitleState());
         // View the game.
-          setContentView(game);
+        setContentView(game);
     }
 }

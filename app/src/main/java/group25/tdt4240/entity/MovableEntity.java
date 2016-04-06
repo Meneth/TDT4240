@@ -8,7 +8,6 @@ import sheep.graphics.Image;
 public abstract class MovableEntity extends Entity {
 
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
     public MovableEntity(Image image) {

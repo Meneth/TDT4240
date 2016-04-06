@@ -12,9 +12,8 @@ import sheep.graphics.Image;
 
 public abstract class Entity extends Sprite implements Drawable {
     private final Image image;
-    
+
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
     public Entity(Image image) {
@@ -23,7 +22,6 @@ public abstract class Entity extends Sprite implements Drawable {
     }
 
     /**
-     *
      * @param canvas Current canvas
      */
     @Override
@@ -33,7 +31,6 @@ public abstract class Entity extends Sprite implements Drawable {
     }
 
     /**
-     *
      * @param dt
      */
     @Override

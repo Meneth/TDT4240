@@ -42,19 +42,19 @@ public class SuperState extends State {
     }
 
     @Override
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         for (Drawable entity : entities)
             entity.draw(canvas);
     }
 
     @Override
-    public void update(float dt){
+    public void update(float dt) {
         for (Drawable entity : entities)
             entity.update(dt);
     }
 
-    public void addEntities(Drawable...entities) {
-        for (Drawable entity: entities) {
+    public void addEntities(Drawable... entities) {
+        for (Drawable entity : entities) {
             addEntity(entity);
         }
     }

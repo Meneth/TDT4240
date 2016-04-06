@@ -12,7 +12,6 @@ import sheep.graphics.Image;
 
 public abstract class Tower extends Entity implements Clickable {
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
     public Tower(Image image) {
@@ -32,23 +31,26 @@ public abstract class Tower extends Entity implements Clickable {
     }
 
     public abstract int getCost();
+
     public abstract int getNextUpgradeCost();
 
 
     public abstract Priority getPriority();
+
     public abstract void upgrade();
 
     //Time between each shot
     public abstract float getCooldown();
+
     public abstract float setCooldown(float c);
 
     public abstract float getDamage();
+
     public abstract float setDamage(float d);
 
 
-
     public void Fire() {
-        switch (getPriority()){
+        switch (getPriority()) {
             // TODO
         }
     }
@@ -56,10 +58,9 @@ public abstract class Tower extends Entity implements Clickable {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if(this.getBoundingBox().contains(event.getX(), event.getY())) {
+        if (this.getBoundingBox().contains(event.getX(), event.getY())) {
             // TODO
             return true;
-        }
-        else return false;
+        } else return false;
     }
 }

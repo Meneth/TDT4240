@@ -12,7 +12,7 @@ import sheep.game.State;
 public class PlayState extends SuperState {
     private Map currentMap;
 
-    public PlayState(){
+    public PlayState() {
         this.currentMap = new Map();
         System.out.println("created new playstate   ");
     }

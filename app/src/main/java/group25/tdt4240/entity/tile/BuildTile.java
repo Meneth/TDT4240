@@ -15,15 +15,13 @@ public class BuildTile extends Tile implements Clickable {
     private Tower tower;
 
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
-    public BuildTile(Image image){
+    public BuildTile(Image image) {
         super(image);
     }
 
     /**
-     *
      * @return The tower that is built
      */
     public Tower getTower() {
@@ -31,7 +29,6 @@ public class BuildTile extends Tile implements Clickable {
     }
 
     /**
-     *
      * @param tower Set current tower
      */
     public void setTower(Tower tower) {
@@ -39,10 +36,9 @@ public class BuildTile extends Tile implements Clickable {
     }
 
     /**
-     *
      * @return If the tile is vacant
      */
-    public boolean isBuilt(){
+    public boolean isBuilt() {
         return (tower != null);
     }
 

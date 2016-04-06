@@ -14,17 +14,17 @@ public class SettingsState extends SuperState {
     private Image returnButtonImage = new Image(R.drawable.play_button);
     Button returnButton = new Button(returnButtonImage);
 
-    public SettingsState(){
+    public SettingsState() {
         returnButton.setPosition(1, 1);
         addEntities(returnButton);
     }
 
     // Add toggle sound-functionality
 
-    public boolean onTouchUp(MotionEvent event){
+    public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (returnButton.getBoundingBox().contains(clickX, clickY)){
+        if (returnButton.getBoundingBox().contains(clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new TitleState());
             return true;
@@ -32,7 +32,7 @@ public class SettingsState extends SuperState {
         return false;
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         super.update(dt);
     }
 

@@ -9,10 +9,9 @@ import sheep.graphics.Image;
 public class Tile extends Entity {
 
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
-    public Tile(Image image){
+    public Tile(Image image) {
         super(image);
     }
 }

@@ -9,7 +9,6 @@ import sheep.graphics.Image;
 public abstract class Projectile extends MovableEntity {
 
     /**
-     *
      * @param image The image the sprite is to be generated from
      */
     public Projectile(Image image) {

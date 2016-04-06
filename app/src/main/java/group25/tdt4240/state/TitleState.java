@@ -53,4 +53,8 @@ public class TitleState extends SuperState implements TouchListener{
         super.update(dt);
         // TODO - Title updating
     }
+
+    public void draw(Canvas canvas) {
+        playButton.draw(canvas);
+    }
 }

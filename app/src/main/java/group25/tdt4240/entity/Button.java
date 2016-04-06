@@ -17,11 +17,11 @@ public class Button extends Entity implements Clickable {
     /**
      *
      * @param canvas Current canvas
-     */
+     *
     @Override
     public void draw(Canvas canvas) {
         // TODO - Write draw
-    }
+    }*/
 
     @Override
     public boolean onTouchDown(MotionEvent event) {

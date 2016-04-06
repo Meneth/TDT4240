@@ -17,6 +17,7 @@ public class Map {
 	public ArrayList<Entity> entities;
 
 	public Map(){
+		this.tiles = new ArrayList<Tile>();
 		for (int i=0;i<9;i++){
 			Tile t = new Tile(new Image(new ColorDrawable(0xEEEEEE)));
 			t.setPosition(100*(i/3),100*(i%3));

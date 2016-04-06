@@ -1,10 +1,8 @@
 package group25.tdt4240.entity;
 
-import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import sheep.graphics.Image;
-import sheep.gui.Widget;
 
 /**
  * Created by Meneth on 2016-03-31.

@@ -10,7 +10,7 @@ import sheep.graphics.Image;
  */
 
 
-public abstract class Entity extends Sprite {
+public abstract class Entity extends Sprite implements Drawable {
     private final Image image;
     
     /**

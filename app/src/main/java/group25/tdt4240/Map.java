@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 
 import java.util.ArrayList;
 
+import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.tile.Tile;
 import sheep.graphics.Image;
@@ -12,7 +13,7 @@ import sheep.graphics.Image;
 /**
  * Created by Meneth on 2016-03-31.
  */
-public class Map {
+public class Map implements Drawable {
 	public ArrayList<Tile> tiles;
 	public ArrayList<Entity> entities;
 
@@ -32,4 +33,9 @@ public class Map {
 		}
 	}
 
+	public void update(float dt){
+		for (Tile t: tiles){
+			t.update(dt);
+		}
+	}
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import group25.tdt4240.entity.Clickable;
-import group25.tdt4240.entity.Entity;
+import group25.tdt4240.entity.Drawable;
 import sheep.game.State;
 import sheep.input.TouchListener;
 
@@ -16,7 +16,7 @@ import sheep.input.TouchListener;
  */
 public class SuperState extends State {
     private List<Clickable> clickableEntities = new ArrayList<>();
-    private List<Entity> entities = new ArrayList<>();
+    private List<Drawable> entities = new ArrayList<>();
 
     public SuperState() {
         this.addTouchListener(new TouchListener() {
@@ -43,23 +43,23 @@ public class SuperState extends State {
 
     @Override
     public void draw(Canvas canvas){
-        for (Entity entity : entities)
+        for (Drawable entity : entities)
             entity.draw(canvas);
     }
 
     @Override
     public void update(float dt){
-        for (Entity entity : entities)
+        for (Drawable entity : entities)
             entity.update(dt);
     }
 
-    public void addEntities(Entity...entities) {
-        for (Entity entity: entities) {
+    public void addEntities(Drawable...entities) {
+        for (Drawable entity: entities) {
             addEntity(entity);
         }
     }
 
-    public void addEntity(Entity entity) {
+    public void addEntity(Drawable entity) {
         entities.add(entity);
         if (entity instanceof Clickable)
             clickableEntities.add((Clickable) entity);

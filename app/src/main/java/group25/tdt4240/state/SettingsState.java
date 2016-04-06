@@ -11,7 +11,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public class SettingsState extends SuperState {
-    private Image returnButtonImage = new Image(R.drawable.playbutton);
+    private Image returnButtonImage = new Image(R.drawable.playButton);
     Button returnButton = new Button(returnButtonImage);
 
     public SettingsState(){

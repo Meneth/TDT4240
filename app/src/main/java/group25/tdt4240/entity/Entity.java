@@ -20,22 +20,4 @@ public abstract class Entity extends Sprite implements Drawable {
         super(image);
         this.image = image;
     }
-
-    /**
-     * @param canvas Current canvas
-     */
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        // TODO - Possibly add something here
-    }
-
-    /**
-     * @param dt
-     */
-    @Override
-    public void update(float dt) {
-        super.update(dt);
-        // TODO - Update logic?
-    }
 }

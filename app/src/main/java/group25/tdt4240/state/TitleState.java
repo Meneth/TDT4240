@@ -2,6 +2,8 @@ package group25.tdt4240.state;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+
+import group25.tdt4240.R;
 import group25.tdt4240.entity.Button;
 import sheep.graphics.Image;
 import sheep.game.State;
@@ -11,9 +13,9 @@ import sheep.input.TouchListener;
  * Created by Meneth on 2016-03-31.
  */
 public class TitleState extends SuperState implements TouchListener{
-    private Image playButtonImage = new Image();
-    private Image settingsButtonImage = new Image();
-    private Image aboutButtonImage = new Image();
+    private Image playButtonImage = new Image(R.drawable.playbutton);
+    private Image settingsButtonImage = new Image(R.drawable.playbutton);
+    private Image aboutButtonImage = new Image(R.drawable.playbutton);
     Button playButton = new Button(playButtonImage);
     Button settingsButton = new Button(settingsButtonImage);
     Button aboutButton = new Button(aboutButtonImage);

@@ -1,6 +1,7 @@
 package group25.tdt4240.state;
 
 import android.graphics.Canvas;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 
 import group25.tdt4240.R;
@@ -22,9 +23,11 @@ public class TitleState extends SuperState implements TouchListener{
 
 
     public TitleState(){
-        playButton.setPosition(1, 1);
-        settingsButton.setPosition(1, 1);
-        aboutButton.setPosition(1, 1);
+        playButton.setScale(0.3f, 0.4f);
+        //settingsButton.setScale(0.3f, 0.4f);
+        playButton.setPosition(1000, 1000);
+        //settingsButton.setPosition(500, 1);
+        //aboutButton.setPosition(1, 1);
         addEntities(playButton, settingsButton, aboutButton);
     }
 
@@ -34,18 +37,20 @@ public class TitleState extends SuperState implements TouchListener{
         if (playButton.getBoundingBox().contains(clickX, clickY)){
             getGame().popState();
             getGame().pushState(new PlayState());
+            System.out.println("Play clicked");
             return true;
         }
         if (settingsButton.getBoundingBox().contains(clickX, clickY)){
             getGame().popState();
             getGame().pushState(new SettingsState());
+            System.out.println("Settings clicked");
             return true;
         }
-        if (aboutButton.getBoundingBox().contains(clickX, clickY)){
+        /*if (aboutButton.getBoundingBox().contains(clickX, clickY)){
             getGame().popState();
             getGame().pushState(new TitleState());
             return true;
-        }
+        }*/
         return false;
     }
 
@@ -56,5 +61,6 @@ public class TitleState extends SuperState implements TouchListener{
 
     public void draw(Canvas canvas) {
         playButton.draw(canvas);
+        //settingsButton.draw(canvas);
     }
 }

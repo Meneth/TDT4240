@@ -2,6 +2,7 @@ package group25.tdt4240;
 
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
@@ -14,6 +15,7 @@ public class TDActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // Create the game.
         Game game = new Game(this, null);
         // Push the main state.

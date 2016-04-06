@@ -15,10 +15,6 @@ public class PlayState extends SuperState {
     public PlayState() {
         this.currentMap = new Map();
         System.out.println("created new playstate   ");
+        addEntity(currentMap);
     }
-
-    public void draw(Canvas canvas) {
-        currentMap.draw(canvas);
-    }
-
 }

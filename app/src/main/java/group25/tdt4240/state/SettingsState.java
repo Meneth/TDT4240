@@ -31,13 +31,4 @@ public class SettingsState extends SuperState {
         }
         return false;
     }
-
-    public void update(float dt) {
-        super.update(dt);
-    }
-
-    public void draw(Canvas canvas) {
-        //Draw buttons
-        returnButton.draw(canvas);
-    }
 }

@@ -3,6 +3,7 @@ package group25.tdt4240.state;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
+import group25.tdt4240.Constants;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.Button;
 import sheep.graphics.Image;
@@ -21,9 +22,9 @@ public class TitleState extends SuperState implements TouchListener {
 
 
     public TitleState() {
-        playButton.setScale(0.3f, 0.4f);
         //settingsButton.setScale(0.3f, 0.4f);
-        playButton.setPosition(1000, 1000);
+        playButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
+        playButton.setScale(0.3f, 0.3f);
         //settingsButton.setPosition(500, 1);
         //aboutButton.setPosition(1, 1);
         addEntities(playButton, settingsButton, aboutButton);
@@ -50,15 +51,5 @@ public class TitleState extends SuperState implements TouchListener {
             return true;
         }*/
         return false;
-    }
-
-    public void update(float dt) {
-        super.update(dt);
-        // TODO - Title updating
-    }
-
-    public void draw(Canvas canvas) {
-        playButton.draw(canvas);
-        //settingsButton.draw(canvas);
     }
 }

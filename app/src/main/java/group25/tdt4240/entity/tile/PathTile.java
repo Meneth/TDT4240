@@ -1,6 +1,7 @@
 package group25.tdt4240.entity.tile;
 
 
+
 import java.util.ArrayList;
 
 import group25.tdt4240.Constants;
@@ -22,29 +23,31 @@ public class PathTile extends Tile {
     private PathTile exitTile;
 
     /**
+     *
      * @param image   The image the sprite is to be generated from
      * @param x       X position in map grid
      * @param y       Y position in map grid
      * @param entries All the path tiles that lead to this one
      * @param exit    The path tile this one leads to
      */
-    public PathTile(Image image, float x, float y, ArrayList<PathTile> entries, PathTile exit) {
+    public PathTile(Image image, float x, float y /*,ArrayList<PathTile> entries, PathTile exit*/){
         super(image);
-        this.setPosition(x, y);
-        this.setShape(Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
-        this.entryTiles = entries;
-        this.exitTile = exit;
+        this.setPosition(x,y);
+        //this.setShape(Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
+        //this.entryTiles = entries;
+        //this.exitTile = exit;
     }
 
 
     /**
+     *
      * @param monsters Collection of the monsters on the map
      * @return The monsters on this tile
      */
-    public ArrayList<Monster> getContainedMonsters(ArrayList<Monster> monsters) {
+    public ArrayList<Monster> getContainedMonsters(ArrayList<Monster> monsters){
         ArrayList<Monster> _m = new ArrayList<Monster>();
-        for (Monster m : monsters) {
-            if (this.collides(m)) {
+        for (Monster m: monsters){
+            if (this.collides(m)){
                 _m.add(m);
             }
         }

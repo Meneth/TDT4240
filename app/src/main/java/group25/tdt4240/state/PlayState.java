@@ -8,6 +8,8 @@ import android.graphics.Canvas;
 
 import android.graphics.Color;
 import android.graphics.Path;
+import android.graphics.Rect;
+import android.view.Window;
 import group25.tdt4240.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.PathTile;
@@ -19,7 +21,6 @@ public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
     private PathTile t;
-
 
 
     public PlayState() {

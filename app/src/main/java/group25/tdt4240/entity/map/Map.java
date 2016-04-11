@@ -42,6 +42,7 @@ public class Map extends Entity {
     private PathTile start;
 
     public Map() {
+        super(null);
         this.tiles = new ArrayList<Tile>();
         this.entities = new ArrayList<Entity>();
         int x = 1;

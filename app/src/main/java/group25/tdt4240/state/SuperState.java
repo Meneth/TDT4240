@@ -1,15 +1,18 @@
 package group25.tdt4240.state;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import group25.tdt4240.entity.Button;
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Drawable;
 import sheep.game.State;
+import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
 /**
@@ -42,8 +45,17 @@ public class SuperState extends State {
         });
     }
 
+    public boolean checkClick(Button btn, Image image, float clickX, float clickY){
+        if (clickX>=(btn.getX()-image.getWidth()/2) && clickX<=(btn.getX()+image.getWidth()/2)
+                && clickY>=(btn.getY()-image.getHeight()/2) && clickY<=(btn.getY()+image.getHeight()/2)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void draw(Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
         for (Drawable entity : entities)
             entity.draw(canvas);
     }

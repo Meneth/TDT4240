@@ -19,6 +19,7 @@ public class SellButton extends Button{
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
+        state.sellTower();
         return false;
     }
 

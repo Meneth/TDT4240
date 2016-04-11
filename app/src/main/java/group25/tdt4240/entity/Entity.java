@@ -25,4 +25,14 @@ public abstract class Entity extends Sprite implements Drawable {
     public int compareTo(Drawable another) {
         return another.getPriority() - getPriority();
     }
+
+    public boolean checkClick(float clickX, float clickY){
+        if (clickX>=(this.getX()-image.getWidth()/2)
+                && clickX<=(this.getX()+image.getWidth()/2)
+                && clickY>=(this.getY()-image.getHeight()/2)
+                && clickY<=(this.getY()+image.getHeight()/2)) {
+            return true;
+        }
+        return false;
+    }
 }

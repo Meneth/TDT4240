@@ -19,7 +19,10 @@ public class UpgradeButton extends Button{
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        state.upgradeTower();
+        if (checkClick(event.getX(),event.getY())){
+            state.upgradeTower();
+            return true;
+        }
         return false;
     }
 

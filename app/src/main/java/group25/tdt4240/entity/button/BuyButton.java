@@ -21,7 +21,7 @@ public class BuyButton extends Button{
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event.getX(),event.getY())){
             state.buyTower();
-
+            return true;
         }
         return false;
     }

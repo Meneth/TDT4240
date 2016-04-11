@@ -19,6 +19,7 @@ public class BuyButton extends Button{
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
+        state.buyTower();
         return false;
     }
 

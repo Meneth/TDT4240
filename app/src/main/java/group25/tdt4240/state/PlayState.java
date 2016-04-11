@@ -12,6 +12,8 @@ import android.view.MotionEvent;
 import group25.tdt4240.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.button.Button;
+import group25.tdt4240.entity.button.SellButton;
+import group25.tdt4240.entity.button.UpgradeButton;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.Tile;
 import group25.tdt4240.entity.tower.Tower;
@@ -26,15 +28,16 @@ public class PlayState extends SuperState {
     private Tower selectedTower;
 
     private Image upgradeButtonImage = new Image(R.drawable.play_button);
-   // Button upgradeButton = new Button(upgradeButtonImage);
+    Button upgradeButton = new UpgradeButton(upgradeButtonImage, this);
 
     private Image sellButtonImage = new Image(R.drawable.play_button);
-    Button sellButton = new Button(sellButtonImage,"SELL", this);
+    Button sellButton = new SellButton(sellButtonImage, this);
 
     public PlayState() {
         this.currentMap = new Map();
         System.out.println("created new playstate");
     }
+
     public void buyTower(){
         this.currentMap.entities.add(selectedTower);
     }
@@ -53,28 +56,7 @@ public class PlayState extends SuperState {
             }
         }
     }
-    public boolean onTouchUp(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        /*for (Entity e: currentMap.entities + (ArrayList<Entity>) currentMap.tiles){
-            if (e instanceof Tower){
-                if (e.getBoundingBox().contains(clickX, clickY)){
-                    selectedTower = (Tower) e;
-                    return true;
-                }
-            }
-            if (e instanceof BuildTile){
-                if (e.getBoundingBox().contains(clickX, clickY)){
-                    selectedTower = (Tower) e;
-                    return true;
-                }
-            }
-        }
 
-        */
-
-        return false;
-    }
 
 
     @Override

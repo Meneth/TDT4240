@@ -35,7 +35,7 @@ public abstract class Tower extends Entity implements Clickable {
     public abstract int getNextUpgradeCost();
 
 
-    public abstract Priority getPriority();
+    public abstract Priority getTargetPriority();
 
     public abstract void upgrade();
 

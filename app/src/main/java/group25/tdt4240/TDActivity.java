@@ -39,7 +39,8 @@ public class TDActivity extends Activity {
             // Remember that you should never show the action bar if the
             // status bar is hidden, so hide that too if necessary.
             ActionBar actionBar = getActionBar();
-            //actionBar.hide();
+            if (actionBar != null)
+                actionBar.hide();
         }
     }
 

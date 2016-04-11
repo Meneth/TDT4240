@@ -20,4 +20,9 @@ public abstract class Entity extends Sprite implements Drawable {
         super(image);
         this.image = image;
     }
+
+    @Override
+    public int compareTo(Drawable another) {
+        return another.getPriority() - getPriority();
+    }
 }

@@ -7,25 +7,73 @@ package group25.tdt4240.state;
 import android.graphics.Canvas;
 
 import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.view.Window;
+import android.view.MotionEvent;
+
 import group25.tdt4240.Map;
 import group25.tdt4240.R;
-import group25.tdt4240.entity.tile.PathTile;
+import group25.tdt4240.entity.button.Button;
+import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.Tile;
-import sheep.game.State;
+import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 
 public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
-    private PathTile t;
+    private int defenderMoney= 0;
 
+    private BuildTile selectedTile;
+    private Tower selectedTower;
+
+    private Image upgradeButtonImage = new Image(R.drawable.play_button);
+   // Button upgradeButton = new Button(upgradeButtonImage);
+
+    private Image sellButtonImage = new Image(R.drawable.play_button);
+    Button sellButton = new Button(sellButtonImage,"SELL", this);
 
     public PlayState() {
         this.currentMap = new Map();
         System.out.println("created new playstate");
+    }
+    public void buyTower(){
+        this.currentMap.entities.add(selectedTower);
+    }
+    public void sellTower(){
+        if (selectedTower != null){
+            defenderMoney += selectedTower.getCost();
+            currentMap.tiles.remove(selectedTower);
+        }
+        System.out.println("Sell selected tower");
+    }
+    public void upgradeTower(){
+        if (selectedTower != null){
+            if (defenderMoney >= selectedTower.getNextUpgradeCost()) {
+                defenderMoney -= selectedTower.getCost();
+                selectedTower.upgrade();
+            }
+        }
+    }
+    public boolean onTouchUp(MotionEvent event) {
+        float clickY = event.getY();
+        float clickX = event.getX();
+        /*for (Entity e: currentMap.entities + (ArrayList<Entity>) currentMap.tiles){
+            if (e instanceof Tower){
+                if (e.getBoundingBox().contains(clickX, clickY)){
+                    selectedTower = (Tower) e;
+                    return true;
+                }
+            }
+            if (e instanceof BuildTile){
+                if (e.getBoundingBox().contains(clickX, clickY)){
+                    selectedTower = (Tower) e;
+                    return true;
+                }
+            }
+        }
+
+        */
+
+        return false;
     }
 
 

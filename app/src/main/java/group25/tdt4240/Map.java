@@ -17,7 +17,7 @@ import sheep.graphics.Image;
  * The map is used in the playstate class, where it is displayed, and used for the player
  * to play on.
  */
-public class Map {
+public class Map extends Entity {
 
     /*for debugging purposes
     b = buildtile
@@ -81,6 +81,11 @@ public class Map {
         for (Tile t : this.tiles) {
             t.draw(canvas);
         }
+    }
+
+    @Override
+    public int getPriority() {
+        return 0;
     }
 
 }

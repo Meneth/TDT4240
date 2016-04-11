@@ -1,10 +1,12 @@
-package group25.tdt4240;
+package group25.tdt4240.entity.map;
 
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
 import android.graphics.Path;
+
+import group25.tdt4240.R;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.PathTile;

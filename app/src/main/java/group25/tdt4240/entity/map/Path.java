@@ -1,4 +1,4 @@
-package group25.tdt4240;
+package group25.tdt4240.entity.map;
 
 import java.util.ArrayList;
 

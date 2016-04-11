@@ -7,4 +7,6 @@ import android.view.MotionEvent;
  */
 public interface Clickable extends Drawable {
     boolean onTouchDown(MotionEvent event);
+
+
 }

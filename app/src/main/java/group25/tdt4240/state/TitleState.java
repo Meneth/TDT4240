@@ -4,7 +4,7 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.Constants;
 import group25.tdt4240.R;
-import group25.tdt4240.entity.button.Button;
+import group25.tdt4240.entity.button.*;
 import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
@@ -15,9 +15,9 @@ public class TitleState extends SuperState implements TouchListener {
     private Image playButtonImage = new Image(R.drawable.play_button2);
     private Image settingsButtonImage = new Image(R.drawable.play_button2);
     private Image aboutButtonImage = new Image(R.drawable.play_button2);
-    Button playButton = new Button(playButtonImage);
-    Button settingsButton = new Button(settingsButtonImage);
-    Button aboutButton = new Button(aboutButtonImage);
+    Button playButton = new PlayButton(playButtonImage);
+    Button settingsButton = new SettingsButton(settingsButtonImage);
+    Button aboutButton = new AboutButton(aboutButtonImage);
     //SCREEN_HEIGHT 1776 & SCREEN_WIDTH 1080
 
 
@@ -32,19 +32,19 @@ public class TitleState extends SuperState implements TouchListener {
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (checkClick(playButton, playButtonImage, clickX, clickY)) {
+        if (playButton.checkClick(playButton, playButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new PlayState());
             System.out.println("Play clicked");
             return true;
         }
-        if (checkClick(settingsButton, settingsButtonImage, clickX, clickY)) {
+        if (settingsButton.checkClick(settingsButton, settingsButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new SettingsState());
             System.out.println("Settings clicked");
             return true;
         }
-        if (checkClick(aboutButton, aboutButtonImage, clickX, clickY)) {
+        if (aboutButton.checkClick(aboutButton, aboutButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new SettingsState());
             System.out.println("About clicked");

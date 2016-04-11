@@ -4,7 +4,7 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.Constants;
 import group25.tdt4240.R;
-import group25.tdt4240.entity.button.Button;
+import group25.tdt4240.entity.button.*;
 import sheep.graphics.Image;
 
 /**
@@ -13,8 +13,8 @@ import sheep.graphics.Image;
 public class SettingsState extends SuperState {
     private Image soundButtonImage = new Image(R.drawable.play_button2);
     private Image returnButtonImage = new Image(R.drawable.play_button2);
-    Button soundButton = new Button(soundButtonImage);
-    Button returnButton = new Button(returnButtonImage);
+    Button soundButton = new SoundButton(soundButtonImage);
+    Button returnButton = new AboutButton(returnButtonImage);
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);
@@ -27,7 +27,7 @@ public class SettingsState extends SuperState {
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (checkClick(returnButton, returnButtonImage, clickX, clickY)) {
+        if (returnButton.checkClick(returnButton, returnButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new TitleState());
             return true;

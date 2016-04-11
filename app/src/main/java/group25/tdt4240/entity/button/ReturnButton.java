@@ -1,17 +1,17 @@
 package group25.tdt4240.entity.button;
 
+/**
+ * Created by DagErik on 11.04.2016.
+ */
 import android.view.MotionEvent;
 import group25.tdt4240.state.TitleState;
 import group25.tdt4240.state.SettingsState;
 import sheep.graphics.Image;
 
-/**
- * Created by Ole on 11/04/2016.
- */
-public class AboutButton extends Button {
-    private TitleState state;
+public class ReturnButton extends Button {
+    private SettingsState state;
 
-    public AboutButton(Image image, TitleState state){
+    public ReturnButton(Image image, SettingsState state){
         super(image);
         this.state = state;
     }
@@ -22,8 +22,8 @@ public class AboutButton extends Button {
         float clickX = event.getX();
         if (this.checkClick(clickX, clickY)) {
             state.getGame().popState();
-            state.getGame().pushState(new SettingsState());
-            System.out.println("About clicked");
+            state.getGame().pushState(new TitleState());
+            System.out.println("Return clicked");
             return true;
         }
         return false;

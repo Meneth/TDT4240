@@ -13,8 +13,8 @@ import sheep.graphics.Image;
 public class SettingsState extends SuperState {
     private Image soundButtonImage = new Image(R.drawable.play_button2);
     private Image returnButtonImage = new Image(R.drawable.play_button2);
-    Button soundButton = new SoundButton(soundButtonImage);
-    Button returnButton = new AboutButton(returnButtonImage);
+    Button soundButton = new SoundButton(soundButtonImage, this);
+    Button returnButton = new ReturnButton(returnButtonImage, this);
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);
@@ -23,15 +23,5 @@ public class SettingsState extends SuperState {
     }
 
     // Add sound-functionality
-
-    public boolean onTouchUp(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        if (returnButton.checkClick(returnButton, returnButtonImage, clickX, clickY)) {
-            getGame().popState();
-            getGame().pushState(new TitleState());
-            return true;
-        }
-        return false;
-    }
+    
 }

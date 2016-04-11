@@ -42,9 +42,9 @@ public class Map {
     public Map() {
         this.tiles = new ArrayList<Tile>();
         this.entities = new ArrayList<Entity>();
-        int x = 0;
+        int x = 1;
         //starts at 1 to not be under the "tdt42402" sign on top of the screen
-        int y = 20;
+        int y = 1;
 
         //iterates through string and generates map with coordinates accordingly
         // each tile is 20 pixels wide. *21 is just temporarily, to make it easier to see the grid.
@@ -70,7 +70,7 @@ public class Map {
                     x++;
                     break;
                 case '\n':
-                    x = 0;
+                    x = 1;
                     y++;
                     break;
             }

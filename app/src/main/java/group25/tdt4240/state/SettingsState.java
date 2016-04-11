@@ -1,11 +1,10 @@
 package group25.tdt4240.state;
 
-import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import group25.tdt4240.Constants;
 import group25.tdt4240.R;
-import group25.tdt4240.entity.Button;
+import group25.tdt4240.entity.button.Button;
 import sheep.graphics.Image;
 
 /**

@@ -49,11 +49,7 @@ public abstract class Tower extends Entity implements Clickable {
     public abstract float setDamage(float d);
 
 
-    public void Fire() {
-        switch (getPriority()) {
-            // TODO
-        }
-    }
+    public abstract void Fire();
 
 
     @Override

@@ -27,7 +27,7 @@ public class SettingsState extends SuperState {
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (returnButton.getBoundingBox().contains(clickX, clickY)) {
+        if (checkClick(returnButton, returnButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new TitleState());
             return true;

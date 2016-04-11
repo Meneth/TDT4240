@@ -28,13 +28,6 @@ public class TitleState extends SuperState implements TouchListener {
         addEntities(playButton, settingsButton, aboutButton);
     }
 
-    private boolean checkClick(Button btn, Image image, float clickX, float clickY){
-        if (clickX>=(btn.getX()-image.getWidth()/2) && clickX<=(btn.getX()+image.getWidth()/2)
-                && clickY>=(btn.getY()-image.getHeight()/2) && clickY<=(btn.getY()+image.getHeight()/2)) {
-            return true;
-        }
-        return false;
-        }
 
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();

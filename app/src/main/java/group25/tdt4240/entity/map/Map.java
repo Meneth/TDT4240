@@ -1,10 +1,12 @@
-package group25.tdt4240;
+package group25.tdt4240.entity.map;
 
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
 
 import android.graphics.Path;
+
+import group25.tdt4240.R;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.PathTile;
@@ -17,7 +19,7 @@ import sheep.graphics.Image;
  * The map is used in the playstate class, where it is displayed, and used for the player
  * to play on.
  */
-public class Map {
+public class Map extends Entity {
 
     /*for debugging purposes
     b = buildtile
@@ -40,6 +42,7 @@ public class Map {
     private PathTile start;
 
     public Map() {
+        super(null);
         this.tiles = new ArrayList<Tile>();
         this.entities = new ArrayList<Entity>();
         int x = 1;
@@ -81,6 +84,11 @@ public class Map {
         for (Tile t : this.tiles) {
             t.draw(canvas);
         }
+    }
+
+    @Override
+    public int getPriority() {
+        return 0;
     }
 
 }

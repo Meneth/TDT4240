@@ -38,6 +38,16 @@ public class PlayState extends SuperState {
         System.out.println("created new playstate");
     }
 
+    public void selectTower(Tower t){
+        this.selectedTower = t;
+        this.selectedTile = null;
+    }
+
+    public void selectTile(BuildTile t){
+        this.selectedTile = t;
+        this.selectedTower = null;
+    }
+
     public void buyTower(){
         this.currentMap.entities.add(selectedTower);
     }

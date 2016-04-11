@@ -13,43 +13,51 @@ import sheep.input.TouchListener;
  * Created by Meneth on 2016-03-31.
  */
 public class TitleState extends SuperState implements TouchListener {
-    private Image playButtonImage = new Image(R.drawable.play_button);
-    private Image settingsButtonImage = new Image(R.drawable.play_button);
-    private Image aboutButtonImage = new Image(R.drawable.play_button);
+    private Image playButtonImage = new Image(R.drawable.play_button2);
+    private Image settingsButtonImage = new Image(R.drawable.play_button2);
+    private Image aboutButtonImage = new Image(R.drawable.play_button2);
     Button playButton = new Button(playButtonImage);
     Button settingsButton = new Button(settingsButtonImage);
     Button aboutButton = new Button(aboutButtonImage);
+    //SCREEN_HEIGHT 1776 & SCREEN_WIDTH 1080
 
 
     public TitleState() {
-        //settingsButton.setScale(0.3f, 0.4f);
-        playButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
-        playButton.setScale(0.3f, 0.3f);
-        //settingsButton.setPosition(500, 1);
-        //aboutButton.setPosition(1, 1);
+        playButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);
+        settingsButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*4);
+        aboutButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*6);
         addEntities(playButton, settingsButton, aboutButton);
     }
+
+    private boolean checkClick(Button btn, Image image, float clickX, float clickY){
+        if (clickX>=(btn.getX()-image.getWidth()/2) && clickX<=(btn.getX()+image.getWidth()/2)
+                && clickY>=(btn.getY()-image.getHeight()/2) && clickY<=(btn.getY()+image.getHeight()/2)) {
+            return true;
+        }
+        return false;
+        }
 
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (playButton.getBoundingBox().contains(clickX, clickY)) {
+        if (checkClick(playButton, playButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new PlayState());
             System.out.println("Play clicked");
             return true;
         }
-        if (settingsButton.getBoundingBox().contains(clickX, clickY)) {
+        if (checkClick(settingsButton, settingsButtonImage, clickX, clickY)) {
             getGame().popState();
             getGame().pushState(new SettingsState());
             System.out.println("Settings clicked");
             return true;
         }
-        /*if (aboutButton.getBoundingBox().contains(clickX, clickY)){
+        if (checkClick(aboutButton, aboutButtonImage, clickX, clickY)) {
             getGame().popState();
-            getGame().pushState(new TitleState());
+            getGame().pushState(new SettingsState());
+            System.out.println("About clicked");
             return true;
-        }*/
+        }
         return false;
     }
 }

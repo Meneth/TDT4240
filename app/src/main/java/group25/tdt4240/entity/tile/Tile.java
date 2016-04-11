@@ -14,4 +14,8 @@ public class Tile extends Entity {
     public Tile(Image image) {
         super(image);
     }
+
+    public int getPriority() {
+        return 0;
+    }
 }

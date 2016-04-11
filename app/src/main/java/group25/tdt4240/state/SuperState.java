@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Drawable;
@@ -15,8 +16,8 @@ import sheep.input.TouchListener;
  * Created by Meneth on 2016-04-04.
  */
 public class SuperState extends State {
-    private List<Clickable> clickableEntities = new ArrayList<>();
-    private List<Drawable> entities = new ArrayList<>();
+    private PriorityQueue<Clickable> clickableEntities = new PriorityQueue<>();
+    private PriorityQueue<Drawable> entities = new PriorityQueue<>();
 
     public SuperState() {
         this.addTouchListener(new TouchListener() {

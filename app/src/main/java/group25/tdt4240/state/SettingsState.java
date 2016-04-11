@@ -24,6 +24,7 @@ public class SettingsState extends SuperState {
 
     // Add sound-functionality
 
+    /*
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
@@ -33,5 +34,5 @@ public class SettingsState extends SuperState {
             return true;
         }
         return false;
-    }
+    }*/
 }

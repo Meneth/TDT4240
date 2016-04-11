@@ -13,7 +13,7 @@ import sheep.input.TouchListener;
  */
 public class TitleState extends SuperState implements TouchListener {
     private Image playButtonImage = new Image(R.drawable.play_button2);
-    private Image settingsButtonImage = new Image(R.drawable.play_button2);
+    private Image settingsButtonImage = new Image(R.drawable.settings_button2);
     private Image aboutButtonImage = new Image(R.drawable.play_button2);
     Button playButton = new PlayButton(playButtonImage);
     Button settingsButton = new SettingsButton(settingsButtonImage);
@@ -28,7 +28,7 @@ public class TitleState extends SuperState implements TouchListener {
         addEntities(playButton, settingsButton, aboutButton);
     }
 
-
+    /*
     public boolean onTouchUp(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
@@ -52,4 +52,5 @@ public class TitleState extends SuperState implements TouchListener {
         }
         return false;
     }
+    */
 }

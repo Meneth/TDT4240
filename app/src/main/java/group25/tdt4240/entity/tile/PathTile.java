@@ -30,7 +30,7 @@ public class PathTile extends Tile {
      * @param entries All the path tiles that lead to this one
      * @param exit    The path tile this one leads to
      */
-    public PathTile(Image image, float x, float y /*,ArrayList<PathTile> entries, PathTile exit*/){
+    public PathTile(Image image, float x, float y ){
         super(image);
         this.setPosition(x,y);
         //this.setShape(Constants.TILE_WIDTH, Constants.TILE_HEIGHT);

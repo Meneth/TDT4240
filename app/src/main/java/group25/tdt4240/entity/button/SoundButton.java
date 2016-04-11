@@ -1,7 +1,10 @@
 package group25.tdt4240.entity.button;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.MotionEvent;
 
+import group25.tdt4240.TDActivity;
 import group25.tdt4240.state.TitleState;
 import sheep.graphics.Image;
 import group25.tdt4240.state.SettingsState;
@@ -22,8 +25,10 @@ public class SoundButton extends Button {
         float clickY = event.getY();
         float clickX = event.getX();
         if (this.checkClick(clickX, clickY)) {
-            //TODO: TOGGLE SOUND
             System.out.println("Sound clicked");
+            Context c = state.getGame().getContext();
+            TDActivity a = (TDActivity) c;
+            a.setSound();
             return true;
         }
         return false;

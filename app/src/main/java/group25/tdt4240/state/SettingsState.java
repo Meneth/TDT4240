@@ -1,7 +1,5 @@
 package group25.tdt4240.state;
 
-import android.view.MotionEvent;
-
 import group25.tdt4240.Constants;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.button.*;
@@ -22,6 +20,7 @@ public class SettingsState extends SuperState {
         addEntities(returnButton, soundButton);
     }
 
+
     // Add sound-functionality
-    
+
 }

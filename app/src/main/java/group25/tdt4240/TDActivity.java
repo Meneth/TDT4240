@@ -3,18 +3,17 @@ package group25.tdt4240;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
-
 import group25.tdt4240.state.TitleState;
 import sheep.game.*;
 
 public class TDActivity extends Activity {
     private Game game;
+    private MediaPlayer mp;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,8 @@ public class TDActivity extends Activity {
         game.pushState(new TitleState());
         // View the game.
         setContentView(game);
+        mp = MediaPlayer.create(getApplicationContext(),R.raw.sound);
+        mp.start();
 
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -39,6 +40,25 @@ public class TDActivity extends Activity {
             // status bar is hidden, so hide that too if necessary.
             ActionBar actionBar = getActionBar();
             //actionBar.hide();
+        }
+    }
+
+    public boolean setSound(){
+        if(mp.isPlaying()){
+            mp.pause();
+        }
+        else {
+            mp.start();
+        }
+        return false;
+    }
+
+    @Override
+    protected void onDestroy(){
+        if(mp!=null){
+            mp.stop();
+            mp.release();
+            mp = null;
         }
     }
 }

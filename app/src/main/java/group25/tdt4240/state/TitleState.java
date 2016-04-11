@@ -15,9 +15,9 @@ public class TitleState extends SuperState implements TouchListener {
     private Image playButtonImage = new Image(R.drawable.play_button2);
     private Image settingsButtonImage = new Image(R.drawable.settings_button2);
     private Image aboutButtonImage = new Image(R.drawable.play_button2);
-    Button playButton = new PlayButton(playButtonImage);
-    Button settingsButton = new SettingsButton(settingsButtonImage);
-    Button aboutButton = new AboutButton(aboutButtonImage);
+    Button playButton = new PlayButton(playButtonImage, this);
+    Button settingsButton = new SettingsButton(settingsButtonImage, this);
+    Button aboutButton = new AboutButton(aboutButtonImage, this);
     //SCREEN_HEIGHT 1776 & SCREEN_WIDTH 1080
 
 
@@ -30,26 +30,6 @@ public class TitleState extends SuperState implements TouchListener {
 
     /*
     public boolean onTouchUp(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        if (playButton.checkClick(playButton, playButtonImage, clickX, clickY)) {
-            getGame().popState();
-            getGame().pushState(new PlayState());
-            System.out.println("Play clicked");
-            return true;
-        }
-        if (settingsButton.checkClick(settingsButton, settingsButtonImage, clickX, clickY)) {
-            getGame().popState();
-            getGame().pushState(new SettingsState());
-            System.out.println("Settings clicked");
-            return true;
-        }
-        if (aboutButton.checkClick(aboutButton, aboutButtonImage, clickX, clickY)) {
-            getGame().popState();
-            getGame().pushState(new SettingsState());
-            System.out.println("About clicked");
-            return true;
-        }
         return false;
     }
     */

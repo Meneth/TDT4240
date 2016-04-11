@@ -13,8 +13,8 @@ import sheep.graphics.Image;
 public class SettingsState extends SuperState {
     private Image soundButtonImage = new Image(R.drawable.play_button2);
     private Image returnButtonImage = new Image(R.drawable.play_button2);
-    Button soundButton = new SoundButton(soundButtonImage);
-    Button returnButton = new AboutButton(returnButtonImage);
+    Button soundButton = new SoundButton(soundButtonImage, this);
+    Button returnButton = new ReturnButton(returnButtonImage, this);
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);

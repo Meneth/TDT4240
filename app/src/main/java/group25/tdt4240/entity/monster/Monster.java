@@ -1,6 +1,6 @@
 package group25.tdt4240.entity.monster;
 
-import group25.tdt4240.entity.map.Path;
+import group25.tdt4240.map.Path;
 import group25.tdt4240.entity.MovableEntity;
 import sheep.graphics.Image;
 

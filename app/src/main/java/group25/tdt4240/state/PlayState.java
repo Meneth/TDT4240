@@ -9,7 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
 
-import group25.tdt4240.entity.map.Map;
+import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.button.Button;
 import group25.tdt4240.entity.button.SellButton;

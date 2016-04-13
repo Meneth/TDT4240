@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
 
+import group25.tdt4240.entity.monster.BasicMonster;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.button.Button;
@@ -35,6 +36,9 @@ public class PlayState extends SuperState {
 
     public PlayState() {
         this.currentMap = new Map();
+        // TODO - This way of adding a monster is placeholder
+        addEntity(new BasicMonster(currentMap.path));
+        addEntity(currentMap);
         System.out.println("created new playstate");
     }
 
@@ -65,24 +69,5 @@ public class PlayState extends SuperState {
                 selectedTower.upgrade();
             }
         }
-    }
-
-
-
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
-        currentMap.draw(canvas);
-    }
-
-
-    // needs to update all images that shall be shown.
-    // Problem with only one green tile top corner solved by this for loop.
-    @Override
-    public void update(float dt) {
-        for (Tile t : currentMap.tiles) {
-            t.update(dt);
-        }
-
     }
 }

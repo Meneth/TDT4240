@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import group25.tdt4240.entity.Clickable;
@@ -17,7 +18,7 @@ import sheep.input.TouchListener;
  */
 public class SuperState extends State {
     private PriorityQueue<Clickable> clickableEntities = new PriorityQueue<>();
-    private PriorityQueue<Drawable> entities = new PriorityQueue<>();
+    private PriorityQueue<Drawable> entities = new PriorityQueue<>(10, Collections.reverseOrder());
 
     public SuperState() {
         this.addTouchListener(new TouchListener() {

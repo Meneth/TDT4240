@@ -29,12 +29,12 @@ public class Map implements Drawable {
     g = goal(pathtile)
     */
 
-    public String exampleMapString =
+    private String exampleMapString =
             "bbbbsbbbbb\n" +
             "bbbbpppbbb\n" +
             "bbbbbbpbbb\n" +
             "bbbbgppbbb";
-    public String examplePath =
+    private String examplePath =
             "4 0\n4 1\n5 1\n" +
             "6 1\n6 2\n6 3\n" +
             "5 3\n4 3";
@@ -45,7 +45,7 @@ public class Map implements Drawable {
     private PathTile goal;
     private PathTile start;
     private int width, height;
-    private Path path;
+    public Path path;
 
     public Map() {
         this.tiles = new ArrayList<Tile>();

@@ -25,9 +25,11 @@ public abstract class Monster extends MovableEntity {
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Monster(Image image, Path path) {
-        super(image);
+    public Monster(Image image, Path path, float standardVelocity) {
+        super(image, standardVelocity);
         this.path = path;
         position = 0;
+        // Spawn monster at start
+        setPosition(path.get(0).getPosition());
     }
 }

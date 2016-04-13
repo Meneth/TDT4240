@@ -62,9 +62,9 @@ public class Map implements Drawable {
      */
     private void readMap(String map) {
         int tilesize = (int) (Constants.SCREEN_WIDTH/10);
-        int x = 1;
+        int x = 0;
         //starts at 1 to not be under the "tdt42402" sign on top of the screen
-        int y = 1;
+        int y = 0;
         //
         // each tile is 20 pixels wide. *21 is just temporarily, to make it easier to see the grid.
         for (int i = 0; i < map.length(); i++) {

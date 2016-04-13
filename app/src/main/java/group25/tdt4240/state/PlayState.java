@@ -7,7 +7,6 @@ package group25.tdt4240.state;
 import android.graphics.Canvas;
 
 import android.graphics.Color;
-import android.view.MotionEvent;
 
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;

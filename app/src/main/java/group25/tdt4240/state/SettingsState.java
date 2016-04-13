@@ -9,8 +9,8 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public class SettingsState extends SuperState {
-    private Image soundButtonImage = new Image(R.drawable.play_button2);
-    private Image backButtonImage = new Image(R.drawable.back_button2);
+    private Image soundButtonImage = new Image(R.drawable.play_button);
+    private Image backButtonImage = new Image(R.drawable.back_button);
     Button soundButton = new SoundButton(soundButtonImage, this);
     Button backButton = new ReturnButton(backButtonImage, this);
 

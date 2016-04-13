@@ -1,5 +1,7 @@
 package group25.tdt4240.entity.monster;
 
+import android.graphics.Canvas;
+
 import group25.tdt4240.map.Path;
 import group25.tdt4240.entity.MovableEntity;
 import sheep.graphics.Image;
@@ -13,12 +15,13 @@ public abstract class Monster extends MovableEntity {
 
     @Override
     public void update(float dt) {
+        super.update(dt);
         if (!path.get(position).collides(this))
             position++;
         if (position == path.size()) {
             // TODO - Do damage
         } else {
-            setTarget(path.get(position + 1).getPosition());
+            setTarget(path.get(position + 1).getCenter());
         }
     }
 
@@ -30,7 +33,7 @@ public abstract class Monster extends MovableEntity {
         this.path = path;
         position = 0;
         // Spawn monster at start
-        setPosition(path.get(0).getPosition());
+        setPosition(path.get(0).getX(), path.get(0).getY());
     }
 
     public int getPriority() {

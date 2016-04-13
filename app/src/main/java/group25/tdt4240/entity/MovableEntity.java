@@ -26,10 +26,8 @@ public abstract class MovableEntity extends Entity {
 
     public void setTarget(Vector2 target) {
         float speed = getVelocity();
-        float dx = getX() - target.getX();
-        float dy = getY() - target.getY();
 
-        Vector2 v = getPosition().getSubtracted(target);
+        Vector2 v = target.getSubtracted(getPosition());
         float speedScale = speed / v.getLength();
         v.multiply(speedScale);
         setSpeed(v);

@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import sheep.game.Sprite;
 import sheep.graphics.Image;
+import sheep.math.Vector2;
 
 /**
  * Created by Meneth on 2016-03-31.
@@ -34,5 +35,9 @@ public abstract class Entity extends Sprite implements Drawable {
             return true;
         }
         return false;
+    }
+
+    public Vector2 getCenter() {
+        return getPosition();
     }
 }

@@ -94,7 +94,7 @@ public class Map implements Drawable {
                     break;
             }
         }
-        width = x - 1; // Due to 0 vs. 1 indexing
+        width = x;
         height = y;
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
+import group25.tdt4240.Constants;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
@@ -60,6 +61,7 @@ public class Map implements Drawable {
      * @param map The string describing the map
      */
     private void readMap(String map) {
+        int tilesize = (int) (Constants.SCREEN_WIDTH/10);
         int x = 1;
         //starts at 1 to not be under the "tdt42402" sign on top of the screen
         int y = 1;
@@ -68,22 +70,22 @@ public class Map implements Drawable {
         for (int i = 0; i < map.length(); i++) {
             switch (map.charAt(i)) {
                 case 's':
-                    PathTile s = new PathTile(dirtTile, x * 21, y * 21);
+                    PathTile s = new PathTile(dirtTile, x * tilesize, y * tilesize);
                     tiles.add(s);
                     this.start = s;
                     x++;
                     break;
                 case 'g':
-                    PathTile goal = new PathTile(dirtTile, x * 21, y * 21);
+                    PathTile goal = new PathTile(dirtTile, x * tilesize, y * tilesize);
                     this.tiles.add(goal);
                     x++;
                     break;
                 case 'p':
-                    tiles.add(new PathTile(dirtTile, x * 21, y * 21));
+                    tiles.add(new PathTile(dirtTile, x * tilesize, y * tilesize));
                     x++;
                     break;
                 case 'b':
-                    tiles.add(new BuildTile(grassTile, x * 21, y * 21));
+                    tiles.add(new BuildTile(grassTile, x * tilesize, y * tilesize));
                     x++;
                     break;
                 case '\n':

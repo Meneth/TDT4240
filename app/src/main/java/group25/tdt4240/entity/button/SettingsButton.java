@@ -2,6 +2,7 @@ package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
 
+import group25.tdt4240.R;
 import group25.tdt4240.state.PlayState;
 import group25.tdt4240.state.TitleState;
 import group25.tdt4240.state.SettingsState;
@@ -11,10 +12,12 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class SettingsButton extends Button {
+
+    public static final Image image = new Image(R.drawable.settings_button);
     private TitleState state;
 
-    public SettingsButton(Image image, TitleState titleState){
-        super(image);
+    public SettingsButton(TitleState titleState){
+        super(SettingsButton.image);
         this.state = titleState;
     }
 

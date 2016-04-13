@@ -9,10 +9,9 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 public class SettingsState extends SuperState {
-    private Image soundButtonImage = new Image(R.drawable.play_button);
-    private Image backButtonImage = new Image(R.drawable.back_button);
-    Button soundButton = new SoundButton(soundButtonImage, this);
-    Button backButton = new ReturnButton(backButtonImage, this);
+
+    Button soundButton = new SoundButton(this);
+    Button backButton = new BackButton(this);
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);

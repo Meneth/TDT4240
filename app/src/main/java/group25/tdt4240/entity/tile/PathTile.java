@@ -32,8 +32,8 @@ public class PathTile extends Tile {
      */
     public PathTile(Image image, float x, float y ){
         super(image);
+        //this.setScale(2.0f,2.0f);
         this.setPosition(x,y);
-        this.setScale(5.4f,5.4f);
         //this.setShape(Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
         //this.entryTiles = entries;
         //this.exitTile = exit;

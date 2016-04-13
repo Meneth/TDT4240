@@ -43,14 +43,22 @@ public class Map implements Drawable {
     public Map() {
         this.tiles = new ArrayList<Tile>();
         this.entities = new ArrayList<Entity>();
+
+        readMap(exampleMapString);
+    }
+
+    /**
+     * Iterates through string and generates map with coordinates accordingly
+     * @param s The string describing the map
+     */
+    private void readMap(String map) {
         int x = 1;
         //starts at 1 to not be under the "tdt42402" sign on top of the screen
         int y = 1;
-
-        //iterates through string and generates map with coordinates accordingly
+        //
         // each tile is 20 pixels wide. *21 is just temporarily, to make it easier to see the grid.
-        for (int i = 0; i < exampleMapString.length(); i++) {
-            switch (exampleMapString.charAt(i)) {
+        for (int i = 0; i < map.length(); i++) {
+            switch (map.charAt(i)) {
                 case 's':
                     PathTile s = new PathTile(dirtTile, x * 21, y * 21);
                     tiles.add(s);

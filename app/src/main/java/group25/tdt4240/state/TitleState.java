@@ -14,7 +14,7 @@ import sheep.input.TouchListener;
 public class TitleState extends SuperState implements TouchListener {
     private Image playButtonImage = new Image(R.drawable.play_button2);
     private Image settingsButtonImage = new Image(R.drawable.settings_button2);
-    private Image aboutButtonImage = new Image(R.drawable.play_button2);
+    private Image aboutButtonImage = new Image(R.drawable.about_button2);
     Button playButton = new PlayButton(playButtonImage, this);
     Button settingsButton = new SettingsButton(settingsButtonImage, this);
     Button aboutButton = new AboutButton(aboutButtonImage, this);

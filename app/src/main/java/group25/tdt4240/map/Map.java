@@ -3,6 +3,7 @@ package group25.tdt4240.map;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import group25.tdt4240.R;
 import group25.tdt4240.entity.Drawable;
@@ -32,24 +33,31 @@ public class Map implements Drawable {
             "bbbbsbbbbb\n" +
             "bbbbpppbbb\n" +
             "bbbbbbpbbb\n" +
-            "bbbbgppbbb\n";
+            "bbbbgppbbb";
+    public String examplePath =
+            "4 0\n4 1\n5 1\n" +
+            "6 1\n6 2\n6 3\n" +
+            "5 3\n4 3";
     public ArrayList<Tile> tiles;
     public ArrayList<Entity> entities;
     private Image grassTile = new Image(R.drawable.grasstile);
     private Image dirtTile = new Image(R.drawable.dirttile);
     private PathTile goal;
     private PathTile start;
+    private int width, height;
+    private Path path;
 
     public Map() {
         this.tiles = new ArrayList<Tile>();
         this.entities = new ArrayList<Entity>();
 
         readMap(exampleMapString);
+        readPath(examplePath);
     }
 
     /**
      * Iterates through string and generates map with coordinates accordingly
-     * @param s The string describing the map
+     * @param map The string describing the map
      */
     private void readMap(String map) {
         int x = 1;
@@ -84,6 +92,21 @@ public class Map implements Drawable {
                     break;
             }
         }
+        width = x - 1; // Due to 0 vs. 1 indexing
+        height = y;
+    }
+
+    /**
+     * Currently only tries to find a single path; can't handle branching
+     */
+    private void readPath(String path) {
+        Path p = new Path();
+        for (String s: path.split("\n")) {
+            String[] tile = s.split(" ");
+            int i = Integer.parseInt(tile[1]) * width + Integer.parseInt(tile[0]);
+            p.add((PathTile) tiles.get(i));
+        }
+        this.path = p;
     }
 
     public void draw(Canvas canvas) {

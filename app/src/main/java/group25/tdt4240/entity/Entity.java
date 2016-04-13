@@ -36,8 +36,4 @@ public abstract class Entity extends Sprite implements Drawable {
         }
         return false;
     }
-
-    public Vector2 getCenter() {
-        return getPosition();
-    }
 }

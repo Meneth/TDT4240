@@ -18,9 +18,7 @@ public class BuildTile extends Tile implements Clickable {
      * @param image The image the sprite is to be generated from
      */
     public BuildTile(Image image, float x, float y) {
-        super(image);
-        this.setScale(5.4f,5.4f);
-        this.setPosition(x,y);
+        super(image, x, y);
     }
 
     /**

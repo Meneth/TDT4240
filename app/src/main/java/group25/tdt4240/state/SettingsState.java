@@ -10,14 +10,14 @@ import sheep.graphics.Image;
  */
 public class SettingsState extends SuperState {
     private Image soundButtonImage = new Image(R.drawable.play_button2);
-    private Image returnButtonImage = new Image(R.drawable.play_button2);
+    private Image backButtonImage = new Image(R.drawable.back_button2);
     Button soundButton = new SoundButton(soundButtonImage, this);
-    Button returnButton = new ReturnButton(returnButtonImage, this);
+    Button backButton = new ReturnButton(backButtonImage, this);
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);
-        returnButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*4);
-        addEntities(returnButton, soundButton);
+        backButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*4);
+        addEntities(backButton, soundButton);
     }
 
 

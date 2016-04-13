@@ -14,7 +14,7 @@ public abstract class Projectile extends MovableEntity {
      * @param tower The tower which fired the projectile
      */
     public Projectile(Image image, Tower tower) {
-        super(image, 0);
+        super(image, 0); // TODO - Velocity is placeholder
         setOrigin(tower);
     }
 

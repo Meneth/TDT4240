@@ -32,4 +32,8 @@ public abstract class Monster extends MovableEntity {
         // Spawn monster at start
         setPosition(path.get(0).getPosition());
     }
+
+    public int getPriority() {
+        return 10; // TODO - placeholder
+    }
 }

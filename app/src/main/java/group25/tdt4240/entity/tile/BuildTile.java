@@ -3,6 +3,7 @@ package group25.tdt4240.entity.tile;
 
 import android.view.MotionEvent;
 
+import group25.tdt4240.R;
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
@@ -13,14 +14,14 @@ import sheep.graphics.Image;
 
 public class BuildTile extends Tile implements Clickable {
     private Tower tower;
+    private static Image image = new Image(R.drawable.grasstile);
 
     /**
-     * @param image The image the sprite is to be generated from
+     * @param x The x index of the tile
+     * @param y The y index of the tile
      */
-    public BuildTile(Image image, float x, float y) {
-        super(image);
-        //this.setScale(2.0f,2.0f);
-        this.setPosition(x,y);
+    public BuildTile(float x, float y) {
+        super(image, x, y);
     }
 
     /**
@@ -51,4 +52,7 @@ public class BuildTile extends Tile implements Clickable {
         return false;
     }
 
+    public String toString() {
+        return "Build: " + getPosition().toString();
+    }
 }

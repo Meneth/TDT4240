@@ -21,7 +21,7 @@ public abstract class Monster extends MovableEntity {
         if (position == path.size()) {
             // TODO - Do damage
         } else {
-            setTarget(path.get(position + 1).getCenter());
+            setTarget(path.get(position + 1).getPosition());
         }
     }
 

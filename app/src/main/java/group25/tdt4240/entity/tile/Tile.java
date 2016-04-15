@@ -1,5 +1,6 @@
 package group25.tdt4240.entity.tile;
 
+import group25.tdt4240.Constants;
 import group25.tdt4240.entity.Entity;
 import sheep.graphics.Image;
 
@@ -11,8 +12,13 @@ public class Tile extends Entity {
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Tile(Image image) {
+    public Tile(Image image, float x, float y) {
         super(image);
+        float scaleX = (float) Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = (float) Constants.TILE_HEIGHT / image.getHeight();
+        setScale(scaleX, scaleY);
+        setOffset(Constants.TILE_WIDTH / 2, Constants.TILE_HEIGHT / 2);
+        setPosition((x + 1) * (Constants.TILE_WIDTH + 1), (y + 1) * (Constants.TILE_HEIGHT + 1));
     }
 
     public int getPriority() {

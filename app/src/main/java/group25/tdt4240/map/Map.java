@@ -63,10 +63,10 @@ public class Map implements Drawable {
     private void readMap(String map) {
         int tilesize = (int) (Constants.SCREEN_WIDTH/10);
         int x = 0;
-        //starts at 1 to not be under the "tdt42402" sign on top of the screen
-        int y = 0;
+        //starts at 1 to not be under the "tdt4240" sign on top of the screen
+        int y = 1;
         //
-        // each tile is 20 pixels wide. *21 is just temporarily, to make it easier to see the grid.
+        // each tile is 20 pixels wide.
         for (int i = 0; i < map.length(); i++) {
             switch (map.charAt(i)) {
                 case 's':
@@ -106,7 +106,9 @@ public class Map implements Drawable {
         for (String s: path.split("\n")) {
             String[] tile = s.split(" ");
             int i = Integer.parseInt(tile[1]) * width + Integer.parseInt(tile[0]);
-            p.add((PathTile) tiles.get(i));
+            if (tiles.get(i) instanceof PathTile){
+                p.add((PathTile) tiles.get(i));
+            }
         }
         this.path = p;
     }

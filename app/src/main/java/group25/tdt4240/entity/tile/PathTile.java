@@ -27,14 +27,9 @@ public class PathTile extends Tile {
      * @param image   The image the sprite is to be generated from
      * @param x       X position in map grid
      * @param y       Y position in map grid
-     * @param entries All the path tiles that lead to this one
-     * @param exit    The path tile this one leads to
      */
     public PathTile(Image image, float x, float y ){
         super(image, x, y);
-        //this.setShape(Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
-        //this.entryTiles = entries;
-        //this.exitTile = exit;
     }
 
 

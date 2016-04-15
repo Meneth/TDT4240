@@ -31,6 +31,7 @@ public class Map implements Drawable {
     */
 
     private String exampleMapString =
+            "10 4\n" +
             "bbbbsbbbbb\n" +
             "bbbbpppbbb\n" +
             "bbbbbbpbbb\n" +
@@ -61,41 +62,33 @@ public class Map implements Drawable {
      * @param map The string describing the map
      */
     private void readMap(String map) {
-        int tilesize = (int) (Constants.SCREEN_WIDTH/10);
-        int x = 0;
-        //starts at 1 to not be under the "tdt4240" sign on top of the screen
-        int y = 1;
-        //
-        // each tile is 20 pixels wide.
-        for (int i = 0; i < map.length(); i++) {
-            switch (map.charAt(i)) {
-                case 's':
-                    PathTile s = new PathTile(dirtTile, x * tilesize, y * tilesize);
-                    tiles.add(s);
-                    this.start = s;
-                    x++;
-                    break;
-                case 'g':
-                    PathTile goal = new PathTile(dirtTile, x * tilesize, y * tilesize);
-                    this.tiles.add(goal);
-                    x++;
-                    break;
-                case 'p':
-                    tiles.add(new PathTile(dirtTile, x * tilesize, y * tilesize));
-                    x++;
-                    break;
-                case 'b':
-                    tiles.add(new BuildTile(grassTile, x * tilesize, y * tilesize));
-                    x++;
-                    break;
-                case '\n':
-                    x = 0;
-                    y++;
-                    break;
+        String[] rows = map.split("\n");
+        String[] dimensions = rows[0].split(" ");
+        width = Integer.parseInt(dimensions[0]);
+        height = Integer.parseInt(dimensions[1]);
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                // Offset by one since the 0th row is the dimensions
+                switch (rows[i+1].charAt(j)) {
+                    case 's':
+                        PathTile s = new PathTile(j, i);
+                        tiles.add(s);
+                        this.start = s;
+                        break;
+                    case 'g':
+                        PathTile goal = new PathTile(j, i);
+                        this.tiles.add(goal);
+                        break;
+                    case 'p':
+                        tiles.add(new PathTile(j, i));
+                        break;
+                    case 'b':
+                        tiles.add(new BuildTile(j, i));
+                        break;
+                }
             }
         }
-        width = x;
-        height = y;
     }
 
     /**

@@ -5,6 +5,7 @@ package group25.tdt4240.entity.tile;
 import java.util.ArrayList;
 
 import group25.tdt4240.Constants;
+import group25.tdt4240.R;
 import group25.tdt4240.entity.monster.Monster;
 import sheep.graphics.Image;
 import sheep.math.BoundingBox;
@@ -13,6 +14,7 @@ import sheep.math.BoundingBox;
  * Created by Meneth on 2016-03-31.
  */
 public class PathTile extends Tile {
+    private static Image image = new Image(R.drawable.dirttile);
 
     //Different tiles with different speed? e.g. river is slow, road is fast
     private int speed;
@@ -23,12 +25,10 @@ public class PathTile extends Tile {
     private PathTile exitTile;
 
     /**
-     *
-     * @param image   The image the sprite is to be generated from
      * @param x       X position in map grid
      * @param y       Y position in map grid
      */
-    public PathTile(Image image, float x, float y ){
+    public PathTile(float x, float y ){
         super(image, x, y);
     }
 

@@ -99,7 +99,7 @@ public class Map implements Drawable {
         for (String s: path.split("\n")) {
             String[] tile = s.split(" ");
             int i = Integer.parseInt(tile[1]) * width + Integer.parseInt(tile[0]);
-            if (tiles.get(i) instanceof PathTile){
+                if (tiles.get(i) instanceof PathTile){
                 p.add((PathTile) tiles.get(i));
             }
         }

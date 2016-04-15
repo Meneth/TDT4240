@@ -40,11 +40,15 @@ public class PathTile extends Tile {
      */
     public ArrayList<Monster> getContainedMonsters(ArrayList<Monster> monsters){
         ArrayList<Monster> _m = new ArrayList<Monster>();
-        for (Monster m: monsters){
+        for (Monster m : monsters){
             if (this.collides(m)){
                 _m.add(m);
             }
         }
         return _m;
+    }
+
+    public String toString() {
+        return "Path: " + getPosition().toString();
     }
 }

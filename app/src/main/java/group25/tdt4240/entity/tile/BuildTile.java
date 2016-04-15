@@ -52,4 +52,7 @@ public class BuildTile extends Tile implements Clickable {
         return false;
     }
 
+    public String toString() {
+        return "Build: " + getPosition().toString();
+    }
 }

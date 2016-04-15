@@ -8,14 +8,15 @@ import android.view.MotionEvent;
 import group25.tdt4240.R;
 import group25.tdt4240.state.TitleState;
 import group25.tdt4240.state.SettingsState;
+import sheep.game.State;
 import sheep.graphics.Image;
 
 public class BackButton extends Button {
 
     public static final Image image = new Image(R.drawable.back_button);
-    private SettingsState state;
+    private State state;
 
-    public BackButton(SettingsState state){
+    public BackButton(State state){
         super(BackButton.image);
         this.state = state;
     }

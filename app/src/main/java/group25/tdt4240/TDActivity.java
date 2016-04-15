@@ -25,7 +25,7 @@ public class TDActivity extends Activity {
         game.pushState(new TitleState());
         // View the game.
         setContentView(game);
-        mp = MediaPlayer.create(getApplicationContext(),R.raw.sound);
+        mp = MediaPlayer.create(getApplicationContext(),R.raw.bensound_epic);
         mp.start();
 
         if (Build.VERSION.SDK_INT < 16) {

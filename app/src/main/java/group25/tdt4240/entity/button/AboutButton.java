@@ -3,6 +3,7 @@ package group25.tdt4240.entity.button;
 import android.view.MotionEvent;
 
 import group25.tdt4240.R;
+import group25.tdt4240.state.AboutState;
 import group25.tdt4240.state.TitleState;
 import group25.tdt4240.state.SettingsState;
 import sheep.graphics.Image;
@@ -26,7 +27,7 @@ public class AboutButton extends Button {
         float clickX = event.getX();
         if (this.checkClick(clickX, clickY)) {
             state.getGame().popState();
-            state.getGame().pushState(new SettingsState());
+            state.getGame().pushState(new AboutState());
             System.out.println("About clicked");
             return true;
         }

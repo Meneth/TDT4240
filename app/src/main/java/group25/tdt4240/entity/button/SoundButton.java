@@ -1,11 +1,10 @@
 package group25.tdt4240.entity.button;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.MotionEvent;
 
+import group25.tdt4240.R;
 import group25.tdt4240.TDActivity;
-import group25.tdt4240.state.TitleState;
 import sheep.graphics.Image;
 import group25.tdt4240.state.SettingsState;
 
@@ -14,9 +13,17 @@ import group25.tdt4240.state.SettingsState;
  */
 public class SoundButton extends Button {
     SettingsState state;
+    public static final Image soundButtonImageOn = new Image(R.drawable.sound_button_on);
+    public static final Image soundButtonImageOff = new Image(R.drawable.sound_button_off);
+    public static Boolean soundOn;
+    public static Image soundButtonImage;
 
-    public SoundButton(Image image, SettingsState state){
-        super(image);
+    public SoundButton(SettingsState state){
+        super(SoundButton.soundButtonImageOn);
+        if (SoundButton.soundOn == null) {
+            SoundButton.soundOn = true;
+        }
+        this.updateImage();
         this.state = state;
     }
 
@@ -29,9 +36,16 @@ public class SoundButton extends Button {
             Context c = state.getGame().getContext();
             TDActivity a = (TDActivity) c;
             a.setSound();
+            SoundButton.soundOn = !SoundButton.soundOn;
+            updateImage();
             return true;
         }
         return false;
+    }
+
+    public void updateImage() {
+        SoundButton.soundButtonImage = SoundButton.soundOn ? soundButtonImageOn : soundButtonImageOff;
+        this.setView(SoundButton.soundButtonImage);
     }
 
     @Override

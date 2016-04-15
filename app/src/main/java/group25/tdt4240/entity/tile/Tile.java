@@ -17,7 +17,7 @@ public class Tile extends Entity {
         float scaleX = (float) Constants.TILE_WIDTH / image.getWidth();
         float scaleY = (float) Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
-        setPosition((x + 1) * Constants.TILE_WIDTH, (y + 1) * Constants.TILE_HEIGHT);
+        setPosition((x + 1) * (Constants.TILE_WIDTH + 1), (y + 1) * (Constants.TILE_HEIGHT + 1));
     }
 
     public int getPriority() {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import group25.tdt4240.Constants;
 import group25.tdt4240.R;
+import group25.tdt4240.entity.AbstractDrawable;
 import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.tile.BuildTile;
@@ -20,7 +21,7 @@ import sheep.graphics.Image;
  * The map is used in the playstate class, where it is displayed, and used for the player
  * to play on.
  */
-public class Map implements Drawable {
+public class Map extends AbstractDrawable {
 
     /*for debugging purposes
     b = buildtile

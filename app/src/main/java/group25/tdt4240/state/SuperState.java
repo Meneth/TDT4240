@@ -6,17 +6,19 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Drawable;
+import group25.tdt4240.entity.Entity;
 import sheep.game.State;
 import sheep.input.TouchListener;
 
 /**
  * Created by Meneth on 2016-04-04.
  */
-public class SuperState extends State {
+public class SuperState extends State implements Iterable<Drawable> {
     private PriorityQueue<Clickable> clickableEntities = new PriorityQueue<>();
     private PriorityQueue<Drawable> entities = new PriorityQueue<>(10, Collections.reverseOrder());
 
@@ -66,5 +68,16 @@ public class SuperState extends State {
         entities.add(entity);
         if (entity instanceof Clickable)
             clickableEntities.add((Clickable) entity);
+        entity.setContainer(this);
+    }
+
+    public void removeEntity(Drawable entity) {
+        entities.remove(entity);
+        clickableEntities.remove(entity);
+    }
+
+    @Override
+    public Iterator<Drawable> iterator() {
+        return entities.iterator();
     }
 }

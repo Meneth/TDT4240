@@ -3,12 +3,13 @@ package group25.tdt4240;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import group25.tdt4240.entity.AbstractDrawable;
 import group25.tdt4240.entity.Drawable;
 
 /**
  * Created by mariusbang on 15/04/16.
  */
-public class TextDrawer implements Drawable {
+public class TextDrawer extends AbstractDrawable {
 
     //private Canvas canvas;
     private Paint paint = new Paint();

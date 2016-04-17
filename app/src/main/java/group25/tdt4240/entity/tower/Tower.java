@@ -4,7 +4,9 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.Constants;
 import group25.tdt4240.entity.Clickable;
+import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
+import group25.tdt4240.entity.monster.Monster;
 import group25.tdt4240.entity.projectile.Projectile;
 import sheep.graphics.Image;
 
@@ -13,21 +15,20 @@ import sheep.graphics.Image;
  */
 
 public abstract class Tower extends Entity implements Clickable {
-    private final Projectile projectile;
     private final int cooldown, cost;
+    private float timePassed = 0;
 
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Tower(Image image, Projectile projectile, int cooldown, int cost) {
+    public Tower(Image image, int cooldown, int cost) {
         super(image);
-        this.projectile = projectile;
         this.cooldown = cooldown;
         this.cost = cost;
         float scaleX = 0.9f * (float) Constants.TILE_WIDTH / image.getWidth();
         float scaleY = 0.9f * (float) Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
-        setOffset(0.9f * Constants.TILE_WIDTH / 2, 0.9f * Constants.TILE_HEIGHT / 2);
+        setOffset(scaleX * Constants.TILE_WIDTH / 2, scaleY * Constants.TILE_HEIGHT / 2);
     }
 
 
@@ -52,10 +53,33 @@ public abstract class Tower extends Entity implements Clickable {
 
     public abstract void upgrade();
 
-    public void Fire() {
+    public void fire(Monster target) {
         // TODO
+        Projectile p = getNewProjectile(target);
+        p.setPosition(getPosition());
+        getContainer().addEntity(p);
     }
 
+    @Override
+    public void update(float dt) {
+        timePassed += dt;
+        if (timePassed > cooldown) {
+            timePassed -= cooldown;
+            fire(findTarget());
+        }
+    }
+
+    private Monster findTarget() {
+        // TODO - Better logic for finding the target
+        for (Drawable entity : getContainer()) {
+            if (entity instanceof Monster) {
+                return (Monster) entity;
+            }
+        }
+        return null; // No target found
+    }
+
+    protected abstract Projectile getNewProjectile(Monster target);
 
     @Override
     public boolean onTouchDown(MotionEvent event) {

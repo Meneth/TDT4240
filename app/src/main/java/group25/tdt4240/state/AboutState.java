@@ -11,11 +11,12 @@ import group25.tdt4240.entity.button.Button;
 public class AboutState extends SuperState {
 
     Button backButton = new BackButton(this);
-    TextDrawer textDrawer = new TextDrawer("Music by www.bensound.com", Constants.SCREEN_WIDTH/2, (Constants.SCREEN_HEIGHT / 8)*4);
 
     public AboutState() {
         backButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 6);
-        addEntities(backButton, textDrawer);
+        addEntity(backButton);
+        addEntity(new TextDrawer("A game by Group 25", Constants.SCREEN_WIDTH/2, (Constants.SCREEN_HEIGHT / 8)*2));
+        addEntity(new TextDrawer("Music by www.bensound.com", Constants.SCREEN_WIDTH/2, (Constants.SCREEN_HEIGHT / 8)*4));
     }
 
 }

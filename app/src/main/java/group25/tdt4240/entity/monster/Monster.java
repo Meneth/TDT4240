@@ -16,12 +16,12 @@ public abstract class Monster extends MovableEntity {
     @Override
     public void update(float dt) {
         super.update(dt);
-        if (!path.get(position).collides(this))
+        if (!path.get(position).collides(this)) {
             position++;
+            setTarget(path.get(position + 1).getPosition());
+        }
         if (position == path.size()) {
             // TODO - Do damage
-        } else {
-            setTarget(path.get(position + 1).getPosition());
         }
     }
 
@@ -34,6 +34,7 @@ public abstract class Monster extends MovableEntity {
         position = 0;
         // Spawn monster at start
         setPosition(path.get(0).getX(), path.get(0).getY());
+        setTarget(path.get(position + 1).getPosition());
     }
 
     public int getPriority() {

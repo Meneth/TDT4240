@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 import group25.tdt4240.entity.monster.BasicMonster;
+import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.button.Button;
@@ -38,6 +39,10 @@ public class PlayState extends SuperState {
         // TODO - This way of adding a monster is placeholder
         addEntity(new BasicMonster(currentMap.path));
         addEntity(currentMap);
+        Tower t = new CrossTower();
+        addEntity(t);
+        ((BuildTile) currentMap.tiles.get(3)).setTower(t);
+
         System.out.println("created new playstate");
     }
 

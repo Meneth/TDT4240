@@ -2,8 +2,10 @@ package group25.tdt4240.entity.tower;
 
 import android.view.MotionEvent;
 
+import group25.tdt4240.Constants;
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Entity;
+import group25.tdt4240.entity.projectile.Projectile;
 import sheep.graphics.Image;
 
 /**
@@ -11,11 +13,21 @@ import sheep.graphics.Image;
  */
 
 public abstract class Tower extends Entity implements Clickable {
+    private final Projectile projectile;
+    private final int cooldown, cost;
+
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Tower(Image image) {
+    public Tower(Image image, Projectile projectile, int cooldown, int cost) {
         super(image);
+        this.projectile = projectile;
+        this.cooldown = cooldown;
+        this.cost = cost;
+        float scaleX = 0.9f * (float) Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 0.9f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        setScale(scaleX, scaleY);
+        setOffset(0.9f * Constants.TILE_WIDTH / 2, 0.9f * Constants.TILE_HEIGHT / 2);
     }
 
 
@@ -30,26 +42,19 @@ public abstract class Tower extends Entity implements Clickable {
         WEAKEST
     }
 
-    public abstract int getCost();
+    public int getCost() {
+        return cost;
+    }
 
     public abstract int getNextUpgradeCost();
-
 
     public abstract Priority getTargetPriority();
 
     public abstract void upgrade();
 
-    //Time between each shot
-    public abstract float getCooldown();
-
-    public abstract float setCooldown(float c);
-
-    public abstract float getDamage();
-
-    public abstract float setDamage(float d);
-
-
-    public abstract void Fire();
+    public void Fire() {
+        // TODO
+    }
 
 
     @Override
@@ -58,5 +63,9 @@ public abstract class Tower extends Entity implements Clickable {
             // TODO
             return true;
         } else return false;
+    }
+
+    public int getPriority() {
+        return 10; // TODO - Placeholder
     }
 }

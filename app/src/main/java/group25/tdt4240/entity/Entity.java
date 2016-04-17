@@ -16,6 +16,7 @@ import sheep.math.Vector2;
 public abstract class Entity extends Sprite implements Drawable {
     private final Image image;
     private SuperState container;
+    private boolean destroyed = false;
 
     /**
      * @param image The image the sprite is to be generated from
@@ -42,8 +43,13 @@ public abstract class Entity extends Sprite implements Drawable {
 
     @Override
     public void die() {
+        destroyed = true;
         if (container != null)
             container.removeEntity(this);
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
     }
 
     public void setContainer(SuperState container) {

@@ -28,7 +28,7 @@ public abstract class Tower extends Entity implements Clickable {
         float scaleX = 0.9f * (float) Constants.TILE_WIDTH / image.getWidth();
         float scaleY = 0.9f * (float) Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
-        setOffset(scaleX * Constants.TILE_WIDTH / 2, scaleY * Constants.TILE_HEIGHT / 2);
+        setOffset(scaleX * image.getWidth() / 2, scaleY * image.getHeight() / 2);
     }
 
 
@@ -56,12 +56,13 @@ public abstract class Tower extends Entity implements Clickable {
     public void fire(Monster target) {
         // TODO
         Projectile p = getNewProjectile(target);
-        p.setPosition(getPosition());
+        p.setPosition(getX(), getY()); // Set getX/Y as that copies rather than references
         getContainer().addEntity(p);
     }
 
     @Override
     public void update(float dt) {
+        super.update(dt);
         timePassed += dt;
         if (timePassed > cooldown) {
             timePassed -= cooldown;

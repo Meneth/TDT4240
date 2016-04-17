@@ -41,7 +41,7 @@ public class PlayState extends SuperState {
         addEntity(currentMap);
         Tower t = new CrossTower();
         addEntity(t);
-        ((BuildTile) currentMap.tiles.get(3)).setTower(t);
+        ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");
     }

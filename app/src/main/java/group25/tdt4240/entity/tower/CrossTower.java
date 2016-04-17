@@ -1,6 +1,9 @@
 package group25.tdt4240.entity.tower;
 
 import group25.tdt4240.R;
+import group25.tdt4240.entity.monster.Monster;
+import group25.tdt4240.entity.projectile.CanonBall;
+import group25.tdt4240.entity.projectile.Projectile;
 import sheep.graphics.Image;
 
 /**
@@ -9,27 +12,27 @@ import sheep.graphics.Image;
 public class CrossTower extends Tower {
     public static final Image image = new Image(R.drawable.cross_tower);
 
-    public float getCooldown() {
-        return 1;
-    }
-
     public CrossTower() {
-        super(image, null, 10, 10);
-        // TODO - Actual projectile
+        super(image, 1, 10);
     }
 
     @Override
     public int getNextUpgradeCost() {
-        return 0;
+        return 0; // TODO
     }
 
     @Override
     public Priority getTargetPriority() {
-        return null;
+        return null; // TODO
     }
 
     @Override
     public void upgrade() {
+        // TODO
+    }
 
+    @Override
+    protected Projectile getNewProjectile(Monster target) {
+        return new CanonBall(target);
     }
 }

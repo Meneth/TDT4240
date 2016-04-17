@@ -12,6 +12,7 @@ import sheep.graphics.Image;
 public abstract class Monster extends MovableEntity {
     private final Path path;
     private int position;
+    private int health;
 
     @Override
     public void update(float dt) {
@@ -28,13 +29,20 @@ public abstract class Monster extends MovableEntity {
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Monster(Image image, Path path, float standardVelocity) {
+    public Monster(Image image, Path path, float standardVelocity, int health) {
         super(image, standardVelocity);
         this.path = path;
         position = 0;
         // Spawn monster at start
         setPosition(path.get(0).getX(), path.get(0).getY());
         setTarget(path.get(position + 1).getPosition());
+        this.health = health;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health <= 0)
+            die(); // TODO - Actual method
     }
 
     public int getPriority() {

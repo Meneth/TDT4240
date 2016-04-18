@@ -2,6 +2,7 @@ package group25.tdt4240.entity;
 
 import android.graphics.Canvas;
 
+import android.view.MotionEvent;
 import group25.tdt4240.state.SuperState;
 import sheep.game.Sprite;
 import sheep.game.State;
@@ -31,7 +32,9 @@ public abstract class Entity extends Sprite implements Drawable {
         return another.getPriority() - getPriority();
     }
 
-    public boolean checkClick(float clickX, float clickY){
+    public boolean checkClick(MotionEvent event){
+        float clickX = event.getX();
+        float clickY = event.getY();
         if (clickX>=(this.getX()-image.getWidth()/2)
                 && clickX<=(this.getX()+image.getWidth()/2)
                 && clickY>=(this.getY()-image.getHeight()/2)

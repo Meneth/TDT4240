@@ -23,9 +23,7 @@ public class AboutButton extends Button {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        if (this.checkClick(clickX, clickY)) {
+        if (this.checkClick(event)) {
             state.getGame().popState();
             state.getGame().pushState(new AboutState());
             System.out.println("About clicked");

@@ -11,6 +11,6 @@ public class Constants {
     public static final float SCREEN_HEIGHT = Resources.getSystem().getDisplayMetrics().heightPixels;
     public static final float SCALE = SCREEN_WIDTH / 1080f; // What absolute distances should be scaled with
 
-    public static float TILE_HEIGHT = 100;
-    public static float TILE_WIDTH = 100;
+    public static float TILE_HEIGHT = SCREEN_WIDTH/10;
+    public static float TILE_WIDTH = SCREEN_WIDTH/10;
 }

@@ -23,9 +23,7 @@ public class SettingsButton extends Button {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        if (this.checkClick(clickX, clickY)) {
+        if (this.checkClick(event)) {
             state.getGame().popState();
             state.getGame().pushState(new SettingsState());
             System.out.println("Settings clicked");

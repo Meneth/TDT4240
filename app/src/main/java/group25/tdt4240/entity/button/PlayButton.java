@@ -23,7 +23,7 @@ public class PlayButton extends Button {
     public boolean onTouchDown(MotionEvent event) {
         float clickY = event.getY();
         float clickX = event.getX();
-        if (this.checkClick(clickX, clickY)) {
+        if (this.checkClick(event)) {
             state.getGame().popState();
             state.getGame().pushState(new PlayState());
             System.out.println("Play clicked");

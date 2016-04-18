@@ -2,6 +2,7 @@ package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
 
+import group25.tdt4240.R;
 import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
@@ -14,13 +15,12 @@ public class BuyButton extends Button{
     public BuyButton(Image image, PlayState state){
         super(image);
         this.state = state;
-
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event.getX(),event.getY())){
-            state.buyTower();
+        if (checkClick(event)){
+            System.out.println("buy_button clicked");
             return true;
         }
         return false;

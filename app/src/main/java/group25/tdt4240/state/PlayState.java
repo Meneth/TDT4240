@@ -4,10 +4,8 @@ package group25.tdt4240.state;
  * Created by Meneth on 2016-03-31.
  */
 
-import android.graphics.Canvas;
-
-import android.graphics.Color;
-
+import group25.tdt4240.Constants;
+import group25.tdt4240.entity.button.BuyButton;
 import group25.tdt4240.entity.monster.BasicMonster;
 import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.map.Map;
@@ -16,7 +14,6 @@ import group25.tdt4240.entity.button.Button;
 import group25.tdt4240.entity.button.SellButton;
 import group25.tdt4240.entity.button.UpgradeButton;
 import group25.tdt4240.entity.tile.BuildTile;
-import group25.tdt4240.entity.tile.Tile;
 import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 
@@ -28,11 +25,14 @@ public class PlayState extends SuperState {
     private BuildTile selectedTile;
     private Tower selectedTower;
 
-    private Image upgradeButtonImage = new Image(R.drawable.play_button);
+    private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
     Button upgradeButton = new UpgradeButton(upgradeButtonImage, this);
 
-    private Image sellButtonImage = new Image(R.drawable.play_button);
+    private Image sellButtonImage = new Image(R.drawable.sell_button);
     Button sellButton = new SellButton(sellButtonImage, this);
+
+    private Image buyButtonImage = new Image((R.drawable.buy_button));
+    Button buyButton = new BuyButton(buyButtonImage, this);
 
     public PlayState() {
         this.currentMap = new Map();
@@ -44,6 +44,13 @@ public class PlayState extends SuperState {
         ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");
+        buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH/2,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        sellButton.setPosition(Constants.SCREEN_WIDTH*6/7,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+
+
+        addEntities(upgradeButton,sellButton,buyButton);
+
     }
 
     public void selectTower(Tower t){

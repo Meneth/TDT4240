@@ -29,9 +29,7 @@ public class SoundButton extends Button {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
-        if (this.checkClick(clickX, clickY)) {
+        if (this.checkClick(event)) {
             System.out.println("Sound clicked");
             Context c = state.getGame().getContext();
             TDActivity a = (TDActivity) c;

@@ -35,10 +35,12 @@ public abstract class Entity extends Sprite implements Drawable {
     public boolean checkClick(MotionEvent event){
         float clickX = event.getX();
         float clickY = event.getY();
-        if (clickX>=(this.getX()-image.getWidth()/2)
-                && clickX<=(this.getX()+image.getWidth()/2)
-                && clickY>=(this.getY()-image.getHeight()/2)
-                && clickY<=(this.getY()+image.getHeight()/2)) {
+        float width = image.getWidth() * getScale().getX();
+        float height = image.getHeight() * getScale().getY();
+        if (clickX>=(this.getX()-width/2)
+                && clickX<=(this.getX()+width/2)
+                && clickY>=(this.getY()-width/2)
+                && clickY<=(this.getY()+width/2)) {
             return true;
         }
         return false;

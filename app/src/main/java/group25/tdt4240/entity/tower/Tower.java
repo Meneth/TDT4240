@@ -88,7 +88,7 @@ public abstract class Tower extends Entity implements Clickable {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (this.getBoundingBox().contains(event.getX(), event.getY())) {
+        if (checkClick(event)) {
             // TODO
             return true;
         } else return false;

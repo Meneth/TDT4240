@@ -59,4 +59,8 @@ public abstract class Entity extends Sprite implements Drawable {
     public SuperState getContainer() {
         return container;
     }
+
+    public float getDistance(Entity other) {
+        return getPosition().getSubtracted(other.getPosition()).getLength();
+    }
 }

@@ -16,7 +16,7 @@ import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
-public class PlayState extends SuperState implements TouchListener {
+public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
     private int defenderMoney= 0;
@@ -25,10 +25,10 @@ public class PlayState extends SuperState implements TouchListener {
     public Tower selectedTower;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
-    Button upgradeButton = new UpgradeButton(upgradeButtonImage, this);
+    Button upgradeButton = new UpgradeButton(upgradeButtonImage);
 
     private Image sellButtonImage = new Image(R.drawable.sell_button);
-    Button sellButton = new SellButton(sellButtonImage, this);
+    Button sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
     Button buyButton = new BuyButton(buyButtonImage);
@@ -43,11 +43,16 @@ public class PlayState extends SuperState implements TouchListener {
         ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");
+        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+
+
+        addEntities(upgradeButton, sellButton, buyButton);
         buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
         upgradeButton.setPosition(Constants.SCREEN_WIDTH/2,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
         sellButton.setPosition(Constants.SCREEN_WIDTH*6/7,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
         addEntities(upgradeButton,sellButton,buyButton);
-
     }
 
     public void selectTower(Tower t){
@@ -83,5 +88,10 @@ public class PlayState extends SuperState implements TouchListener {
                 selectedTower.upgrade();
             }
         }
+    }
+
+    public void gameOver() {
+        getGame().popState();
+        getGame().pushState(new GameOverState());
     }
 }

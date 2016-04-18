@@ -11,9 +11,9 @@ import sheep.input.TouchListener;
  */
 public class TitleState extends SuperState implements TouchListener {
 
-    Button playButton = new PlayButton(this);
-    Button settingsButton = new SettingsButton(this);
-    Button aboutButton = new AboutButton(this);
+    Button playButton = new PlayButton();
+    Button settingsButton = new SettingsButton();
+    Button aboutButton = new AboutButton();
     //SCREEN_HEIGHT 1776 & SCREEN_WIDTH 1080
 
 

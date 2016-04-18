@@ -8,7 +8,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-04-13.
  */
 public class BasicMonster extends Monster {
-    private static final float standardVelocity = 25;
+    private static final float standardVelocity = 100;
     private static final Image image = new Image(R.drawable.monster1);
 
     /**

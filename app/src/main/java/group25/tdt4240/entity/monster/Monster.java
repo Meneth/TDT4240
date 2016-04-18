@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 
 import group25.tdt4240.map.Path;
 import group25.tdt4240.entity.MovableEntity;
+import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
 /**
@@ -19,10 +20,12 @@ public abstract class Monster extends MovableEntity {
         super.update(dt);
         if (!path.get(position).collides(this)) {
             position++;
+            if (position == path.size() - 1) {
+                die();
+                ((PlayState) getContainer()).gameOver();
+                return;
+            }
             setTarget(path.get(position + 1).getPosition());
-        }
-        if (position == path.size()) {
-            // TODO - Do damage
         }
     }
 

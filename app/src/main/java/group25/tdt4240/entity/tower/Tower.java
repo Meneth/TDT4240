@@ -77,13 +77,9 @@ public abstract class Tower extends Entity implements Clickable {
     }
 
     private Monster findTarget() {
-        // TODO - Better logic for finding the target
-        for (Drawable entity : getContainer()) {
-            if (entity instanceof Monster) {
-                Monster m = (Monster) entity;
-                if (getDistance(m) < getRange())
-                    return m;
-            }
+        for (Monster monster : getContainer().getMonsters()){
+            if (getDistance(monster) < getRange())
+                return monster;
         }
         return null; // No target found
     }

@@ -9,18 +9,14 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class UpgradeButton extends Button{
-    private PlayState state;
-
-    public UpgradeButton(Image image, PlayState state){
+     public UpgradeButton(Image image){
         super(image);
-        this.state = state;
-
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            state.upgradeTower();
+            ((PlayState) getContainer()).upgradeTower();
             return true;
         }
         return false;

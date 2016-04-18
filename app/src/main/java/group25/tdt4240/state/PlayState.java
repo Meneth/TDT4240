@@ -26,10 +26,10 @@ public class PlayState extends SuperState {
     private Tower selectedTower;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
-    Button upgradeButton = new UpgradeButton(upgradeButtonImage, this);
+    Button upgradeButton = new UpgradeButton(upgradeButtonImage);
 
     private Image sellButtonImage = new Image(R.drawable.sell_button);
-    Button sellButton = new SellButton(sellButtonImage, this);
+    Button sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
     Button buyButton = new BuyButton(buyButtonImage, this);
@@ -44,12 +44,12 @@ public class PlayState extends SuperState {
         ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");
-        buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
-        upgradeButton.setPosition(Constants.SCREEN_WIDTH/2,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
-        sellButton.setPosition(Constants.SCREEN_WIDTH*6/7,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
 
 
-        addEntities(upgradeButton,sellButton,buyButton);
+        addEntities(upgradeButton, sellButton, buyButton);
 
     }
 
@@ -80,5 +80,10 @@ public class PlayState extends SuperState {
                 selectedTower.upgrade();
             }
         }
+    }
+
+    public void gameOver() {
+        getGame().popState();
+        getGame().pushState(new GameOverState());
     }
 }

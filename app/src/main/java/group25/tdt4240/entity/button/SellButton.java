@@ -9,12 +9,8 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class SellButton extends Button{
-    private PlayState state;
-
-    public SellButton(Image image, PlayState state){
+    public SellButton(Image image){
         super(image);
-        this.state = state;
-
     }
 
     @Override

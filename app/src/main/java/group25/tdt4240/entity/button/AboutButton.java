@@ -14,18 +14,15 @@ import sheep.graphics.Image;
 public class AboutButton extends Button {
 
     public static final Image image = new Image(R.drawable.about_button);
-    private TitleState state;
 
-    public AboutButton(TitleState state){
+    public AboutButton(){
         super(AboutButton.image);
-        this.state = state;
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (this.checkClick(event)) {
-            state.getGame().popState();
-            state.getGame().pushState(new AboutState());
+            getContainer().getGame().pushState(new AboutState());
             System.out.println("About clicked");
             return true;
         }

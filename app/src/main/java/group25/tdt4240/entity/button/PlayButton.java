@@ -12,11 +12,9 @@ import sheep.graphics.Image;
  */
 public class PlayButton extends Button {
     public static final Image image = new Image(R.drawable.play_button);
-    TitleState state;
 
-    public PlayButton(TitleState state){
+    public PlayButton(){
         super(PlayButton.image);
-        this.state = state;
     }
 
     @Override
@@ -24,8 +22,7 @@ public class PlayButton extends Button {
         float clickY = event.getY();
         float clickX = event.getX();
         if (this.checkClick(event)) {
-            state.getGame().popState();
-            state.getGame().pushState(new PlayState());
+            getContainer().getGame().pushState(new PlayState());
             System.out.println("Play clicked");
             return true;
         }

@@ -10,8 +10,8 @@ import sheep.graphics.Image;
  */
 public class SettingsState extends SuperState {
 
-    Button soundButton = new SoundButton(this);
-    Button backButton = new BackButton(this);
+    Button soundButton = new SoundButton();
+    Button backButton = new BackButton();
 
     public SettingsState() {
         soundButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8)*2);

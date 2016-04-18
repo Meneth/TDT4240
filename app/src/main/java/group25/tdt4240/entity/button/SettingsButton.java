@@ -12,20 +12,16 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class SettingsButton extends Button {
-
     public static final Image image = new Image(R.drawable.settings_button);
-    private TitleState state;
 
-    public SettingsButton(TitleState titleState){
+    public SettingsButton(){
         super(SettingsButton.image);
-        this.state = titleState;
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (this.checkClick(event)) {
-            state.getGame().popState();
-            state.getGame().pushState(new SettingsState());
+            getContainer().getGame().pushState(new SettingsState());
             System.out.println("Settings clicked");
             return true;
         }

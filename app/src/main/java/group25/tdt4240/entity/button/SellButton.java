@@ -22,8 +22,5 @@ public class SellButton extends Button{
         return false;
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
+
 }

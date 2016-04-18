@@ -29,8 +29,4 @@ public class PlayButton extends Button {
         return false;
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
 }

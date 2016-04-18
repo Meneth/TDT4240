@@ -44,8 +44,5 @@ public class SoundButton extends Button {
         this.setView(SoundButton.soundButtonImage);
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
+
 }

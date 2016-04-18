@@ -5,17 +5,15 @@ package group25.tdt4240.state;
  */
 
 import group25.tdt4240.Constants;
-import group25.tdt4240.entity.button.BuyButton;
+import group25.tdt4240.entity.button.*;
 import group25.tdt4240.entity.monster.BasicMonster;
 import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
-import group25.tdt4240.entity.button.Button;
-import group25.tdt4240.entity.button.SellButton;
-import group25.tdt4240.entity.button.UpgradeButton;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
+import sheep.input.TouchListener;
 
 public class PlayState extends SuperState {
     private Map currentMap;
@@ -32,7 +30,7 @@ public class PlayState extends SuperState {
     Button sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
-    Button buyButton = new BuyButton(buyButtonImage, this);
+    Button buyButton = new BuyButton(buyButtonImage);
 
     public PlayState() {
         this.currentMap = new Map();
@@ -50,7 +48,10 @@ public class PlayState extends SuperState {
 
 
         addEntities(upgradeButton, sellButton, buyButton);
-
+        buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH/2,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        sellButton.setPosition(Constants.SCREEN_WIDTH*6/7,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        addEntities(upgradeButton,sellButton,buyButton);
     }
 
     public void selectTower(Tower t){
@@ -72,6 +73,12 @@ public class PlayState extends SuperState {
             currentMap.tiles.remove(selectedTower);
         }
         System.out.println("Sell selected tower");
+    }
+    public void displayTowersToBuy(){
+        TowerButton buyableTower = new TowerButton();
+        buyableTower.setPosition(Constants.SCREEN_WIDTH/6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/4);
+        buyableTower.setScale(0.5f,0.5f);
+        addEntity(buyableTower);
     }
     public void upgradeTower(){
         if (selectedTower != null){

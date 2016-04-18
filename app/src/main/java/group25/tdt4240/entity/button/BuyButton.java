@@ -10,24 +10,20 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class BuyButton extends Button{
-    private PlayState state;
 
-    public BuyButton(Image image, PlayState state){
+    public BuyButton(Image image){
         super(image);
-        this.state = state;
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)){
+        if (checkClick(event)) {
             System.out.println("buy_button clicked");
+            ((PlayState)getContainer()).displayTowersToBuy();
             return true;
         }
         return false;
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
+
 }

@@ -15,5 +15,9 @@ public abstract class Button extends Entity implements Clickable {
         super(image);
     }
 
+    public int getPriority() {
+        return 20;
+    }
+
 
 }

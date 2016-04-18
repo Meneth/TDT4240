@@ -21,13 +21,10 @@ public class UpgradeButton extends Button{
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
             state.upgradeTower();
+            System.out.println("upgrade button clicked");
             return true;
         }
         return false;
     }
 
-    @Override
-    public int getPriority() {
-        return 10;
-    }
 }

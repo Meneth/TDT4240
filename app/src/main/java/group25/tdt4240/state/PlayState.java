@@ -39,7 +39,6 @@ public class PlayState extends SuperState {
         addEntity(new BasicMonster(currentMap.path));
         addEntities((Entity[]) currentMap.tiles.toArray(new Entity[currentMap.tiles.size()]));
         Tower t = new CrossTower();
-        addEntity(t);
         ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");

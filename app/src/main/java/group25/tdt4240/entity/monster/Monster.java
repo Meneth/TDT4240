@@ -45,7 +45,7 @@ public abstract class Monster extends MovableEntity {
     public void takeDamage(int damage) {
         health -= damage;
         if (health <= 0)
-            die(); // TODO - Actual method
+            die();
     }
 
     public int getPriority() {

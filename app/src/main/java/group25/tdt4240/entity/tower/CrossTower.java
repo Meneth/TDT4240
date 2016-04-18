@@ -13,7 +13,7 @@ public class CrossTower extends Tower {
     public static final Image image = new Image(R.drawable.cross_tower);
 
     public CrossTower() {
-        super(image, 1, 10);
+        super(image, 1, 10, 250);
     }
 
     @Override

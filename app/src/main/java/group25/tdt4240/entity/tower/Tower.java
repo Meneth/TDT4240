@@ -15,20 +15,25 @@ import sheep.graphics.Image;
  */
 
 public abstract class Tower extends Entity implements Clickable {
-    private final int cooldown, cost;
+    private final int cooldown, cost, range;
     private float timePassed = 0;
 
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Tower(Image image, int cooldown, int cost) {
+    public Tower(Image image, int cooldown, int cost, int range) {
         super(image);
         this.cooldown = cooldown;
         this.cost = cost;
+        this.range = range;
         float scaleX = 0.9f * (float) Constants.TILE_WIDTH / image.getWidth();
         float scaleY = 0.9f * (float) Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
         setOffset(scaleX * image.getWidth() / 2, scaleY * image.getHeight() / 2);
+    }
+
+    public float getRange() {
+        return range * Constants.SCALE;
     }
 
 
@@ -54,7 +59,8 @@ public abstract class Tower extends Entity implements Clickable {
     public abstract void upgrade();
 
     public void fire(Monster target) {
-        // TODO
+        if (target == null)
+            return;
         Projectile p = getNewProjectile(target);
         p.setPosition(getX(), getY()); // Set getX/Y as that copies rather than references
         getContainer().addEntity(p);
@@ -74,7 +80,9 @@ public abstract class Tower extends Entity implements Clickable {
         // TODO - Better logic for finding the target
         for (Drawable entity : getContainer()) {
             if (entity instanceof Monster) {
-                return (Monster) entity;
+                Monster m = (Monster) entity;
+                if (getDistance(m) < getRange())
+                    return m;
             }
         }
         return null; // No target found

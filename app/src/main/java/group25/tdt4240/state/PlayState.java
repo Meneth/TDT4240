@@ -5,6 +5,7 @@ package group25.tdt4240.state;
  */
 
 import group25.tdt4240.Constants;
+import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
 import group25.tdt4240.entity.monster.BasicMonster;
 import group25.tdt4240.entity.tower.CrossTower;
@@ -21,7 +22,7 @@ public class PlayState extends SuperState implements TouchListener {
     private int defenderMoney= 0;
 
     private BuildTile selectedTile;
-    private Tower selectedTower;
+    public Tower selectedTower;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
     Button upgradeButton = new UpgradeButton(upgradeButtonImage, this);
@@ -36,7 +37,7 @@ public class PlayState extends SuperState implements TouchListener {
         this.currentMap = new Map();
         // TODO - This way of adding a monster is placeholder
         addEntity(new BasicMonster(currentMap.path));
-        addEntity(currentMap);
+        addEntities((Entity[]) currentMap.tiles.toArray(new Entity[currentMap.tiles.size()]));
         Tower t = new CrossTower();
         addEntity(t);
         ((BuildTile) currentMap.tiles.get(2)).setTower(t);

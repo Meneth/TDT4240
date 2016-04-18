@@ -5,7 +5,9 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.R;
 import group25.tdt4240.entity.Clickable;
+import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.entity.tower.Tower;
+import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
 /**
@@ -37,6 +39,7 @@ public class BuildTile extends Tile implements Clickable {
     public void setTower(Tower tower) {
         this.tower = tower;
         tower.setPosition(getPosition());
+
     }
 
     /**
@@ -49,7 +52,11 @@ public class BuildTile extends Tile implements Clickable {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        // TODO
+        if (checkClick(event)){
+            System.out.println("clicked tile");
+            setTower(new CrossTower());
+            return true;
+        }
         return false;
     }
 

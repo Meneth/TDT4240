@@ -21,7 +21,7 @@ import sheep.graphics.Image;
  * The map is used in the playstate class, where it is displayed, and used for the player
  * to play on.
  */
-public class Map extends AbstractDrawable {
+public class Map {
 
     /*for debugging purposes
     b = buildtile
@@ -105,28 +105,5 @@ public class Map extends AbstractDrawable {
             }
         }
         this.path = p;
-    }
-
-    public void draw(Canvas canvas) {
-        for (Tile t : this.tiles) {
-            t.draw(canvas);
-        }
-    }
-
-    @Override
-    public void update(float dt) {
-        for (Tile t : this.tiles) {
-            t.update(dt);
-        }
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public int compareTo(Drawable another) {
-        return another.getPriority() - getPriority();
     }
 }

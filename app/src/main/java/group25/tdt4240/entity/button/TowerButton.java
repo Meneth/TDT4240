@@ -12,18 +12,19 @@ import sheep.graphics.Image;
  * Created by matias on 18.04.16.
  */
 public class TowerButton extends Button {
-    public static Image towerButtonImage = new Image(R.drawable.cross_tower);
     private final TowerFactory factory;
+    private final Tower tower;
 
     public TowerButton(Image image, TowerFactory factory) {
         super(image);
         this.factory = factory;
+        this.tower = factory.getTower();
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            ((PlayState)getContainer()).selectTower(new CrossTower());
+            ((PlayState)getContainer()).selectTower(this);
             System.out.println("buy_Tower_button_clicked");
             return true;
         }
@@ -32,6 +33,10 @@ public class TowerButton extends Button {
 
     public Tower getTower() {
         return factory.getTower();
+    }
+
+    public int getCost() {
+        return tower.getCost();
     }
 
     @Override

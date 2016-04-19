@@ -23,7 +23,7 @@ public class PlayState extends SuperState {
     private int defenderMoney= 0;
 
     private BuildTile selectedTile;
-    public Tower selectedTower;
+    public TowerButton selectedTower;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
     Button upgradeButton = new UpgradeButton(upgradeButtonImage);
@@ -55,7 +55,7 @@ public class PlayState extends SuperState {
         addEntities(upgradeButton,sellButton,buyButton);
     }
 
-    public void selectTower(Tower t){
+    public void selectTower(TowerButton t){
         this.selectedTower = t;
         this.selectedTile = null;
     }
@@ -68,7 +68,7 @@ public class PlayState extends SuperState {
     public void buyTower(BuildTile tile) {
         if (selectedTower != null) {
             // TODO - Check if enough money
-            tile.setTower(selectedTower);
+            tile.setTower(selectedTower.getTower());
         }
     }
     public void sellTower(){
@@ -89,13 +89,14 @@ public class PlayState extends SuperState {
         buyableTower.setScale(0.5f,0.5f);
         addEntity(buyableTower);
     }
-    public void upgradeTower(){
-        if (selectedTower != null){
+    public void upgradeTower() {
+        // TODO - Can't base itself on selecting a tower
+        /*if (selectedTower != null){
             if (defenderMoney >= selectedTower.getNextUpgradeCost()) {
                 defenderMoney -= selectedTower.getCost();
                 selectedTower.upgrade();
             }
-        }
+        }*/
     }
 
     public void gameOver() {

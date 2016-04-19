@@ -31,7 +31,7 @@ public class SuperState extends State implements Iterable<Drawable> {
         this.addTouchListener(new TouchListener() {
             @Override
             public boolean onTouchDown(MotionEvent motionEvent) {
-                for (Clickable entity : clickableEntities) {
+                for (Clickable entity : new ArrayList<Clickable>(clickableEntities)) {
                     if (entity.onTouchDown(motionEvent))
                         return true; // Event consumed
                 }

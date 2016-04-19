@@ -39,8 +39,8 @@ public abstract class Entity extends Sprite implements Drawable {
         float height = image.getHeight() * getScale().getY();
         if (clickX>=(this.getX()-width/2)
                 && clickX<=(this.getX()+width/2)
-                && clickY>=(this.getY()-width/2)
-                && clickY<=(this.getY()+width/2)) {
+                && clickY>=(this.getY()-height/2)
+                && clickY<=(this.getY()+height/2)) {
             return true;
         }
         return false;
@@ -67,5 +67,16 @@ public abstract class Entity extends Sprite implements Drawable {
 
     public float getDistance(Entity other) {
         return getPosition().getSubtracted(other.getPosition()).getLength();
+    }
+
+    @Override
+    public void setScale(Vector2 scale) {
+        super.setScale(scale);
+        setOffset(scale.getX() * image.getWidth() / 2, scale.getY() * image.getHeight() / 2);
+    }
+
+    @Override
+    public void setScale(float sx, float sy) {
+        setScale(new Vector2(sx, sy));
     }
 }

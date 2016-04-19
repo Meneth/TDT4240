@@ -22,7 +22,7 @@ public abstract class Monster extends MovableEntity {
             position++;
             if (position == path.size() - 1) {
                 die();
-                ((PlayState) getContainer()).gameOver();
+                ((PlayState) getContainer()).loseHealth(1);
                 return;
             }
             setTarget(path.get(position + 1).getPosition());

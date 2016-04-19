@@ -8,6 +8,7 @@ import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.monster.Monster;
 import group25.tdt4240.entity.projectile.Projectile;
+import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
 /**
@@ -89,7 +90,7 @@ public abstract class Tower extends Entity implements Clickable {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)) {
-            // TODO
+            ((PlayState)getContainer()).clickTower(this);
             return true;
         } else return false;
     }

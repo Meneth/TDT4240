@@ -11,6 +11,6 @@ public class CanonBall extends Projectile {
     public static Image image = new Image(R.drawable.canonball);
 
     public CanonBall(Monster target) {
-        super(image, target, 10, 50);
+        super(image, target, 10, 250);
     }
 }

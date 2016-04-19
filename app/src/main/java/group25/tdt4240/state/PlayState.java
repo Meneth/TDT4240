@@ -21,6 +21,8 @@ public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
     private int defenderMoney= 0;
+    private int defenderHealth = 150;
+    private boolean upgrading = false;
 
     private BuildTile selectedTile;
     public Tower selectedTower;
@@ -50,8 +52,8 @@ public class PlayState extends SuperState {
 
         addEntities(upgradeButton, sellButton, buyButton);
         buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
-        upgradeButton.setPosition(Constants.SCREEN_WIDTH/2,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
-        sellButton.setPosition(Constants.SCREEN_WIDTH*6/7,Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         addEntities(upgradeButton,sellButton,buyButton);
     }
 
@@ -89,12 +91,30 @@ public class PlayState extends SuperState {
         buyableTower.setScale(0.5f,0.5f);
         addEntity(buyableTower);
     }
-    public void upgradeTower(){
-        if (selectedTower != null){
-            if (defenderMoney >= selectedTower.getNextUpgradeCost()) {
-                defenderMoney -= selectedTower.getNextUpgradeCost();
-                selectedTower = selectedTower.upgrade();
-            }
+    public void clickTower(Tower tower) {
+        if (this.upgrading) {
+            upgradeTower(tower);
+        }
+    }
+
+    public void upgradeTower(Tower tower) {
+        if (defenderMoney >= tower.getNextUpgradeCost()) {
+            defenderMoney -= tower.getNextUpgradeCost();
+            tower = tower.upgrade();
+            System.out.println("Upgrading tower");
+        }
+    }
+
+    public void switchUpgrading() {
+        this.upgrading = !this.upgrading;
+    }
+
+    public void loseHealth(int h) {
+        System.out.println("losing health");
+        this.defenderHealth -= h;
+        addEntity(new BasicMonster(currentMap.path));
+        if (defenderHealth <= 0) {
+            gameOver();
         }
     }
 

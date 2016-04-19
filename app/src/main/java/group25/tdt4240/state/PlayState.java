@@ -7,6 +7,7 @@ package group25.tdt4240.state;
 import group25.tdt4240.Constants;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
+import group25.tdt4240.entity.factory.TowerFactory;
 import group25.tdt4240.entity.monster.BasicMonster;
 import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.map.Map;
@@ -78,7 +79,12 @@ public class PlayState extends SuperState {
         System.out.println("Sell selected tower");
     }
     public void displayTowersToBuy(){
-        TowerButton buyableTower = new TowerButton();
+        TowerButton buyableTower = new TowerButton(CrossTower.image, new TowerFactory() {
+            @Override
+            public Tower getTower() {
+                return new CrossTower();
+            }
+        });
         buyableTower.setPosition(Constants.SCREEN_WIDTH/6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/4);
         buyableTower.setScale(0.5f,0.5f);
         addEntity(buyableTower);

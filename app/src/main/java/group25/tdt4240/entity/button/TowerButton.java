@@ -2,7 +2,9 @@ package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
 import group25.tdt4240.R;
+import group25.tdt4240.entity.factory.TowerFactory;
 import group25.tdt4240.entity.tower.CrossTower;
+import group25.tdt4240.entity.tower.Tower;
 import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
@@ -11,9 +13,11 @@ import sheep.graphics.Image;
  */
 public class TowerButton extends Button {
     public static Image towerButtonImage = new Image(R.drawable.cross_tower);
+    private final TowerFactory factory;
 
-    public TowerButton() {
-        super(towerButtonImage);
+    public TowerButton(Image image, TowerFactory factory) {
+        super(image);
+        this.factory = factory;
     }
 
     @Override
@@ -24,6 +28,10 @@ public class TowerButton extends Button {
             return true;
         }
         return false;
+    }
+
+    public Tower getTower() {
+        return factory.getTower();
     }
 
     @Override

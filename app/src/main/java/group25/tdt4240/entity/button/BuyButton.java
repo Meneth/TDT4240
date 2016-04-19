@@ -19,6 +19,9 @@ public class BuyButton extends Button{
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)) {
             System.out.println("buy_button clicked");
+            ((PlayState) getContainer()).setBuying(!((PlayState) getContainer()).isBuying());
+            ((PlayState) getContainer()).setUpgrading(false);
+            ((PlayState) getContainer()).setSelling(false);
             ((PlayState)getContainer()).displayTowersToBuy();
             return true;
         }

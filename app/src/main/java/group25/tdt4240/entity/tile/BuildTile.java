@@ -60,9 +60,18 @@ public class BuildTile extends Tile implements Clickable {
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
             System.out.println("clicked tile");
-            if (tower == null) {
-                getContainer().buyTower(this);
-                return true;
+            if (getContainer().isBuying()){
+                if (tower == null) {
+                    getContainer().buyTower(this);
+                    return true;
+                }
+            }
+            else if (getContainer().isUpgrading()){
+                if (tower != null){
+                    tower = getContainer().upgradeTower(tower);
+                    tower.setPosition(this.getPosition().getX(),getY());
+                    getContainer().addEntity(tower);
+                }
             }
         }
         return false;

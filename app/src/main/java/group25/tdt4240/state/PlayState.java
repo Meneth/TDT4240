@@ -4,7 +4,12 @@ package group25.tdt4240.state;
  * Created by Meneth on 2016-03-31.
  */
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 import group25.tdt4240.Constants;
+import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
 import group25.tdt4240.entity.factory.TowerFactory;
@@ -17,13 +22,18 @@ import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
-    private int defenderMoney= 100;
+    private int defenderMoney= 2100;
     private int defenderHealth = 150;
     private boolean upgrading = false;
-
+    private boolean buying = false;
+    private boolean selling = false;
+    private float timer = 0.0f;
     private BuildTile selectedTile;
     public TowerButton selectedTower;
 
@@ -55,11 +65,36 @@ public class PlayState extends SuperState {
         upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         addEntities(upgradeButton,sellButton,buyButton);
+
     }
 
     public void selectTower(TowerButton t){
         this.selectedTower = t;
         this.selectedTile = null;
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
+        Paint p = new Paint();
+        p.setColor(Color.WHITE);
+        p.setTextSize(20);
+        canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
+        canvas.drawText("HP: " + Integer.toString(defenderHealth),(Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7)*6,p);
+        for (Drawable entity : entities)
+            entity.draw(canvas);
+    }
+
+    @Override
+    public void update(float dt) {
+        timer += dt;
+        if (timer > 2) {
+            addEntity(new BasicMonster(currentMap.path));
+            timer = 0.0f;
+        }
+        updateEntityLists();
+        for (Drawable entity : new ArrayList<>(entities))
+            entity.update(dt);
     }
 
     public void selectTile(BuildTile t){
@@ -92,25 +127,40 @@ public class PlayState extends SuperState {
         addEntity(buyableTower);
     }
 
-    public void clickTower(Tower tower) {
-        if (this.upgrading) {
-            upgradeTower(tower);
-        }
-    }
 
-    public void upgradeTower(Tower tower) {
+    public Tower upgradeTower(Tower tower) {
         if (defenderMoney >= tower.getNextUpgradeCost()) {
             defenderMoney -= tower.getNextUpgradeCost();
-            tower = tower.upgrade();
-            ((BuildTile) currentMap.tiles.get(2)).setTower(tower);
+            Tower t = tower.upgrade();
             System.out.println("Upgrading tower");
+            return t;
         }
+        else {return tower;}
     }
 
-    public void switchUpgrading() {
-        this.upgrading = !this.upgrading;
+    public void setUpgrading(boolean b) {
+        this.upgrading = b;
     }
 
+    public void setBuying(boolean b) {
+        this.buying = b;
+    }
+
+    public void setSelling(boolean b) {
+        this.selling = b;
+    }
+
+    public boolean isBuying() {
+        return buying;
+    }
+
+    public boolean isUpgrading() {
+        return upgrading;
+    }
+
+    public boolean isSelling() {
+        return selling;
+    }
     public void loseHealth(int h) {
         System.out.println("losing health");
         this.defenderHealth -= h;

@@ -15,14 +15,15 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-03-31.
  */
 
-public abstract class Tower extends Entity implements Clickable {
-    private final int cooldown, cost, range;
+public abstract class Tower extends Entity {
+    private final int cost, range;
     private float timePassed = 0;
+    private final float cooldown;
 
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Tower(Image image, int cooldown, int cost, int range) {
+    public Tower(Image image, float cooldown, int cost, int range) {
         super(image);
         this.cooldown = cooldown;
         this.cost = cost;
@@ -86,13 +87,6 @@ public abstract class Tower extends Entity implements Clickable {
 
     protected abstract Projectile getNewProjectile(Monster target);
 
-    @Override
-    public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)) {
-            ((PlayState)getContainer()).clickTower(this);
-            return true;
-        } else return false;
-    }
 
     public int getPriority() {
         return 10; // TODO - Placeholder

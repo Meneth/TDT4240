@@ -16,7 +16,9 @@ public class UpgradeButton extends Button{
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            ((PlayState) getContainer()).switchUpgrading();
+            ((PlayState) getContainer()).setUpgrading(!((PlayState) getContainer()).isUpgrading());
+            ((PlayState) getContainer()).setBuying(false);
+            ((PlayState) getContainer()).setSelling(false);
             return true;
         }
         return false;

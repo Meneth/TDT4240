@@ -16,6 +16,9 @@ public class SellButton extends Button{
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
+            ((PlayState) getContainer()).setSelling(!((PlayState) getContainer()).isSelling());
+            ((PlayState) getContainer()).setUpgrading(false);
+            ((PlayState) getContainer()).setBuying(false);
             System.out.println("sell_button clicked");
             return true;
         }

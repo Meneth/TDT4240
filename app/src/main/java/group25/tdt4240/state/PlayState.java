@@ -20,7 +20,7 @@ import sheep.input.TouchListener;
 public class PlayState extends SuperState {
     private Map currentMap;
     private Image grassTile = new Image(R.drawable.grasstile);
-    private int defenderMoney= 0;
+    private int defenderMoney= 100;
     private int defenderHealth = 150;
     private boolean upgrading = false;
 
@@ -102,6 +102,7 @@ public class PlayState extends SuperState {
         if (defenderMoney >= tower.getNextUpgradeCost()) {
             defenderMoney -= tower.getNextUpgradeCost();
             tower = tower.upgrade();
+            ((BuildTile) currentMap.tiles.get(2)).setTower(tower);
             System.out.println("Upgrading tower");
         }
     }
@@ -118,7 +119,7 @@ public class PlayState extends SuperState {
             gameOver();
         }
     }
-    
+
     public void gameOver() {
         getGame().popState();
         getGame().pushState(new GameOverState());

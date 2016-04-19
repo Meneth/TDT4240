@@ -10,6 +10,7 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class BuyButton extends Button{
+    private boolean active;
 
     public BuyButton(Image image){
         super(image);
@@ -19,10 +20,10 @@ public class BuyButton extends Button{
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)) {
             System.out.println("buy_button clicked");
-            ((PlayState) getContainer()).setBuying(!((PlayState) getContainer()).isBuying());
-            ((PlayState) getContainer()).setUpgrading(false);
-            ((PlayState) getContainer()).setSelling(false);
-            ((PlayState)getContainer()).displayTowersToBuy();
+            active = !active;
+            ((PlayState) getContainer()).setBuying(active);
+            // TODO - Hide towers if inactive
+            ((PlayState) getContainer()).displayTowersToBuy();
             return true;
         }
         return false;

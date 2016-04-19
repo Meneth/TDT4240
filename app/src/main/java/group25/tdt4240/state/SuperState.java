@@ -75,6 +75,8 @@ public class SuperState extends State implements Iterable<Drawable> {
     }
 
     public void addEntity(Drawable entity) {
+        if (entity == null)
+            return;
         entity.setContainer(this);
         entitiesToAdd.push(entity);
     }

@@ -37,6 +37,8 @@ public class BuildTile extends Tile implements Clickable {
      * @param tower Set current tower
      */
     public void setTower(Tower tower) {
+        if (tower != null)
+            tower.die();
         this.tower = tower;
         tower.setPosition(getPosition());
         getContainer().addEntity(tower);
@@ -59,25 +61,7 @@ public class BuildTile extends Tile implements Clickable {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            System.out.println("clicked tile");
-            if (getContainer().isBuying()){
-                if (tower == null) {
-                    getContainer().buyTower(this);
-                    return true;
-                }
-            }
-            else if (getContainer().isUpgrading()){
-                if (tower != null){
-                    tower = getContainer().upgradeTower(tower);
-                    tower.setPosition(this.getPosition().getX(),getY());
-                    getContainer().addEntity(tower);
-                }
-            }
-            else if (getContainer().isSelling()){
-                if (tower != null) {
-                    getContainer().sellTower(tower);
-                }
-            }
+            getContainer().clickTile(this);
         }
         return false;
     }

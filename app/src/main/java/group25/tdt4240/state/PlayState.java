@@ -20,21 +20,19 @@ import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
-import sheep.input.TouchListener;
 
 import java.util.ArrayList;
 
 public class PlayState extends SuperState {
     private Map currentMap;
-    private Image grassTile = new Image(R.drawable.grasstile);
     private int defenderMoney= 2100;
     private int defenderHealth = 150;
-    private boolean upgrading = false;
-    private boolean buying = false;
-    private boolean selling = false;
     private float timer = 0.0f;
-    private BuildTile selectedTile;
     public TowerButton selectedTower;
+    private enum Action {
+        BUY, SELL, UPGRADE, NONE;
+    }
+    Action action = Action.NONE;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
     Button upgradeButton = new UpgradeButton(upgradeButtonImage);
@@ -69,7 +67,6 @@ public class PlayState extends SuperState {
 
     public void selectTower(TowerButton t){
         this.selectedTower = t;
-        this.selectedTile = null;
     }
 
     @Override
@@ -96,23 +93,26 @@ public class PlayState extends SuperState {
             entity.update(dt);
     }
 
-    public void selectTile(BuildTile t){
-        this.selectedTile = t;
-        this.selectedTower = null;
-    }
-
     public void buyTower(BuildTile tile) {
-        if (selectedTower != null) {
-            // TODO - Check if enough money
-            tile.setTower(selectedTower.getTower());
-        }
+        if (tile.getTower() != null)
+            return;
+        if (selectedTower == null)
+            return;
+        if (selectedTower.getCost() > defenderMoney)
+            return;
+        defenderMoney -= selectedTower.getCost();
+        tile.setTower(selectedTower.getTower());
     }
-    public void sellTower(Tower tower){
-        defenderMoney += tower.getCost();
-        tower.die();
+    public void sellTower(BuildTile tile) {
+        Tower t = tile.getTower();
+        if (t != null)
+            defenderMoney += t.getCost();
+            t.die();
+            tile.setTower(null);
         System.out.println("Sell selected tower");
     }
-    public void displayTowersToBuy(){
+
+    public void displayTowersToBuy() {
         TowerButton buyableTower = new TowerButton(CrossTower.image, new TowerFactory() {
             @Override
             public Tower getTower() {
@@ -120,44 +120,42 @@ public class PlayState extends SuperState {
             }
         });
         buyableTower.setPosition(Constants.SCREEN_WIDTH/6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/4);
-        buyableTower.setScale(0.5f,0.5f);
+        buyableTower.setScale(0.5f, 0.5f);
         addEntity(buyableTower);
     }
 
 
-    public Tower upgradeTower(Tower tower) {
-        if (defenderMoney >= tower.getNextUpgradeCost()) {
-            defenderMoney -= tower.getNextUpgradeCost();
-            Tower t = tower.upgrade();
+    public Tower upgradeTower(BuildTile tile) {
+        Tower t = tile.getTower();
+        if (t != null && defenderMoney >= t.getNextUpgradeCost()) {
+            defenderMoney -= t.getNextUpgradeCost();
+            tile.setTower(t.upgrade());
             System.out.println("Upgrading tower");
-            return t;
         }
-        else {return tower;}
+        return t;
     }
 
     public void setUpgrading(boolean b) {
-        this.upgrading = b;
+        if (b)
+            action = Action.UPGRADE;
+        else
+            action = Action.NONE;
     }
 
     public void setBuying(boolean b) {
-        this.buying = b;
+        if (b)
+            action = Action.BUY;
+        else
+            action = Action.NONE;
     }
 
     public void setSelling(boolean b) {
-        this.selling = b;
+        if (b)
+            action = Action.SELL;
+        else
+            action = Action.NONE;
     }
 
-    public boolean isBuying() {
-        return buying;
-    }
-
-    public boolean isUpgrading() {
-        return upgrading;
-    }
-
-    public boolean isSelling() {
-        return selling;
-    }
     public void loseHealth(int h) {
         System.out.println("losing health");
         this.defenderHealth -= h;
@@ -170,5 +168,19 @@ public class PlayState extends SuperState {
     public void gameOver() {
         getGame().popState();
         getGame().pushState(new GameOverState());
+    }
+
+    public void clickTile(BuildTile tile) {
+        switch (action) {
+            case BUY:
+                buyTower(tile);
+                break;
+            case SELL:
+                sellTower(tile);
+                break;
+            case UPGRADE:
+                upgradeTower(tile);
+                break;
+        }
     }
 }

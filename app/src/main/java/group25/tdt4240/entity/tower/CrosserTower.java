@@ -9,11 +9,11 @@ import sheep.graphics.Image;
 /**
  * Created by Meneth on 17.04.2016.
  */
-public class CrossTower extends Tower {
-    public static final Image image = new Image(R.drawable.cross_tower);
-    private int upgradeCost = 100;
-    public CrossTower() {
-        super(image, 1, 10, 250);
+public class CrosserTower extends Tower {
+    public static final Image image = new Image(R.drawable.monster1);
+    private int upgradeCost = 9999;
+    public CrosserTower() {
+        super(image, 2, 0, 300);
     }
 
     @Override
@@ -28,8 +28,7 @@ public class CrossTower extends Tower {
 
     @Override
     public Tower upgrade() {
-        die();
-        return new CrosserTower();
+        return this;
     }
 
     @Override

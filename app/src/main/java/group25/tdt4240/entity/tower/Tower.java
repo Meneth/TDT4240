@@ -56,7 +56,7 @@ public abstract class Tower extends Entity implements Clickable {
 
     public abstract Priority getTargetPriority();
 
-    public abstract void upgrade();
+    public abstract Tower upgrade();
 
     public void fire(Monster target) {
         if (target == null)

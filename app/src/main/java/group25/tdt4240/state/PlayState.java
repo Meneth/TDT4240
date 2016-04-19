@@ -86,8 +86,8 @@ public class PlayState extends SuperState {
     public void upgradeTower(){
         if (selectedTower != null){
             if (defenderMoney >= selectedTower.getNextUpgradeCost()) {
-                defenderMoney -= selectedTower.getCost();
-                selectedTower.upgrade();
+                defenderMoney -= selectedTower.getNextUpgradeCost();
+                selectedTower = selectedTower.upgrade();
             }
         }
     }

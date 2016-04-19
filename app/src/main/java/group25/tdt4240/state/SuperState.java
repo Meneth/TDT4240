@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 import group25.tdt4240.entity.Clickable;
 import group25.tdt4240.entity.Drawable;
@@ -22,6 +23,9 @@ public class SuperState extends State implements Iterable<Drawable> {
     private List<Clickable> clickableEntities = new ArrayList<>();
     private List<Monster> shootableMonsters = new ArrayList<>();
     private List<Drawable> entities = new ArrayList<>();
+
+    private Stack<Drawable> entitiesToRemove = new Stack<>();
+    private Stack<Drawable> entitiesToAdd = new Stack<>();
 
     public SuperState() {
         this.addTouchListener(new TouchListener() {
@@ -55,7 +59,8 @@ public class SuperState extends State implements Iterable<Drawable> {
 
     @Override
     public void update(float dt) {
-        for (Drawable entity : entities)
+        updateEntityLists();
+        for (Drawable entity : new ArrayList<>(entities))
             entity.update(dt);
     }
 
@@ -70,19 +75,31 @@ public class SuperState extends State implements Iterable<Drawable> {
     }
 
     public void addEntity(Drawable entity) {
-        entities.add(entity);
-        if (entity instanceof Clickable)
-            clickableEntities.add((Clickable) entity);
-        else if (entity instanceof Monster)
-            shootableMonsters.add((Monster) entity);
         entity.setContainer(this);
+        entitiesToAdd.push(entity);
+    }
+
+    private void updateEntityLists() {
+        while (!entitiesToRemove.empty()) {
+            Drawable e = entitiesToRemove.pop();
+            entities.remove(e);
+            clickableEntities.remove(e);
+            shootableMonsters.remove(e);
+        }
+        while (!entitiesToAdd.empty()) {
+            Drawable entity = entitiesToAdd.pop();
+            entities.add(entity);
+            if (entity instanceof Clickable)
+                clickableEntities.add((Clickable) entity);
+            else if (entity instanceof Monster)
+                shootableMonsters.add((Monster) entity);
+        }
         Collections.sort(entities, Collections.reverseOrder());
         Collections.sort(clickableEntities);
     }
 
     public void removeEntity(Drawable entity) {
-        entities.remove(entity);
-        clickableEntities.remove(entity);
+        entitiesToRemove.push(entity);
     }
 
     @Override

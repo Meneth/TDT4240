@@ -73,6 +73,11 @@ public class BuildTile extends Tile implements Clickable {
                     getContainer().addEntity(tower);
                 }
             }
+            else if (getContainer().isSelling()){
+                if (tower != null) {
+                    getContainer().sellTower(tower);
+                }
+            }
         }
         return false;
     }

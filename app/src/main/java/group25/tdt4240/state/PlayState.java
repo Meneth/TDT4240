@@ -23,7 +23,6 @@ import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class PlayState extends SuperState {
     private Map currentMap;
@@ -108,11 +107,9 @@ public class PlayState extends SuperState {
             tile.setTower(selectedTower.getTower());
         }
     }
-    public void sellTower(){
-        if (selectedTower != null){
-            defenderMoney += selectedTower.getCost();
-            currentMap.tiles.remove(selectedTower);
-        }
+    public void sellTower(Tower tower){
+        defenderMoney += tower.getCost();
+        tower.die();
         System.out.println("Sell selected tower");
     }
     public void displayTowersToBuy(){

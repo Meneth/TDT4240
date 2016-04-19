@@ -39,7 +39,7 @@ public class BuildTile extends Tile implements Clickable {
     public void setTower(Tower tower) {
         this.tower = tower;
         tower.setPosition(getPosition());
-        getContainer().addEntity(tower);
+
     }
 
     /**
@@ -51,11 +51,19 @@ public class BuildTile extends Tile implements Clickable {
 
 
     @Override
+    public PlayState getContainer() {
+        return (PlayState) super.getContainer();
+    }
+
+
+    @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
             System.out.println("clicked tile");
-            setTower(new CrossTower());
-            return true;
+            if (tower == null) {
+                getContainer().buyTower(this);
+                return true;
+            }
         }
         return false;
     }

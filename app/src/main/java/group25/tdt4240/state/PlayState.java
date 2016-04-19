@@ -64,8 +64,11 @@ public class PlayState extends SuperState {
         this.selectedTower = null;
     }
 
-    public void buyTower(){
-        this.currentMap.entities.add(selectedTower);
+    public void buyTower(BuildTile tile) {
+        if (selectedTower != null) {
+            // TODO - Check if enough money
+            tile.setTower(selectedTower);
+        }
     }
     public void sellTower(){
         if (selectedTower != null){

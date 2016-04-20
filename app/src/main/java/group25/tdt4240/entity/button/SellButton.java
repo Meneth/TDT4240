@@ -8,7 +8,7 @@ import sheep.graphics.Image;
 /**
  * Created by Ole on 11/04/2016.
  */
-public class SellButton extends Button {
+public class SellButton extends ToggleButton {
     public SellButton(Image image){
         super(image);
     }

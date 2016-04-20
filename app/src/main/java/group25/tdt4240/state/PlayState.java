@@ -36,13 +36,13 @@ public class PlayState extends SuperState {
     Action action = Action.NONE;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
-    Button upgradeButton = new UpgradeButton(upgradeButtonImage);
+    ToggleButton upgradeButton = new UpgradeButton(upgradeButtonImage);
 
     private Image sellButtonImage = new Image(R.drawable.sell_button);
-    Button sellButton = new SellButton(sellButtonImage);
+    ToggleButton sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
-    Button buyButton = new BuyButton(buyButtonImage);
+    ToggleButton buyButton = new BuyButton(buyButtonImage);
 
     public PlayState() {
         this.currentMap = new Map();
@@ -78,6 +78,7 @@ public class PlayState extends SuperState {
         p.setTextSize(20);
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
+
         for (Drawable entity : entities)
             entity.draw(canvas);
     }
@@ -140,9 +141,28 @@ public class PlayState extends SuperState {
             this.action = Action.NONE;
             return false;
         }
+
+        switch (this.action) {
+            case BUY:
+                buyButton.toggleButton();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
+                break;
+        }
         switch (action) {
             case BUY:
                 displayTowersToBuy();
+                buyButton.toggleButton();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
                 break;
             default:
                 // TODO - Hide buy towers

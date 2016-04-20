@@ -31,6 +31,8 @@ public class PlayState extends SuperState {
     public TowerButton selectedTower;
     private List<TowerButton> buyableTowers = new ArrayList<>();
 
+
+
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
     }
@@ -45,6 +47,10 @@ public class PlayState extends SuperState {
     private Image buyButtonImage = new Image((R.drawable.buy_button));
     ToggleButton buyButton = new BuyButton(buyButtonImage);
 
+    Button doneButton = new DoneButton();
+
+    private Round round;
+
     public PlayState() {
         this.currentMap = new Map();
         // TODO - This way of adding a monster is placeholder
@@ -57,15 +63,48 @@ public class PlayState extends SuperState {
         buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-
-
-        addEntities(upgradeButton, sellButton, buyButton);
-        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        addEntities(upgradeButton, sellButton, buyButton);
+        doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 7);
 
         initializeBuyableTowers();
+
+        startRound(Round.MONSTER);
+    }
+
+    private enum Round {
+        TOWER, MONSTER, PLAY;
+    }
+
+    public void advanceRound() {
+        switch (round) {
+            case TOWER:
+                startRound(Round.PLAY);
+                break;
+            case MONSTER:
+                startRound(Round.TOWER);
+                break;
+            case PLAY:
+                startRound(Round.MONSTER);
+                break;
+        }
+    }
+
+    /**
+     * Starts a given round
+     * @param round The round to start
+     */
+    private void startRound(Round round) {
+        this.round = round;
+        switch (round) {
+            case TOWER:
+                addEntities(upgradeButton, sellButton, buyButton);
+                break;
+            case MONSTER:
+                addEntities(doneButton);
+                break;
+            case PLAY:
+                removeEntities(upgradeButton, sellButton, buyButton, doneButton);
+                break;
+        }
     }
 
     private void initializeBuyableTowers() {

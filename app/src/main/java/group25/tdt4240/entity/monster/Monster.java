@@ -14,6 +14,7 @@ public abstract class Monster extends MovableEntity {
     private final Path path;
     private int position;
     private int health;
+    private final int cost;
 
     @Override
     public void update(float dt) {
@@ -32,7 +33,7 @@ public abstract class Monster extends MovableEntity {
     /**
      * @param image The image the sprite is to be generated from
      */
-    public Monster(Image image, Path path, float standardVelocity, int health) {
+    public Monster(Image image, Path path, float standardVelocity, int health, int cost) {
         super(image, standardVelocity);
         this.path = path;
         position = 0;
@@ -40,6 +41,7 @@ public abstract class Monster extends MovableEntity {
         setPosition(path.get(0).getX(), path.get(0).getY());
         setTarget(path.get(position + 1).getPosition());
         this.health = health;
+        this.cost = cost;
     }
 
     public void takeDamage(int damage) {
@@ -50,5 +52,9 @@ public abstract class Monster extends MovableEntity {
 
     public int getPriority() {
         return 10; // TODO - placeholder
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

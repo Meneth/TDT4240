@@ -37,7 +37,7 @@ public class PlayState extends SuperState {
     private List<TowerButton> buyableTowers = new ArrayList<>();
     private List<MonsterButton> buyableMonsters = new ArrayList<>();
     private Queue<Monster> currentMonsterQueue = new LinkedList<>();
-    private List<Sprite> monsterQueue = new ArrayList<>();
+    private List<MonsterImageButton> monsterImageQueue = new ArrayList<>();
 
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
@@ -99,18 +99,19 @@ public class PlayState extends SuperState {
         this.round = round;
         switch (round) {
             case TOWER:
-
                 addEntities(upgradeButton, sellButton, buyButton);
                 hideMonstersToChoose();
+                for (MonsterImageButton mb: monsterImageQueue){
+                    mb.die();
+                }
+                monsterImageQueue.clear();
                 break;
             case MONSTER:
                 // Both players get money when new round starts
                 defenderMoney += roundCounter * 30;
                 attackerMoney += roundCounter * 500;
-
                 addEntities(doneButton);
                 currentMonsterQueue.clear();
-                monsterQueue.clear();
                 displayMonstersToChoose();
                 hideTowersToBuy();
                 break;
@@ -192,12 +193,23 @@ public class PlayState extends SuperState {
         if (attackerMoney >= m.getCost()){
             attackerMoney -= m.getCost();
             currentMonsterQueue.offer(m);
-            Sprite s = new Sprite(m.getImage());
-            s.setPosition(((Constants.SCREEN_WIDTH / 20) * monsterQueue.size()) + 20, (Constants.SCREEN_HEIGHT / 7) * 4);
-            s.update(0.01f);
-            monsterQueue.add(s);
+            MonsterImageButton mb = new MonsterImageButton(m.getImage(), m);
+            mb.setPosition(((Constants.SCREEN_WIDTH / 20) * monsterImageQueue.size()) + 20, (Constants.SCREEN_HEIGHT / 7) * 4);
+            addEntity(mb);
+            monsterImageQueue.add(mb);
         }
+    }
 
+    public void clickMonsterImage(MonsterImageButton mb) {
+        System.out.println("clicked monster image");
+        attackerMoney += mb.getMonster().getCost();
+        // Maybe only need one list...
+        currentMonsterQueue.remove(mb.getMonster());
+        mb.die();
+        monsterImageQueue.remove(mb);
+        for (int i = 0; i < monsterImageQueue.size(); i++){
+            monsterImageQueue.get(i).setPosition(((Constants.SCREEN_WIDTH / 20) * i + 20), (Constants.SCREEN_HEIGHT / 7) * 4);
+        }
     }
 
     public void monsterDied(Monster m) {
@@ -207,11 +219,11 @@ public class PlayState extends SuperState {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (round == Round.MONSTER){
-            for (int i = 0; i < monsterQueue.size(); i++){
-                monsterQueue.get(i).draw(canvas);
+        /*if (round == Round.MONSTER){
+            for (int i = 0; i < monsterImageQueue.size(); i++){
+                monsterImageQueue.get(i).draw(canvas);
             }
-        }
+        }*/
         canvas.drawText("Attacker Cash: " + Integer.toString(attackerMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.1f, p);
         canvas.drawText("Defender Moneeeyh: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.3f, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.5f, p);
@@ -224,7 +236,7 @@ public class PlayState extends SuperState {
                 advanceRound();
             } else {
                 timer += dt;
-                if (timer > 2) {
+                if (timer > 0.5f) {
                     addEntity(currentMonsterQueue.poll());
                     timer = 0.0f;
                 }
@@ -324,7 +336,6 @@ public class PlayState extends SuperState {
     public void loseHealth(int h) {
         System.out.println("losing health");
         this.defenderHealth -= h;
-        addEntity(new BasicMonster(currentMap.path));
         if (defenderHealth <= 0) {
             gameOver();
         }

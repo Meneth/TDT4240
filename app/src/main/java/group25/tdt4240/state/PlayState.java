@@ -120,10 +120,16 @@ public class PlayState extends SuperState {
                 return new CrossTower();
             }
         }));
-        buyableTowers.add(new TowerButton(CrosserTower.image, new Factory() {
+        buyableTowers.add(new TowerButton(SquareTower.image, new Factory() {
             @Override
             public Tower get() {
-                return new CrosserTower();
+                return new SquareTower();
+            }
+        }));
+        buyableTowers.add(new TowerButton(StarTower.image, new Factory() {
+            @Override
+            public Tower get() {
+                return new StarTower();
             }
         }));
         for (int i = 0; i < buyableTowers.size(); i++) {

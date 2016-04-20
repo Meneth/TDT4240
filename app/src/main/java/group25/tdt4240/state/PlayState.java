@@ -25,7 +25,7 @@ import java.util.List;
 
 public class PlayState extends SuperState {
     private Map currentMap;
-    private int defenderMoney= 2100;
+    private int defenderMoney= 500;
     private int defenderHealth = 150;
     private float timer = 0.0f;
     public TowerButton selectedTower;
@@ -137,15 +137,12 @@ public class PlayState extends SuperState {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
+        super.draw(canvas);
         Paint p = new Paint();
         p.setColor(Color.WHITE);
         p.setTextSize(20);
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
-
-        for (Drawable entity : entities)
-            entity.draw(canvas);
     }
 
     @Override
@@ -155,9 +152,7 @@ public class PlayState extends SuperState {
             addEntity(new BasicMonster(currentMap.path));
             timer = 0.0f;
         }
-        updateEntityLists();
-        for (Drawable entity : new ArrayList<>(entities))
-            entity.update(dt);
+        super.update(dt);
     }
 
     public void buyTower(BuildTile tile) {

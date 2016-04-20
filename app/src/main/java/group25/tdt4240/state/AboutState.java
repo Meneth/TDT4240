@@ -1,7 +1,7 @@
 package group25.tdt4240.state;
 
-import group25.tdt4240.Constants;
-import group25.tdt4240.TextDrawer;
+import group25.tdt4240.utility.Constants;
+import group25.tdt4240.utility.TextDrawer;
 import group25.tdt4240.entity.button.BackButton;
 import group25.tdt4240.entity.button.Button;
 

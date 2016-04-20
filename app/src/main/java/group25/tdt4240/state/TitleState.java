@@ -1,9 +1,7 @@
 package group25.tdt4240.state;
 
-import group25.tdt4240.Constants;
-import group25.tdt4240.R;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.button.*;
-import sheep.graphics.Image;
 import sheep.input.TouchListener;
 
 /**

@@ -2,10 +2,8 @@ package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
 
-import group25.tdt4240.Constants;
-import group25.tdt4240.R;
-import group25.tdt4240.entity.factory.TowerFactory;
-import group25.tdt4240.entity.tower.CrossTower;
+import group25.tdt4240.utility.Constants;
+import group25.tdt4240.factory.TowerFactory;
 import group25.tdt4240.entity.tower.Tower;
 import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;

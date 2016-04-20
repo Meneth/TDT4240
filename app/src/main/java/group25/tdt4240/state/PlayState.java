@@ -8,11 +8,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import group25.tdt4240.Constants;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
-import group25.tdt4240.entity.factory.TowerFactory;
+import group25.tdt4240.factory.TowerFactory;
 import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;

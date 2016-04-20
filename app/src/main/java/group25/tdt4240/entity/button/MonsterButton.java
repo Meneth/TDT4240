@@ -2,23 +2,24 @@ package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
 
-import group25.tdt4240.utility.Constants;
-import group25.tdt4240.factory.Factory;
+import group25.tdt4240.entity.monster.Monster;
 import group25.tdt4240.entity.tower.Tower;
+import group25.tdt4240.factory.Factory;
 import group25.tdt4240.state.PlayState;
+import group25.tdt4240.utility.Constants;
 import sheep.graphics.Image;
 
 /**
- * Created by matias on 18.04.16.
+ * Created by Meneth on 2016-04-20.
  */
-public class TowerButton extends Button {
-    private final Factory<Tower> factory;
-    private final Tower tower;
+public class MonsterButton extends Button {
+    private final Factory<Monster> factory;
+    private final Monster monster;
 
-    public TowerButton(Image image, Factory<Tower> factory) {
+    public MonsterButton(Image image, Factory<Monster> factory) {
         super(image);
         this.factory = factory;
-        this.tower = factory.get();
+        this.monster = factory.get();
         float scaleX = 1.25f * (float) Constants.TILE_WIDTH / image.getWidth();
         float scaleY = 1.25f * (float) Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
@@ -27,26 +28,22 @@ public class TowerButton extends Button {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            ((PlayState)getContainer()).selectTower(this);
-            System.out.println("buy_Tower_button_clicked");
+            // TODO
             return true;
         }
         return false;
     }
 
-    public Tower getTower() {
+    public Monster getMonster() {
         return factory.get();
     }
 
     public int getCost() {
-        return tower.getCost();
+        return monster.getCost();
     }
 
     @Override
     public int getPriority(){
         return 21;
     }
-
 }
-
-

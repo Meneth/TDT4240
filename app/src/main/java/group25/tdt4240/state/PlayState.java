@@ -12,7 +12,7 @@ import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
-import group25.tdt4240.factory.TowerFactory;
+import group25.tdt4240.factory.Factory;
 import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
@@ -108,15 +108,15 @@ public class PlayState extends SuperState {
     }
 
     private void initializeBuyableTowers() {
-        buyableTowers.add(new TowerButton(CrossTower.image, new TowerFactory() {
+        buyableTowers.add(new TowerButton(CrossTower.image, new Factory() {
             @Override
-            public Tower getTower() {
+            public Tower get() {
                 return new CrossTower();
             }
         }));
-        buyableTowers.add(new TowerButton(CrosserTower.image, new TowerFactory() {
+        buyableTowers.add(new TowerButton(CrosserTower.image, new Factory() {
             @Override
-            public Tower getTower() {
+            public Tower get() {
                 return new CrosserTower();
             }
         }));

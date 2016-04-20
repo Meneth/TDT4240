@@ -4,7 +4,6 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.R;
 import group25.tdt4240.state.PlayState;
-import group25.tdt4240.state.TitleState;
 import sheep.graphics.Image;
 
 /**
@@ -19,8 +18,6 @@ public class PlayButton extends Button {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        float clickY = event.getY();
-        float clickX = event.getX();
         if (this.checkClick(event)) {
             getContainer().getGame().pushState(new PlayState());
             System.out.println("Play clicked");

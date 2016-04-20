@@ -4,8 +4,6 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.R;
 import group25.tdt4240.state.AboutState;
-import group25.tdt4240.state.TitleState;
-import group25.tdt4240.state.SettingsState;
 import sheep.graphics.Image;
 
 /**

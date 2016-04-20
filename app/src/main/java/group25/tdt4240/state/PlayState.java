@@ -16,8 +16,6 @@ import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.entity.tile.BuildTile;
-import sheep.game.Sprite;
-import sheep.graphics.Image;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +23,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class PlayState extends SuperState {
-    private Map currentMap;
+    private final Map currentMap;
     private int attackerMoney = 500;
     private int defenderMoney= 500;
     private int defenderHealth = 20;
@@ -34,25 +32,25 @@ public class PlayState extends SuperState {
 
     private float timer = 0.0f;
     private TowerButton selectedTower;
-    private List<TowerButton> buyableTowers = new ArrayList<>();
-    private List<MonsterButton> buyableMonsters = new ArrayList<>();
-    private Queue<Monster> currentMonsterQueue = new LinkedList<>();
-    private List<MonsterImageButton> monsterImageQueue = new ArrayList<>();
+    private final List<TowerButton> buyableTowers = new ArrayList<>();
+    private final List<MonsterButton> buyableMonsters = new ArrayList<>();
+    private final Queue<Monster> currentMonsterQueue = new LinkedList<>();
+    private final List<MonsterImageButton> monsterImageQueue = new ArrayList<>();
 
     public enum Action {
-        BUY, SELL, UPGRADE, NONE;
+        BUY, SELL, UPGRADE, NONE
     }
     private Action action = Action.NONE;
 
-    private ToggleButton upgradeButton = new UpgradeButton();
-    private ToggleButton sellButton = new SellButton();
-    private ToggleButton buyButton = new BuyButton();
+    private final ToggleButton upgradeButton = new UpgradeButton();
+    private final ToggleButton sellButton = new SellButton();
+    private final ToggleButton buyButton = new BuyButton();
 
-    private Button doneButton = new DoneButton();
+    private final Button doneButton = new DoneButton();
 
     private Round round;
 
-    private Paint p;
+    private final Paint p;
 
     public PlayState() {
         this.currentMap = new Map();
@@ -74,7 +72,7 @@ public class PlayState extends SuperState {
     }
 
     private enum Round {
-        TOWER, MONSTER, PLAY;
+        TOWER, MONSTER, PLAY
     }
 
     public void advanceRound() {
@@ -118,32 +116,32 @@ public class PlayState extends SuperState {
             case PLAY:
                 roundCounter += 1;
                 hideTowersToBuy();
-                setAction(action.NONE);
+                setAction(Action.NONE);
                 removeEntities(upgradeButton, sellButton, buyButton, doneButton);
                 break;
         }
     }
 
     private void initializeMonsters() {
-        buyableMonsters.add(new MonsterButton(BasicMonster.image, new Factory() {
+        buyableMonsters.add(new MonsterButton(BasicMonster.image, new Factory<Monster>() {
             @Override
             public Monster get() {
                 return new BasicMonster(currentMap.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster2.image, new Factory() {
+        buyableMonsters.add(new MonsterButton(Monster2.image, new Factory<Monster>() {
             @Override
             public Monster get() {
                 return new Monster2(currentMap.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster3.image, new Factory() {
+        buyableMonsters.add(new MonsterButton(Monster3.image, new Factory<Monster>() {
             @Override
             public Monster get() {
                 return new Monster3(currentMap.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster4.image, new Factory() {
+        buyableMonsters.add(new MonsterButton(Monster4.image, new Factory<Monster>() {
             @Override
             public Monster get() {
                 return new Monster4(currentMap.path);
@@ -157,19 +155,19 @@ public class PlayState extends SuperState {
     }
 
     private void initializeBuyableTowers() {
-        buyableTowers.add(new TowerButton(CrossTower.image, new Factory() {
+        buyableTowers.add(new TowerButton(CrossTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new CrossTower();
             }
         }));
-        buyableTowers.add(new TowerButton(SquareTower.image, new Factory() {
+        buyableTowers.add(new TowerButton(SquareTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new SquareTower();
             }
         }));
-        buyableTowers.add(new TowerButton(StarTower.image, new Factory() {
+        buyableTowers.add(new TowerButton(StarTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new StarTower();
@@ -280,23 +278,22 @@ public class PlayState extends SuperState {
         }
     }
 
-    public void hideMonstersToChoose() {
+    private void hideMonstersToChoose() {
         for (MonsterButton button : buyableMonsters) {
             removeEntity(button);
         }
     }
 
-    private Tower upgradeTower(BuildTile tile) {
+    private void upgradeTower(BuildTile tile) {
         Tower t = tile.getTower();
         if (t != null && defenderMoney >= t.getNextUpgradeCost()) {
             defenderMoney -= t.getNextUpgradeCost();
             tile.setTower(t.upgrade());
             System.out.println("Upgrading tower");
         }
-        return t;
     }
 
-    public boolean setAction(Action action) {
+    public void setAction(Action action) {
         switch (this.action) {
             case BUY:
                 buyButton.toggleButton();
@@ -311,7 +308,7 @@ public class PlayState extends SuperState {
         }
         if (action == this.action) {
             this.action = Action.NONE;
-            return false;
+            return;
         }
 
 
@@ -330,7 +327,6 @@ public class PlayState extends SuperState {
                 break;
         }
         this.action = action;
-        return true;
     }
 
     public void loseHealth(int h) {

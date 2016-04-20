@@ -1,7 +1,5 @@
 package group25.tdt4240.entity.monster;
 
-import android.graphics.Canvas;
-
 import group25.tdt4240.map.Path;
 import group25.tdt4240.entity.MovableEntity;
 import group25.tdt4240.state.PlayState;
@@ -15,7 +13,7 @@ public abstract class Monster extends MovableEntity {
     private int position;
     private int health;
     private final int cost;
-    private Image image;
+    private final Image image;
 
     public Image getImage(){
         return image;

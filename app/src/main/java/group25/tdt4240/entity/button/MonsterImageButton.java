@@ -3,7 +3,6 @@ package group25.tdt4240.entity.button;
 import android.view.MotionEvent;
 
 import group25.tdt4240.entity.monster.Monster;
-import group25.tdt4240.factory.Factory;
 import group25.tdt4240.state.PlayState;
 import group25.tdt4240.utility.Constants;
 import sheep.graphics.Image;
@@ -12,13 +11,13 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-04-20.
  */
 public class MonsterImageButton extends Button {
-    private Monster monster;
+    private final Monster monster;
 
     public MonsterImageButton(Image image, Monster monster) {
         super(image);
         this.monster = monster;
-        float scaleX = 0.5f * (float) Constants.TILE_WIDTH / image.getWidth();
-        float scaleY = 0.5f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        float scaleX = 0.5f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 0.5f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
     }
 

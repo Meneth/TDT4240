@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 import group25.tdt4240.R;
 import group25.tdt4240.TDActivity;
 import sheep.graphics.Image;
-import group25.tdt4240.state.SettingsState;
 
 /**
  * Created by DagErik on 11.04.2016.
@@ -38,7 +37,7 @@ public class SoundButton extends Button {
         return false;
     }
 
-    public void updateImage() {
+    private void updateImage() {
         this.setView(SoundButton.soundOn ? soundButtonImageOn : soundButtonImageOff);
     }
 }

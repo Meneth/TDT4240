@@ -6,9 +6,6 @@ package group25.tdt4240.entity.button;
 import android.view.MotionEvent;
 
 import group25.tdt4240.R;
-import group25.tdt4240.state.TitleState;
-import group25.tdt4240.state.SettingsState;
-import sheep.game.State;
 import sheep.graphics.Image;
 
 public class BackButton extends Button {

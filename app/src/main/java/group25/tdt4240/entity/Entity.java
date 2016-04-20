@@ -1,11 +1,9 @@
 package group25.tdt4240.entity;
 
-import android.graphics.Canvas;
-
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import group25.tdt4240.state.SuperState;
 import sheep.game.Sprite;
-import sheep.game.State;
 import sheep.graphics.Image;
 import sheep.math.Vector2;
 
@@ -28,7 +26,7 @@ public abstract class Entity extends Sprite implements Drawable {
     }
 
     @Override
-    public int compareTo(Drawable another) {
+    public int compareTo(@NonNull Drawable another) {
         return another.getPriority() - getPriority();
     }
 
@@ -37,13 +35,10 @@ public abstract class Entity extends Sprite implements Drawable {
         float clickY = event.getY();
         float width = image.getWidth() * getScale().getX();
         float height = image.getHeight() * getScale().getY();
-        if (clickX>=(this.getX()-width/2)
-                && clickX<=(this.getX()+width/2)
-                && clickY>=(this.getY()-height/2)
-                && clickY<=(this.getY()+height/2)) {
-            return true;
-        }
-        return false;
+        return clickX >= (this.getX() - width / 2)
+                && clickX <= (this.getX() + width / 2)
+                && clickY >= (this.getY() - height / 2)
+                && clickY <= (this.getY() + height / 2);
     }
 
     @Override

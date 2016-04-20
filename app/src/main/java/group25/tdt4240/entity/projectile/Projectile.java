@@ -21,8 +21,8 @@ public abstract class Projectile extends MovableEntity {
         this.target = target;
         this.damage = damage;
 
-        float scaleX = 0.5f * (float) Constants.TILE_WIDTH / image.getWidth();
-        float scaleY = 0.5f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        float scaleX = 0.5f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 0.5f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
         update(0);
     }

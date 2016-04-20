@@ -2,10 +2,8 @@ package group25.tdt4240.entity.tower;
 
 import group25.tdt4240.R;
 import group25.tdt4240.entity.monster.Monster;
-import group25.tdt4240.entity.projectile.CanonBall;
 import group25.tdt4240.entity.projectile.Projectile;
 import group25.tdt4240.entity.projectile.SnowBall;
-import group25.tdt4240.entity.projectile.StarBall;
 import sheep.graphics.Image;
 
 /**
@@ -13,19 +11,14 @@ import sheep.graphics.Image;
  */
 public class SquareTower extends Tower {
     public static final Image image = new Image(R.drawable.square_tower);
-    private int upgradeCost = 100;
+
     public SquareTower() {
         super(image, 3, 150, 250);
     }
 
     @Override
     public int getNextUpgradeCost() {
-        return upgradeCost;
-    }
-
-    @Override
-    public Priority getTargetPriority() {
-        return Priority.CLOSEST; // TODO
+        return 100;
     }
 
     @Override

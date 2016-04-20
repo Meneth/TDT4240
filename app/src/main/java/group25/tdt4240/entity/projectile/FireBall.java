@@ -8,7 +8,7 @@ import sheep.graphics.Image;
  * Created by rh183_000 on 20/04/2016.
  */
 public class FireBall extends Projectile {
-    private static Image image = new Image(R.drawable.fireball);
+    private static final Image image = new Image(R.drawable.fireball);
 
     public FireBall(Monster target) {
         super(image, target, 25, 250);

@@ -3,7 +3,6 @@ package group25.tdt4240.entity.button;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.view.MotionEvent;
 
 import sheep.graphics.Image;
 
@@ -11,10 +10,9 @@ import sheep.graphics.Image;
  * Created by Ole on 20/04/2016.
  */
 public abstract class ToggleButton extends Button {
-    private Image image;
-    private float width, height;
+    private final Image image;
     private float left, right, top, bot;
-    private Paint p;
+    private final Paint p;
 
     public ToggleButton(Image image){
         super(image);
@@ -28,18 +26,18 @@ public abstract class ToggleButton extends Button {
     private boolean active = false;
 
     public void toggleButton() {
-        width = this.image.getWidth() * getScale().getX();
-        height = this.image.getHeight() * getScale().getY();
-        left = this.getX()-width/2;
-        right = this.getX()+width/2;
-        top = this.getY()-height/2;
-        bot = this.getY()+height/2;
+        float width = this.image.getWidth() * getScale().getX();
+        float height = this.image.getHeight() * getScale().getY();
+        left = this.getX()- width /2;
+        right = this.getX()+ width /2;
+        top = this.getY()- height /2;
+        bot = this.getY()+ height /2;
         this.active = !this.active;
-    };
+    }
 
     public boolean isActive() {
         return active;
-    };
+    }
 
     @Override
     public void draw(Canvas canvas) {

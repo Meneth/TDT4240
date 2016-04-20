@@ -3,7 +3,6 @@ package group25.tdt4240.entity.button;
 import android.view.MotionEvent;
 
 import group25.tdt4240.entity.monster.Monster;
-import group25.tdt4240.entity.tower.Tower;
 import group25.tdt4240.factory.Factory;
 import group25.tdt4240.state.PlayState;
 import group25.tdt4240.utility.Constants;
@@ -20,8 +19,8 @@ public class MonsterButton extends Button {
         super(image);
         this.factory = factory;
         this.monster = factory.get();
-        float scaleX = 1.25f * (float) Constants.TILE_WIDTH / image.getWidth();
-        float scaleY = 1.25f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        float scaleX = 1.25f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 1.25f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
     }
 

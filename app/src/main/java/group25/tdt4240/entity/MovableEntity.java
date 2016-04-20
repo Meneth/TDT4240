@@ -18,7 +18,7 @@ public abstract class MovableEntity extends Entity {
         this.standardVelocity = standardVelocity;
     }
 
-    public float getVelocity() {
+    private float getVelocity() {
         float velocity = getSpeed().getLength();
         if (velocity == 0)
             velocity = standardVelocity * Constants.SCALE;

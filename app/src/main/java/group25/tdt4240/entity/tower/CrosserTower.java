@@ -11,19 +11,14 @@ import sheep.graphics.Image;
  */
 public class CrosserTower extends Tower {
     public static final Image image = new Image(R.drawable.monster1);
-    private int upgradeCost = Integer.MAX_VALUE;
+
     public CrosserTower() {
         super(image, 0.5f, 110, 600);
     }
 
     @Override
     public int getNextUpgradeCost() {
-        return upgradeCost;
-    }
-
-    @Override
-    public Priority getTargetPriority() {
-        return Priority.CLOSEST; // TODO
+        return Integer.MAX_VALUE;
     }
 
     @Override

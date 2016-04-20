@@ -20,18 +20,18 @@ import sheep.input.TouchListener;
  * Created by Meneth on 2016-04-04.
  */
 public class SuperState extends State implements Iterable<Drawable> {
-    private List<Clickable> clickableEntities = new ArrayList<>();
-    private List<Monster> shootableMonsters = new ArrayList<>();
-    private List<Drawable> entities = new ArrayList<>();
+    private final List<Clickable> clickableEntities = new ArrayList<>();
+    private final List<Monster> shootableMonsters = new ArrayList<>();
+    private final List<Drawable> entities = new ArrayList<>();
 
-    private Stack<Drawable> entitiesToRemove = new Stack<>();
-    private Stack<Drawable> entitiesToAdd = new Stack<>();
+    private final Stack<Drawable> entitiesToRemove = new Stack<>();
+    private final Stack<Drawable> entitiesToAdd = new Stack<>();
 
     public SuperState() {
         this.addTouchListener(new TouchListener() {
             @Override
             public boolean onTouchDown(MotionEvent motionEvent) {
-                for (Clickable entity : new ArrayList<Clickable>(clickableEntities)) {
+                for (Clickable entity : new ArrayList<>(clickableEntities)) {
                     if (entity.onTouchDown(motionEvent))
                         return true; // Event consumed
                 }

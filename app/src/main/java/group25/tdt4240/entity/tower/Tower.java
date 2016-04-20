@@ -23,25 +23,13 @@ public abstract class Tower extends Entity {
         this.cooldown = cooldown;
         this.cost = cost;
         this.range = range;
-        float scaleX = 0.9f * (float) Constants.TILE_WIDTH / image.getWidth();
-        float scaleY = 0.9f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        float scaleX = 0.9f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 0.9f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
     }
 
-    public float getRange() {
+    private float getRange() {
         return range * Constants.SCALE;
-    }
-
-
-    public enum Priority {
-        CLOSEST,
-        FURTHEST,
-        FIRST,
-        LAST,
-        HIGHEST_HP,
-        LOWEST_HP,
-        STRONGEST,
-        WEAKEST
     }
 
     public int getCost() {
@@ -50,11 +38,9 @@ public abstract class Tower extends Entity {
 
     public abstract int getNextUpgradeCost();
 
-    public abstract Priority getTargetPriority();
-
     public abstract Tower upgrade();
 
-    public void fire(Monster target) {
+    private void fire(Monster target) {
         if (target == null)
             return;
         Projectile p = getNewProjectile(target);

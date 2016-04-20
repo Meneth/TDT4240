@@ -19,8 +19,8 @@ public class TowerButton extends ToggleButton {
         super(image);
         this.factory = factory;
         this.tower = factory.get();
-        float scaleX = 1.25f * (float) Constants.TILE_WIDTH / image.getWidth();
-        float scaleY = 1.25f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        float scaleX = 1.25f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 1.25f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
     }
 

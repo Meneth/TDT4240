@@ -2,12 +2,9 @@ package group25.tdt4240.map;
 
 import java.util.ArrayList;
 
-import group25.tdt4240.R;
-import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.PathTile;
 import group25.tdt4240.entity.tile.Tile;
-import sheep.graphics.Image;
 
 /**
  * Created by Meneth on 2016-03-31.
@@ -25,28 +22,23 @@ public class Map {
     g = goal(pathtile)
     */
 
-    private String exampleMapString =
-            "10 4\n" +
-            "bbbbsbbbbb\n" +
-            "bbbbpppbbb\n" +
-            "bbbbbbpbbb\n" +
-            "bbbbgppbbb";
-    private String examplePath =
-            "4 0\n4 1\n5 1\n" +
-            "6 1\n6 2\n6 3\n" +
-            "5 3\n4 3";
-    public ArrayList<Tile> tiles;
-    private Image grassTile = new Image(R.drawable.grasstile);
-    private Image dirtTile = new Image(R.drawable.dirttile);
+    public final ArrayList<Tile> tiles;
     private PathTile goal;
-    private PathTile start;
-    private int width, height;
+    private int width;
     public Path path;
 
     public Map() {
-        this.tiles = new ArrayList<Tile>();
+        this.tiles = new ArrayList<>();
 
+        String exampleMapString = "10 4\n" +
+                "bbbbsbbbbb\n" +
+                "bbbbpppbbb\n" +
+                "bbbbbbpbbb\n" +
+                "bbbbgppbbb";
         readMap(exampleMapString);
+        String examplePath = "4 0\n4 1\n5 1\n" +
+                "6 1\n6 2\n6 3\n" +
+                "5 3\n4 3";
         readPath(examplePath);
     }
 
@@ -58,7 +50,7 @@ public class Map {
         String[] rows = map.split("\n");
         String[] dimensions = rows[0].split(" ");
         width = Integer.parseInt(dimensions[0]);
-        height = Integer.parseInt(dimensions[1]);
+        int height = Integer.parseInt(dimensions[1]);
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -67,7 +59,6 @@ public class Map {
                     case 's':
                         PathTile s = new PathTile(j, i);
                         tiles.add(s);
-                        this.start = s;
                         break;
                     case 'g':
                         PathTile goal = new PathTile(j, i);

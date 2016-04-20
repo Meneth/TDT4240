@@ -2,6 +2,7 @@ package group25.tdt4240.utility;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 
 import group25.tdt4240.entity.AbstractDrawable;
 import group25.tdt4240.entity.Drawable;
@@ -12,10 +13,10 @@ import group25.tdt4240.entity.Drawable;
 public class TextDrawer extends AbstractDrawable {
 
     //private Canvas canvas;
-    private Paint paint = new Paint();
-    private String string;
-    private float xPos;
-    private float yPos;
+    private final Paint paint = new Paint();
+    private final String string;
+    private final float xPos;
+    private final float yPos;
 
     public TextDrawer(String string, float xPos, float yPos) {
         //this.canvas = new Canvas();
@@ -48,7 +49,7 @@ public class TextDrawer extends AbstractDrawable {
     }
 
     @Override
-    public int compareTo(Drawable another) {
+    public int compareTo(@NonNull Drawable another) {
         return another.getPriority() - getPriority();
     }
 }

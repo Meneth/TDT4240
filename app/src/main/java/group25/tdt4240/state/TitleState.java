@@ -9,14 +9,13 @@ import sheep.input.TouchListener;
  */
 public class TitleState extends SuperState implements TouchListener {
 
-    private Button playButton = new PlayButton();
-    private Button settingsButton = new SettingsButton();
-    private Button aboutButton = new AboutButton();
-
 
     public TitleState() {
+        Button playButton = new PlayButton();
         playButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 2);
+        Button settingsButton = new SettingsButton();
         settingsButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 4);
+        Button aboutButton = new AboutButton();
         aboutButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 6);
         addEntities(playButton, settingsButton, aboutButton);
     }

@@ -12,7 +12,6 @@ import group25.tdt4240.state.TitleState;
 import sheep.game.*;
 
 public class TDActivity extends Activity {
-    private Game game;
     private MediaPlayer mp;
 
     @Override
@@ -44,14 +43,13 @@ public class TDActivity extends Activity {
         }
     }
 
-    public boolean setSound(){
+    public void setSound(){
         if(mp.isPlaying()){
             mp.pause();
         }
         else {
             mp.start();
         }
-        return false;
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.view.MotionEvent;
 
 import group25.tdt4240.R;
 import group25.tdt4240.entity.Clickable;
-import group25.tdt4240.entity.tower.CrossTower;
 import group25.tdt4240.entity.tower.Tower;
 import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
@@ -16,7 +15,7 @@ import sheep.graphics.Image;
 
 public class BuildTile extends Tile implements Clickable {
     private Tower tower;
-    private static Image image = new Image(R.drawable.grasstile);
+    private static final Image image = new Image(R.drawable.grasstile);
 
     /**
      * @param x The x index of the tile

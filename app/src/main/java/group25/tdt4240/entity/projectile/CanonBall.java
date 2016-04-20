@@ -8,7 +8,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 17.04.2016.
  */
 public class CanonBall extends Projectile {
-    private static Image image = new Image(R.drawable.canonball);
+    private static final Image image = new Image(R.drawable.canonball);
 
     public CanonBall(Monster target) {
         super(image, target, 10, 250);

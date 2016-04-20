@@ -194,7 +194,7 @@ public class PlayState extends SuperState {
             attackerMoney -= m.getCost();
             currentMonsterQueue.offer(m);
             MonsterImageButton mb = new MonsterImageButton(m.getImage(), m);
-            mb.setPosition(((Constants.SCREEN_WIDTH / 20) * monsterImageQueue.size()) + 20, (Constants.SCREEN_HEIGHT / 7) * 4);
+            mb.setPosition(((Constants.SCREEN_WIDTH / 18) * (monsterImageQueue.size() + 0.5f)), (Constants.SCREEN_HEIGHT / 7) * 4);
             addEntity(mb);
             monsterImageQueue.add(mb);
         }
@@ -208,7 +208,7 @@ public class PlayState extends SuperState {
         mb.die();
         monsterImageQueue.remove(mb);
         for (int i = 0; i < monsterImageQueue.size(); i++){
-            monsterImageQueue.get(i).setPosition(((Constants.SCREEN_WIDTH / 20) * i + 20), (Constants.SCREEN_HEIGHT / 7) * 4);
+            monsterImageQueue.get(i).setPosition(((Constants.SCREEN_WIDTH / 18) * (i + 0.5f)), (Constants.SCREEN_HEIGHT / 7) * 4);
         }
     }
 

@@ -9,8 +9,6 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class SellButton extends Button {
-    private boolean active;
-
     public SellButton(Image image){
         super(image);
     }
@@ -18,13 +16,10 @@ public class SellButton extends Button {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            active = !active;
-            ((PlayState) getContainer()).setSelling(active);
+            ((PlayState) getContainer()).setAction(PlayState.Action.SELL);
             System.out.println("sell_button clicked");
             return true;
         }
         return false;
     }
-
-
 }

@@ -29,7 +29,8 @@ public class PlayState extends SuperState {
     private int defenderHealth = 150;
     private float timer = 0.0f;
     public TowerButton selectedTower;
-    private enum Action {
+
+    public enum Action {
         BUY, SELL, UPGRADE, NONE;
     }
     Action action = Action.NONE;
@@ -76,7 +77,7 @@ public class PlayState extends SuperState {
         p.setColor(Color.WHITE);
         p.setTextSize(20);
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
-        canvas.drawText("HP: " + Integer.toString(defenderHealth),(Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7)*6,p);
+        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
         for (Drawable entity : entities)
             entity.draw(canvas);
     }
@@ -107,7 +108,6 @@ public class PlayState extends SuperState {
         Tower t = tile.getTower();
         if (t != null)
             defenderMoney += t.getCost();
-            t.die();
             tile.setTower(null);
         System.out.println("Sell selected tower");
     }
@@ -119,7 +119,7 @@ public class PlayState extends SuperState {
                 return new CrossTower();
             }
         });
-        buyableTower.setPosition(Constants.SCREEN_WIDTH/6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/4);
+        buyableTower.setPosition(Constants.SCREEN_WIDTH / 6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 4);
         buyableTower.setScale(0.5f, 0.5f);
         addEntity(buyableTower);
     }
@@ -135,25 +135,21 @@ public class PlayState extends SuperState {
         return t;
     }
 
-    public void setUpgrading(boolean b) {
-        if (b)
-            action = Action.UPGRADE;
-        else
-            action = Action.NONE;
-    }
-
-    public void setBuying(boolean b) {
-        if (b)
-            action = Action.BUY;
-        else
-            action = Action.NONE;
-    }
-
-    public void setSelling(boolean b) {
-        if (b)
-            action = Action.SELL;
-        else
-            action = Action.NONE;
+    public boolean setAction(Action action) {
+        if (action == this.action) {
+            this.action = Action.NONE;
+            return false;
+        }
+        switch (action) {
+            case BUY:
+                displayTowersToBuy();
+                break;
+            default:
+                // TODO - Hide buy towers
+                break;
+        }
+        this.action = action;
+        return true;
     }
 
     public void loseHealth(int h) {

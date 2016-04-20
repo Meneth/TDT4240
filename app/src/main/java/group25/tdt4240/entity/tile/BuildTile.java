@@ -37,9 +37,11 @@ public class BuildTile extends Tile implements Clickable {
      * @param tower Set current tower
      */
     public void setTower(Tower tower) {
-        if (tower != null)
-            tower.die();
+        if (this.tower != null)
+            this.tower.die();
         this.tower = tower;
+        if (tower == null)
+            return;
         tower.setPosition(getPosition());
         getContainer().addEntity(tower);
     }

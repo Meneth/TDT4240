@@ -9,8 +9,6 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class UpgradeButton extends Button {
-    private boolean active;
-
      public UpgradeButton(Image image){
         super(image);
     }
@@ -18,15 +16,10 @@ public class UpgradeButton extends Button {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            active = !active;
-            ((PlayState) getContainer()).setUpgrading(active);
+            ((PlayState) getContainer()).setAction(PlayState.Action.UPGRADE);
+            System.out.println("upgrade_button clicked");
             return true;
         }
         return false;
-    }
-
-    @Override
-    public int getPriority() {
-        return 10;
     }
 }

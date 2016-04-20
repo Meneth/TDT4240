@@ -1,7 +1,6 @@
 package group25.tdt4240.entity.tile;
 
 
-
 import group25.tdt4240.R;
 import sheep.graphics.Image;
 
@@ -12,10 +11,10 @@ public class PathTile extends Tile {
     private static final Image image = new Image(R.drawable.dirttile);
 
     /**
-     * @param x       X position in map grid
-     * @param y       Y position in map grid
+     * @param x X position in map grid
+     * @param y Y position in map grid
      */
-    public PathTile(float x, float y ){
+    public PathTile(float x, float y) {
         super(image, x, y);
     }
 

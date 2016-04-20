@@ -13,7 +13,7 @@ public abstract class Projectile extends MovableEntity {
     private final int damage;
 
     /**
-     * @param image The image the sprite is to be generated from
+     * @param image  The image the sprite is to be generated from
      * @param target The monster the projectile is targeting
      */
     public Projectile(Image image, Monster target, int damage, float velocity) {
@@ -32,21 +32,19 @@ public abstract class Projectile extends MovableEntity {
         super.update(dt);
         if (target == null)
             die();
-        else if (target.isDestroyed()){
+        else if (target.isDestroyed()) {
             if (this.getSpeed().getX() == 0 && this.getSpeed().getY() == 0)
                 die();
-            if (this.getX() > Constants.SCREEN_WIDTH || this.getX() < 0 ){
+            if (this.getX() > Constants.SCREEN_WIDTH || this.getX() < 0) {
                 die();
             }
-            if (this.getY() > Constants.SCREEN_HEIGHT || this.getY() < 0 ){
+            if (this.getY() > Constants.SCREEN_HEIGHT || this.getY() < 0) {
                 die();
             }
-        }
-         else if (target.collides(this)) {
+        } else if (target.collides(this)) {
             target.takeDamage(damage);
             die(); // Destroy the projectile
-        }
-        else{
+        } else {
             setTarget(target.getPosition());
         }
     }

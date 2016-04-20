@@ -44,6 +44,7 @@ public class Map {
 
     /**
      * Iterates through string and generates map with coordinates accordingly
+     *
      * @param map The string describing the map
      */
     private void readMap(String map) {
@@ -55,7 +56,7 @@ public class Map {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 // Offset by one since the 0th row is the dimensions
-                switch (rows[i+1].charAt(j)) {
+                switch (rows[i + 1].charAt(j)) {
                     case 's':
                         PathTile s = new PathTile(j, i);
                         tiles.add(s);
@@ -80,10 +81,10 @@ public class Map {
      */
     private void readPath(String path) {
         Path p = new Path();
-        for (String s: path.split("\n")) {
+        for (String s : path.split("\n")) {
             String[] tile = s.split(" ");
             int i = Integer.parseInt(tile[1]) * width + Integer.parseInt(tile[0]);
-                if (tiles.get(i) instanceof PathTile){
+            if (tiles.get(i) instanceof PathTile) {
                 p.add((PathTile) tiles.get(i));
             }
         }

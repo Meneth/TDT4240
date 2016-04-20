@@ -15,7 +15,7 @@ public abstract class Monster extends MovableEntity {
     private final int cost;
     private final Image image;
 
-    public Image getImage(){
+    public Image getImage() {
         return image;
     }
 
@@ -50,7 +50,7 @@ public abstract class Monster extends MovableEntity {
 
     public void takeDamage(int damage) {
         health -= damage;
-        if (health <= 0){
+        if (health <= 0) {
             die();
 
         }
@@ -58,7 +58,7 @@ public abstract class Monster extends MovableEntity {
 
     @Override
     public void die() {
-        ((PlayState)getContainer()).monsterDied(this);
+        ((PlayState) getContainer()).monsterDied(this);
         super.die();
     }
 

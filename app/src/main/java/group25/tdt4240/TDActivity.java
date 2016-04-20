@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+
 import group25.tdt4240.state.TitleState;
 import sheep.game.*;
 
@@ -24,7 +25,7 @@ public class TDActivity extends Activity {
         game.pushState(new TitleState());
         // View the game.
         setContentView(game);
-        mp = MediaPlayer.create(getApplicationContext(),R.raw.bensound_epic);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.bensound_epic);
         mp.start();
 
         if (Build.VERSION.SDK_INT < 16) {
@@ -43,19 +44,18 @@ public class TDActivity extends Activity {
         }
     }
 
-    public void setSound(){
-        if(mp.isPlaying()){
+    public void setSound() {
+        if (mp.isPlaying()) {
             mp.pause();
-        }
-        else {
+        } else {
             mp.start();
         }
     }
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
-        if(mp!=null){
+        if (mp != null) {
             mp.stop();
             mp.release();
             mp = null;

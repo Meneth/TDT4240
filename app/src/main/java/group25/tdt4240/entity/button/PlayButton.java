@@ -12,7 +12,7 @@ import sheep.graphics.Image;
 public class PlayButton extends Button {
     private static final Image image = new Image(R.drawable.play_button);
 
-    public PlayButton(){
+    public PlayButton() {
         super(PlayButton.image);
     }
 

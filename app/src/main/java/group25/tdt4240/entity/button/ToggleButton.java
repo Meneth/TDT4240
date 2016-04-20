@@ -14,7 +14,7 @@ public abstract class ToggleButton extends Button {
     private float left, right, top, bot;
     private final Paint p;
 
-    public ToggleButton(Image image){
+    public ToggleButton(Image image) {
         super(image);
         this.image = image;
 
@@ -23,15 +23,16 @@ public abstract class ToggleButton extends Button {
         p.setStrokeWidth(7);
         p.setColor(Color.WHITE);
     }
+
     private boolean active = false;
 
     public void toggleButton() {
         float width = this.image.getWidth() * getScale().getX();
         float height = this.image.getHeight() * getScale().getY();
-        left = this.getX()- width /2;
-        right = this.getX()+ width /2;
-        top = this.getY()- height /2;
-        bot = this.getY()+ height /2;
+        left = this.getX() - width / 2;
+        right = this.getX() + width / 2;
+        top = this.getY() - height / 2;
+        bot = this.getY() + height / 2;
         this.active = !this.active;
     }
 
@@ -42,8 +43,8 @@ public abstract class ToggleButton extends Button {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (active){
-            canvas.drawRect(left,top,right,bot, p);
+        if (active) {
+            canvas.drawRect(left, top, right, bot, p);
         }
     }
 }

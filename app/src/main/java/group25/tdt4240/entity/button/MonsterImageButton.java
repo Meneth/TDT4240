@@ -21,21 +21,21 @@ public class MonsterImageButton extends Button {
         setScale(scaleX, scaleY);
     }
 
-    public Monster getMonster(){
+    public Monster getMonster() {
         return monster;
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)){
-            ((PlayState)getContainer()).clickMonsterImage(this);
+        if (checkClick(event)) {
+            ((PlayState) getContainer()).clickMonsterImage(this);
             return true;
         }
         return false;
     }
 
     @Override
-    public int getPriority(){
+    public int getPriority() {
         return 21;
     }
 }

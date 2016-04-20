@@ -26,8 +26,8 @@ public class TowerButton extends ToggleButton {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)){
-            ((PlayState)getContainer()).selectTower(this);
+        if (checkClick(event)) {
+            ((PlayState) getContainer()).selectTower(this);
             System.out.println("buy_Tower_button_clicked");
             return true;
         }
@@ -43,7 +43,7 @@ public class TowerButton extends ToggleButton {
     }
 
     @Override
-    public int getPriority(){
+    public int getPriority() {
         return 21;
     }
 

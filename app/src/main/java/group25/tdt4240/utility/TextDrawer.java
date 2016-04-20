@@ -11,7 +11,6 @@ import group25.tdt4240.entity.Drawable;
  * Created by mariusbang on 15/04/16.
  */
 public class TextDrawer extends AbstractDrawable {
-
     //private Canvas canvas;
     private final Paint paint = new Paint();
     private final String string;

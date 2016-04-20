@@ -8,8 +8,6 @@ import sheep.input.TouchListener;
  * Created by Meneth on 2016-03-31.
  */
 public class TitleState extends SuperState implements TouchListener {
-
-
     public TitleState() {
         Button playButton = new PlayButton();
         playButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 2);
@@ -19,10 +17,4 @@ public class TitleState extends SuperState implements TouchListener {
         aboutButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 6);
         addEntities(playButton, settingsButton, aboutButton);
     }
-
-    /*
-    public boolean onTouchUp(MotionEvent event) {
-        return false;
-    }
-    */
 }

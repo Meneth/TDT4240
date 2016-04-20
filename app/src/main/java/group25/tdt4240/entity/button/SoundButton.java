@@ -15,7 +15,7 @@ public class SoundButton extends Button {
     private static final Image soundButtonImageOff = new Image(R.drawable.sound_button_off);
     private static Boolean soundOn;
 
-    public SoundButton(){
+    public SoundButton() {
         super(SoundButton.soundButtonImageOn);
         if (SoundButton.soundOn == null) {
             SoundButton.soundOn = true;

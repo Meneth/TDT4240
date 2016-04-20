@@ -12,7 +12,7 @@ import sheep.graphics.Image;
 public class SettingsButton extends Button {
     private static final Image image = new Image(R.drawable.settings_button);
 
-    public SettingsButton(){
+    public SettingsButton() {
         super(SettingsButton.image);
     }
 

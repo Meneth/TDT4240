@@ -12,13 +12,13 @@ import sheep.graphics.Image;
 public class UpgradeButton extends ToggleButton {
     private static final Image image = new Image(R.drawable.upgrade_button);
 
-    public UpgradeButton(){
+    public UpgradeButton() {
         super(image);
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)){
+        if (checkClick(event)) {
             ((PlayState) getContainer()).setAction(PlayState.Action.UPGRADE);
             System.out.println("upgrade_button clicked");
             return true;

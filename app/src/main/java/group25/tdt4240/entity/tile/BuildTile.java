@@ -61,7 +61,7 @@ public class BuildTile extends Tile implements Clickable {
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)){
+        if (checkClick(event)) {
             getContainer().clickTile(this);
         }
         return false;

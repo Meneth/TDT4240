@@ -9,10 +9,10 @@ import sheep.graphics.Image;
 /**
  * Created by Ole on 11/04/2016.
  */
-public class BuyButton extends ToggleButton{
+public class BuyButton extends ToggleButton {
     private static final Image image = new Image(R.drawable.buy_button);
 
-    public BuyButton(){
+    public BuyButton() {
         super(image);
     }
 

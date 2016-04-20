@@ -59,7 +59,7 @@ public abstract class Tower extends Entity {
     }
 
     private Monster findTarget() {
-        for (Monster monster : getContainer().getMonsters()){
+        for (Monster monster : getContainer().getMonsters()) {
             if (getDistance(monster) < getRange())
                 return monster;
         }

@@ -83,6 +83,7 @@ public class PlayState extends SuperState {
         }));
         for (int i = 0; i < buyableTowers.size(); i++) {
             TowerButton button = buyableTowers.get(i);
+            button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
                     buyButton.getY() - button.getOffset().getY() * 2);
         }
     }

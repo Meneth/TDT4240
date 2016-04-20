@@ -12,8 +12,7 @@ import sheep.game.State;
 import sheep.graphics.Image;
 
 public class BackButton extends Button {
-
-    public static final Image image = new Image(R.drawable.back_button);
+    private static final Image image = new Image(R.drawable.back_button);
 
     public BackButton(){
         super(BackButton.image);

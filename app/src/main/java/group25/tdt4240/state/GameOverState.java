@@ -9,7 +9,7 @@ import group25.tdt4240.entity.button.Button;
  * Created by Meneth on 2016-04-18.
  */
 public class GameOverState extends SuperState {
-    Button backButton = new BackButton();
+    private Button backButton = new BackButton();
 
     public GameOverState() {
         backButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 6);

@@ -10,7 +10,7 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-04-20.
  */
 public class DoneButton extends Button {
-    public static Image image = new Image(R.drawable.back_button); // TODO - Actual image
+    private static Image image = new Image(R.drawable.back_button); // TODO - Actual image
 
     public DoneButton() {
         super(image);

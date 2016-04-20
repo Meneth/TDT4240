@@ -13,7 +13,7 @@ public class CrosserTower extends Tower {
     public static final Image image = new Image(R.drawable.monster1);
     private int upgradeCost = Integer.MAX_VALUE;
     public CrosserTower() {
-        super(image, 0.5f, 0, 600);
+        super(image, 0.5f, 110, 600);
     }
 
     @Override

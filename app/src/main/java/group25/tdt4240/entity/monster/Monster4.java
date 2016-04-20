@@ -16,6 +16,6 @@ public class Monster4 extends Monster {
      * @param path The path the monster is to walk
      */
     public Monster4(Path path) {
-        super(image, path, standardVelocity, 150);
+        super(image, path, standardVelocity, 150, 200);
     }
 }

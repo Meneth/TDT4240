@@ -17,6 +17,6 @@ private static final Image image = new Image(R.drawable.monster2);
      * @param path The path the monster is to walk
      */
     public Monster2(Path path) {
-        super(image, path, standardVelocity, 50);
+        super(image, path, standardVelocity, 50, 150);
     }
 }

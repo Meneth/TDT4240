@@ -107,7 +107,7 @@ public class PlayState extends SuperState {
             case MONSTER:
                 // Both players get money when new round starts
                 defenderMoney += roundCounter * 30;
-                attackerMoney += roundCounter * 500;
+                attackerMoney = roundCounter * 500; // No saving between rounds. Easy to exploit
                 addEntities(doneButton);
                 monsterQueue.clear();
                 displayMonstersToChoose();

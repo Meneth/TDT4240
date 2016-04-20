@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class PlayState extends SuperState {
-    private final Map currentMap;
+    private final Map map;
     private int attackerMoney = 500;
     private int defenderMoney= 500;
     private int defenderHealth = 20;
@@ -32,9 +32,9 @@ public class PlayState extends SuperState {
 
     private float timer = 0.0f;
     private TowerButton selectedTower;
-    private final List<TowerButton> buyableTowers = new ArrayList<>();
-    private final List<MonsterButton> buyableMonsters = new ArrayList<>();
-    private final Queue<Monster> currentMonsterQueue = new LinkedList<>();
+    private final List<TowerButton> towers = new ArrayList<>();
+    private final List<MonsterButton> monsters = new ArrayList<>();
+    private final Queue<Monster> monsterQueue = new LinkedList<>();
     private final List<MonsterImageButton> monsterImageQueue = new ArrayList<>();
 
     public enum Action {
@@ -53,8 +53,8 @@ public class PlayState extends SuperState {
     private final Paint p;
 
     public PlayState() {
-        this.currentMap = new Map();
-        addEntities((Entity[]) currentMap.tiles.toArray(new Entity[currentMap.tiles.size()]));
+        this.map = new Map();
+        addEntities((Entity[]) map.tiles.toArray(new Entity[map.tiles.size()]));
 
         System.out.println("created new playstate");
         buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT * 4 / 5);
@@ -62,7 +62,7 @@ public class PlayState extends SuperState {
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 4 / 5);
         doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 7 / 8);
 
-        initializeBuyableTowers();
+        initializeTowers();
         initializeMonsters();
         p = new Paint();
         p.setColor(Color.WHITE);
@@ -109,7 +109,7 @@ public class PlayState extends SuperState {
                 defenderMoney += roundCounter * 30;
                 attackerMoney += roundCounter * 500;
                 addEntities(doneButton);
-                currentMonsterQueue.clear();
+                monsterQueue.clear();
                 displayMonstersToChoose();
                 hideTowersToBuy();
                 break;
@@ -123,62 +123,63 @@ public class PlayState extends SuperState {
     }
 
     private void initializeMonsters() {
-        buyableMonsters.add(new MonsterButton(BasicMonster.image, new Factory<Monster>() {
+        monsters.add(new MonsterButton(BasicMonster.image, new Factory<Monster>() {
             @Override
             public Monster get() {
-                return new BasicMonster(currentMap.path);
+                return new BasicMonster(map.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster2.image, new Factory<Monster>() {
+        monsters.add(new MonsterButton(Monster2.image, new Factory<Monster>() {
             @Override
             public Monster get() {
-                return new Monster2(currentMap.path);
+                return new Monster2(map.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster3.image, new Factory<Monster>() {
+        monsters.add(new MonsterButton(Monster3.image, new Factory<Monster>() {
             @Override
             public Monster get() {
-                return new Monster3(currentMap.path);
+                return new Monster3(map.path);
             }
         }));
-        buyableMonsters.add(new MonsterButton(Monster4.image, new Factory<Monster>() {
+        monsters.add(new MonsterButton(Monster4.image, new Factory<Monster>() {
             @Override
             public Monster get() {
-                return new Monster4(currentMap.path);
+                return new Monster4(map.path);
             }
         }));
-        for (int i = 0; i < buyableMonsters.size(); i++) {
-            MonsterButton button = buyableMonsters.get(i);
+        for (int i = 0; i < monsters.size(); i++) {
+            MonsterButton button = monsters.get(i);
             button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
                     buyButton.getY() - button.getOffset().getY() * 2);
         }
     }
 
-    private void initializeBuyableTowers() {
-        buyableTowers.add(new TowerButton(CrossTower.image, new Factory<Tower>() {
+    private void initializeTowers() {
+        towers.add(new TowerButton(CrossTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new CrossTower();
             }
         }));
-        buyableTowers.add(new TowerButton(SquareTower.image, new Factory<Tower>() {
+        towers.add(new TowerButton(SquareTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new SquareTower();
             }
         }));
-        buyableTowers.add(new TowerButton(StarTower.image, new Factory<Tower>() {
+        towers.add(new TowerButton(StarTower.image, new Factory<Tower>() {
             @Override
             public Tower get() {
                 return new StarTower();
             }
         }));
-        for (int i = 0; i < buyableTowers.size(); i++) {
-            TowerButton button = buyableTowers.get(i);
+        for (int i = 0; i < towers.size(); i++) {
+            TowerButton button = towers.get(i);
             button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
                     buyButton.getY() - button.getOffset().getY() * 2);
         }
     }
+
     public void selectTower(TowerButton t){
         if (this.selectedTower != null){
             this.selectedTower.toggleButton();
@@ -190,7 +191,7 @@ public class PlayState extends SuperState {
     public void clickMonster(Monster m) {
         if (attackerMoney >= m.getCost()){
             attackerMoney -= m.getCost();
-            currentMonsterQueue.offer(m);
+            monsterQueue.offer(m);
             MonsterImageButton mb = new MonsterImageButton(m.getImage(), m);
             mb.setPosition(((Constants.SCREEN_WIDTH / 18) * (monsterImageQueue.size() + 0.5f)), (Constants.SCREEN_HEIGHT / 7) * 4);
             addEntity(mb);
@@ -202,7 +203,7 @@ public class PlayState extends SuperState {
         System.out.println("clicked monster image");
         attackerMoney += mb.getMonster().getCost();
         // Maybe only need one list...
-        currentMonsterQueue.remove(mb.getMonster());
+        monsterQueue.remove(mb.getMonster());
         mb.die();
         monsterImageQueue.remove(mb);
         for (int i = 0; i < monsterImageQueue.size(); i++){
@@ -230,12 +231,12 @@ public class PlayState extends SuperState {
     @Override
     public void update(float dt)  {
         if (round == Round.PLAY) {
-            if (getMonsters().isEmpty() && currentMonsterQueue.isEmpty()) {
+            if (getMonsters().isEmpty() && monsterQueue.isEmpty()) {
                 advanceRound();
             } else {
                 timer += dt;
                 if (timer > 0.5f) {
-                    addEntity(currentMonsterQueue.poll());
+                    addEntity(monsterQueue.poll());
                     timer = 0.0f;
                 }
             }
@@ -262,24 +263,24 @@ public class PlayState extends SuperState {
     }
 
     private void displayTowersToBuy() {
-        for (TowerButton button : buyableTowers) {
+        for (TowerButton button : towers) {
             addEntity(button);
         }
     }
 
     private void displayMonstersToChoose() {
-        for (MonsterButton button : buyableMonsters) {
+        for (MonsterButton button : monsters) {
             addEntity(button);
         }
     }
     private void hideTowersToBuy() {
-        for (TowerButton button : buyableTowers) {
+        for (TowerButton button : towers) {
             removeEntity(button);
         }
     }
 
     private void hideMonstersToChoose() {
-        for (MonsterButton button : buyableMonsters) {
+        for (MonsterButton button : monsters) {
             removeEntity(button);
         }
     }

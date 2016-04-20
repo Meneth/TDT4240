@@ -28,7 +28,7 @@ public class MonsterButton extends Button {
     @Override
     public boolean onTouchDown(MotionEvent event) {
         if (checkClick(event)){
-            // TODO
+            ((PlayState)getContainer()).clickMonster(this.factory.get());
             return true;
         }
         return false;

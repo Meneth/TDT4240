@@ -9,19 +9,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import group25.tdt4240.utility.Constants;
-import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
 import group25.tdt4240.factory.Factory;
 import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
-import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.BuildTile;
-import sheep.graphics.Image;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class PlayState extends SuperState {
     private Map currentMap;
@@ -31,8 +30,7 @@ public class PlayState extends SuperState {
     private TowerButton selectedTower;
     private List<TowerButton> buyableTowers = new ArrayList<>();
     private List<MonsterButton> buyableMonsters = new ArrayList<>();
-
-
+    private Queue<Monster> currentMonsterQueue = new LinkedList<>();
 
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
@@ -51,11 +49,7 @@ public class PlayState extends SuperState {
 
     public PlayState() {
         this.currentMap = new Map();
-        // TODO - This way of adding a monster is placeholder
-        addEntity(new BasicMonster(currentMap.path));
         addEntities((Entity[]) currentMap.tiles.toArray(new Entity[currentMap.tiles.size()]));
-        Tower t = new CrossTower();
-        ((BuildTile) currentMap.tiles.get(2)).setTower(t);
 
         System.out.println("created new playstate");
         buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
@@ -99,11 +93,16 @@ public class PlayState extends SuperState {
         switch (round) {
             case TOWER:
                 addEntities(upgradeButton, sellButton, buyButton);
+                hideMonstersToChoose();
                 break;
             case MONSTER:
                 addEntities(doneButton);
+                currentMonsterQueue.clear();
+                displayMonstersToChoose();
+                hideTowersToBuy();
                 break;
             case PLAY:
+                hideTowersToBuy();
                 removeEntities(upgradeButton, sellButton, buyButton, doneButton);
                 break;
         }
@@ -174,6 +173,10 @@ public class PlayState extends SuperState {
         this.selectedTower = t;
     }
 
+    public void clickMonster(Monster m) {
+        currentMonsterQueue.offer(m);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -184,10 +187,12 @@ public class PlayState extends SuperState {
 
     @Override
     public void update(float dt) {
-        timer += dt;
-        if (timer > 2) {
-            addEntity(new BasicMonster(currentMap.path));
-            timer = 0.0f;
+        if (round == Round.PLAY){
+            timer += dt;
+            if (timer > 2) {
+                addEntity(currentMonsterQueue.poll());
+                timer = 0.0f;
+            }
         }
         super.update(dt);
     }

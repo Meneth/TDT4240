@@ -13,15 +13,15 @@ import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
 import group25.tdt4240.entity.factory.TowerFactory;
-import group25.tdt4240.entity.monster.BasicMonster;
-import group25.tdt4240.entity.tower.CrossTower;
+import group25.tdt4240.entity.monster.*;
+import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.BuildTile;
-import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayState extends SuperState {
     private Map currentMap;
@@ -29,6 +29,7 @@ public class PlayState extends SuperState {
     private int defenderHealth = 150;
     private float timer = 0.0f;
     public TowerButton selectedTower;
+    private List<TowerButton> buyableTowers = new ArrayList<>();
 
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
@@ -59,11 +60,31 @@ public class PlayState extends SuperState {
 
 
         addEntities(upgradeButton, sellButton, buyButton);
-        buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
+        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        addEntities(upgradeButton,sellButton,buyButton);
+        addEntities(upgradeButton, sellButton, buyButton);
 
+        initializeBuyableTowers();
+    }
+
+    private void initializeBuyableTowers() {
+        buyableTowers.add(new TowerButton(CrossTower.image, new TowerFactory() {
+            @Override
+            public Tower getTower() {
+                return new CrossTower();
+            }
+        }));
+        buyableTowers.add(new TowerButton(CrosserTower.image, new TowerFactory() {
+            @Override
+            public Tower getTower() {
+                return new CrosserTower();
+            }
+        }));
+        for (int i = 0; i < buyableTowers.size(); i++) {
+            TowerButton button = buyableTowers.get(i);
+                    buyButton.getY() - button.getOffset().getY() * 2);
+        }
     }
 
     public void selectTower(TowerButton t){
@@ -113,15 +134,15 @@ public class PlayState extends SuperState {
     }
 
     public void displayTowersToBuy() {
-        TowerButton buyableTower = new TowerButton(CrossTower.image, new TowerFactory() {
-            @Override
-            public Tower getTower() {
-                return new CrossTower();
-            }
-        });
-        buyableTower.setPosition(Constants.SCREEN_WIDTH / 6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 4);
-        buyableTower.setScale(0.5f, 0.5f);
-        addEntity(buyableTower);
+        for (TowerButton button : buyableTowers) {
+            addEntity(button);
+        }
+    }
+
+    public void hideTowersToBuy() {
+        for (TowerButton button : buyableTowers) {
+            removeEntity(button);
+        }
     }
 
 
@@ -136,6 +157,7 @@ public class PlayState extends SuperState {
     }
 
     public boolean setAction(Action action) {
+        hideTowersToBuy(); // TODO - Handle this properly
         if (action == this.action) {
             this.action = Action.NONE;
             return false;
@@ -145,7 +167,6 @@ public class PlayState extends SuperState {
                 displayTowersToBuy();
                 break;
             default:
-                // TODO - Hide buy towers
                 break;
         }
         this.action = action;

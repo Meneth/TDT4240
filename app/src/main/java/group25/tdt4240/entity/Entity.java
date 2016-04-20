@@ -59,6 +59,7 @@ public abstract class Entity extends Sprite implements Drawable {
 
     public void setContainer(SuperState container) {
         this.container = container;
+        destroyed = false;
     }
 
     public SuperState getContainer() {

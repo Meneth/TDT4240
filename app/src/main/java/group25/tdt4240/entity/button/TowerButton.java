@@ -1,6 +1,8 @@
 package group25.tdt4240.entity.button;
 
 import android.view.MotionEvent;
+
+import group25.tdt4240.Constants;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.factory.TowerFactory;
 import group25.tdt4240.entity.tower.CrossTower;
@@ -19,6 +21,9 @@ public class TowerButton extends Button {
         super(image);
         this.factory = factory;
         this.tower = factory.getTower();
+        float scaleX = 1.25f * (float) Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 1.25f * (float) Constants.TILE_HEIGHT / image.getHeight();
+        setScale(scaleX, scaleY);
     }
 
     @Override

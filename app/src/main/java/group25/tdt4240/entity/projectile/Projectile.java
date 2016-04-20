@@ -30,13 +30,25 @@ public abstract class Projectile extends MovableEntity {
     @Override
     public void update(float dt) {
         super.update(dt);
-        if (target == null || target.isDestroyed())
+        if (target == null)
             die();
-        if (target.collides(this)) {
+        else if (target.isDestroyed()){
+            if (this.getSpeed().getX() == 0 && this.getSpeed().getY() == 0)
+                die();
+            if (this.getX() > Constants.SCREEN_WIDTH || this.getX() < 0 ){
+                die();
+            }
+            if (this.getY() > Constants.SCREEN_HEIGHT || this.getY() < 0 ){
+                die();
+            }
+        }
+         else if (target.collides(this)) {
             target.takeDamage(damage);
             die(); // Destroy the projectile
         }
-        setTarget(target.getPosition());
+        else{
+            setTarget(target.getPosition());
+        }
     }
 
     public int getPriority() {

@@ -69,7 +69,7 @@ public class PlayState extends SuperState {
         doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 7);
 
         initializeBuyableTowers();
-
+        initializeMonsters();
         p = new Paint();
         p.setColor(Color.WHITE);
         p.setTextSize(20);
@@ -221,12 +221,23 @@ public class PlayState extends SuperState {
         }
     }
 
+    public void displayMonstersToChoose() {
+        for (MonsterButton button : buyableMonsters) {
+            addEntity(button);
+        }
+    }
+
     public void hideTowersToBuy() {
         for (TowerButton button : buyableTowers) {
             removeEntity(button);
         }
     }
 
+    public void hideMonstersToChoose() {
+        for (MonsterButton button : buyableMonsters) {
+            removeEntity(button);
+        }
+    }
 
     public Tower upgradeTower(BuildTile tile) {
         Tower t = tile.getTower();

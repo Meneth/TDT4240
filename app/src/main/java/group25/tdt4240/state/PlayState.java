@@ -16,6 +16,8 @@ import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.entity.tile.BuildTile;
+import sheep.game.Sprite;
+import sheep.graphics.Image;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,13 +26,18 @@ import java.util.Queue;
 
 public class PlayState extends SuperState {
     private Map currentMap;
+    private int attackerMoney = 500;
     private int defenderMoney= 500;
     private int defenderHealth = 20;
+
+    private int roundCounter = 0;
+
     private float timer = 0.0f;
     private TowerButton selectedTower;
     private List<TowerButton> buyableTowers = new ArrayList<>();
     private List<MonsterButton> buyableMonsters = new ArrayList<>();
     private Queue<Monster> currentMonsterQueue = new LinkedList<>();
+    private List<Sprite> monsterQueue = new ArrayList<>();
 
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
@@ -92,16 +99,23 @@ public class PlayState extends SuperState {
         this.round = round;
         switch (round) {
             case TOWER:
+
                 addEntities(upgradeButton, sellButton, buyButton);
                 hideMonstersToChoose();
                 break;
             case MONSTER:
+                // Both players get money when new round starts
+                defenderMoney += roundCounter * 30;
+                attackerMoney += roundCounter * 500;
+
                 addEntities(doneButton);
                 currentMonsterQueue.clear();
+                monsterQueue.clear();
                 displayMonstersToChoose();
                 hideTowersToBuy();
                 break;
             case PLAY:
+                roundCounter += 1;
                 hideTowersToBuy();
                 setAction(action.NONE);
                 removeEntities(upgradeButton, sellButton, buyButton, doneButton);
@@ -175,7 +189,15 @@ public class PlayState extends SuperState {
     }
 
     public void clickMonster(Monster m) {
-        currentMonsterQueue.offer(m);
+        if (attackerMoney >= m.getCost()){
+            attackerMoney -= m.getCost();
+            currentMonsterQueue.offer(m);
+            Sprite s = new Sprite(m.getImage());
+            s.setPosition(((Constants.SCREEN_WIDTH / 20) * monsterQueue.size()) + 20, (Constants.SCREEN_HEIGHT / 7) * 4);
+            s.update(0.01f);
+            monsterQueue.add(s);
+        }
+
     }
 
     public void monsterDied(Monster m) {
@@ -185,13 +207,18 @@ public class PlayState extends SuperState {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-
-        canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
-        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
+        if (round == Round.MONSTER){
+            for (int i = 0; i < monsterQueue.size(); i++){
+                monsterQueue.get(i).draw(canvas);
+            }
+        }
+        canvas.drawText("Attacker Cash: " + Integer.toString(attackerMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.1f, p);
+        canvas.drawText("Defender Moneeeyh: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.3f, p);
+        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.5f, p);
     }
 
     @Override
-    public void update(float dt) {
+    public void update(float dt)  {
         if (round == Round.PLAY) {
             if (getMonsters().isEmpty() && currentMonsterQueue.isEmpty()) {
                 advanceRound();

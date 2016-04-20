@@ -15,6 +15,11 @@ public abstract class Monster extends MovableEntity {
     private int position;
     private int health;
     private final int cost;
+    private Image image;
+
+    public Image getImage(){
+        return image;
+    }
 
     @Override
     public void update(float dt) {
@@ -35,6 +40,7 @@ public abstract class Monster extends MovableEntity {
      */
     public Monster(Image image, Path path, float standardVelocity, int health, int cost) {
         super(image, standardVelocity);
+        this.image = image;
         this.path = path;
         position = 0;
         // Spawn monster at start

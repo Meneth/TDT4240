@@ -104,6 +104,12 @@ public class SuperState extends State implements Iterable<Drawable> {
         entitiesToRemove.push(entity);
     }
 
+    public void removeEntities(Drawable... entities) {
+        for (Drawable entity : entities) {
+            removeEntity(entity);
+        }
+    }
+
     @Override
     public Iterator<Drawable> iterator() {
         return entities.iterator();

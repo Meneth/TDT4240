@@ -51,6 +51,8 @@ public class PlayState extends SuperState {
 
     private Round round;
 
+    private Paint p;
+
     public PlayState() {
         this.currentMap = new Map();
         // TODO - This way of adding a monster is placeholder
@@ -66,6 +68,10 @@ public class PlayState extends SuperState {
         doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 7);
 
         initializeBuyableTowers();
+
+        p = new Paint();
+        p.setColor(Color.WHITE);
+        p.setTextSize(20);
 
         startRound(Round.MONSTER);
     }
@@ -138,9 +144,7 @@ public class PlayState extends SuperState {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        Paint p = new Paint();
-        p.setColor(Color.WHITE);
-        p.setTextSize(20);
+
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
     }

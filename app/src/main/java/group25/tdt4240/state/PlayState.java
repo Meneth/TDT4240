@@ -98,7 +98,7 @@ public class PlayState extends SuperState {
         switch (round) {
             case TOWER:
                 addEntities(upgradeButton, sellButton, buyButton);
-                hideMonstersToChoose();
+                hideMonstersButtons();
                 for (MonsterImageButton mb: monsterImageQueue){
                     mb.die();
                 }
@@ -110,12 +110,12 @@ public class PlayState extends SuperState {
                 attackerMoney = roundCounter * 500; // No saving between rounds. Easy to exploit
                 addEntities(doneButton);
                 monsterQueue.clear();
-                displayMonstersToChoose();
-                hideTowersToBuy();
+                displayMonsterButtons();
+                hideTowerButtons();
                 break;
             case PLAY:
                 roundCounter += 1;
-                hideTowersToBuy();
+                hideTowerButtons();
                 setAction(Action.NONE);
                 removeEntities(upgradeButton, sellButton, buyButton, doneButton);
                 break;
@@ -254,6 +254,7 @@ public class PlayState extends SuperState {
         defenderMoney -= selectedTower.getCost();
         tile.setTower(selectedTower.getTower());
     }
+
     private void sellTower(BuildTile tile) {
         Tower t = tile.getTower();
         if (t != null)
@@ -262,24 +263,26 @@ public class PlayState extends SuperState {
         System.out.println("Sell selected tower");
     }
 
-    private void displayTowersToBuy() {
+    private void displayTowerButtons() {
+        // TODO - Show tower cost
         for (TowerButton button : towers) {
             addEntity(button);
         }
     }
 
-    private void displayMonstersToChoose() {
+    private void displayMonsterButtons() {
+        // TODO - Show monster cost
         for (MonsterButton button : monsters) {
             addEntity(button);
         }
     }
-    private void hideTowersToBuy() {
+    private void hideTowerButtons() {
         for (TowerButton button : towers) {
             removeEntity(button);
         }
     }
 
-    private void hideMonstersToChoose() {
+    private void hideMonstersButtons() {
         for (MonsterButton button : monsters) {
             removeEntity(button);
         }
@@ -298,7 +301,7 @@ public class PlayState extends SuperState {
         switch (this.action) {
             case BUY:
                 buyButton.toggleButton();
-                hideTowersToBuy();
+                hideTowerButtons();
                 break;
             case SELL:
                 sellButton.toggleButton();
@@ -312,19 +315,18 @@ public class PlayState extends SuperState {
             return;
         }
 
-
         switch (action) {
             case BUY:
-                displayTowersToBuy();
+                displayTowerButtons();
                 buyButton.toggleButton();
                 break;
             case SELL:
+                // TODO - Show sell value
                 sellButton.toggleButton();
                 break;
             case UPGRADE:
+                // TODO - Show upgrade cost
                 upgradeButton.toggleButton();
-                break;
-            default:
                 break;
         }
         this.action = action;

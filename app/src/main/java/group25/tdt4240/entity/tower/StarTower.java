@@ -10,7 +10,7 @@ import sheep.graphics.Image;
  * Created by rh183_000 on 20/04/2016.
  */
 public class StarTower extends Tower {
-    public static final Image image = new Image(R.drawable.square_tower);
+    public static final Image image = new Image(R.drawable.star_tower);
     private int upgradeCost = 0;
     public StarTower() {
         super(image, 0.5f, 310, 750);

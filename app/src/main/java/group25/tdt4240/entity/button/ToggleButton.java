@@ -25,7 +25,7 @@ public abstract class ToggleButton extends Button {
 
         p = new Paint();
         p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(7W);
+        p.setStrokeWidth(7);
         p.setColor(Color.WHITE);
     }
     private boolean active = false;

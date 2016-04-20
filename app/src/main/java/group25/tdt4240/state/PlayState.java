@@ -89,6 +89,10 @@ public class PlayState extends SuperState {
     }
 
     public void selectTower(TowerButton t){
+        if (this.selectedTower != null){
+            this.selectedTower.toggleButton();
+        }
+        t.toggleButton();
         this.selectedTower = t;
     }
 
@@ -159,15 +163,10 @@ public class PlayState extends SuperState {
     }
 
     public boolean setAction(Action action) {
-        hideTowersToBuy(); // TODO - Handle this properly
-        if (action == this.action) {
-            this.action = Action.NONE;
-            return false;
-        }
-
         switch (this.action) {
             case BUY:
                 buyButton.toggleButton();
+                hideTowersToBuy();
                 break;
             case SELL:
                 sellButton.toggleButton();
@@ -176,6 +175,12 @@ public class PlayState extends SuperState {
                 upgradeButton.toggleButton();
                 break;
         }
+        if (action == this.action) {
+            this.action = Action.NONE;
+            return false;
+        }
+
+
         switch (action) {
             case BUY:
                 displayTowersToBuy();

@@ -36,7 +36,6 @@ public class Map {
             "6 1\n6 2\n6 3\n" +
             "5 3\n4 3";
     public ArrayList<Tile> tiles;
-    public ArrayList<Entity> entities;
     private Image grassTile = new Image(R.drawable.grasstile);
     private Image dirtTile = new Image(R.drawable.dirttile);
     private PathTile goal;
@@ -46,7 +45,6 @@ public class Map {
 
     public Map() {
         this.tiles = new ArrayList<Tile>();
-        this.entities = new ArrayList<Entity>();
 
         readMap(exampleMapString);
         readPath(examplePath);

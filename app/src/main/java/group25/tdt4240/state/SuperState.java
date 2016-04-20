@@ -22,7 +22,7 @@ import sheep.input.TouchListener;
 public class SuperState extends State implements Iterable<Drawable> {
     private List<Clickable> clickableEntities = new ArrayList<>();
     private List<Monster> shootableMonsters = new ArrayList<>();
-    protected List<Drawable> entities = new ArrayList<>();
+    private List<Drawable> entities = new ArrayList<>();
 
     private Stack<Drawable> entitiesToRemove = new Stack<>();
     private Stack<Drawable> entitiesToAdd = new Stack<>();
@@ -81,7 +81,7 @@ public class SuperState extends State implements Iterable<Drawable> {
         entitiesToAdd.push(entity);
     }
 
-    protected void updateEntityLists() {
+    private void updateEntityLists() {
         while (!entitiesToRemove.empty()) {
             Drawable e = entitiesToRemove.pop();
             entities.remove(e);

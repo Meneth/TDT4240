@@ -12,8 +12,7 @@ import sheep.graphics.Image;
  * Created by Ole on 11/04/2016.
  */
 public class AboutButton extends Button {
-
-    public static final Image image = new Image(R.drawable.about_button);
+    private static final Image image = new Image(R.drawable.about_button);
 
     public AboutButton(){
         super(AboutButton.image);

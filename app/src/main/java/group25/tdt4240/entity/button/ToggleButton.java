@@ -12,13 +12,10 @@ import sheep.graphics.Image;
  */
 public abstract class ToggleButton extends Button {
     private Image image;
-    float width;
-    float height;
-    float left;
-    float right;
-    float top;
-    float bot;
-    Paint p;
+    private float width, height;
+    private float left, right, top, bot;
+    private Paint p;
+
     public ToggleButton(Image image){
         super(image);
         this.image = image;

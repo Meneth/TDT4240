@@ -25,7 +25,7 @@ import java.util.List;
 
 public class PlayState extends SuperState {
     private Map currentMap;
-    private int defenderMoney= 2100;
+    private int defenderMoney= 500;
     private int defenderHealth = 150;
     private float timer = 0.0f;
     public TowerButton selectedTower;
@@ -39,13 +39,13 @@ public class PlayState extends SuperState {
     Action action = Action.NONE;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
-    Button upgradeButton = new UpgradeButton(upgradeButtonImage);
+    ToggleButton upgradeButton = new UpgradeButton(upgradeButtonImage);
 
     private Image sellButtonImage = new Image(R.drawable.sell_button);
-    Button sellButton = new SellButton(sellButtonImage);
+    ToggleButton sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
-    Button buyButton = new BuyButton(buyButtonImage);
+    ToggleButton buyButton = new BuyButton(buyButtonImage);
 
     Button doneButton = new DoneButton();
 
@@ -128,19 +128,21 @@ public class PlayState extends SuperState {
     }
 
     public void selectTower(TowerButton t){
+        if (this.selectedTower != null){
+            this.selectedTower.toggleButton();
+        }
+        t.toggleButton();
         this.selectedTower = t;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
+        super.draw(canvas);
         Paint p = new Paint();
         p.setColor(Color.WHITE);
         p.setTextSize(20);
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
-        for (Drawable entity : entities)
-            entity.draw(canvas);
     }
 
     @Override
@@ -150,9 +152,7 @@ public class PlayState extends SuperState {
             addEntity(new BasicMonster(currentMap.path));
             timer = 0.0f;
         }
-        updateEntityLists();
-        for (Drawable entity : new ArrayList<>(entities))
-            entity.update(dt);
+        super.update(dt);
     }
 
     public void buyTower(BuildTile tile) {
@@ -197,14 +197,34 @@ public class PlayState extends SuperState {
     }
 
     public boolean setAction(Action action) {
-        hideTowersToBuy(); // TODO - Handle this properly
+        switch (this.action) {
+            case BUY:
+                buyButton.toggleButton();
+                hideTowersToBuy();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
+                break;
+        }
         if (action == this.action) {
             this.action = Action.NONE;
             return false;
         }
+
+
         switch (action) {
             case BUY:
                 displayTowersToBuy();
+                buyButton.toggleButton();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
                 break;
             default:
                 break;

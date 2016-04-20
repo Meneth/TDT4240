@@ -11,7 +11,7 @@ import sheep.graphics.Image;
 /**
  * Created by matias on 18.04.16.
  */
-public class TowerButton extends Button {
+public class TowerButton extends ToggleButton {
     private final Factory<Tower> factory;
     private final Tower tower;
 

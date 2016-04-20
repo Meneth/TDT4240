@@ -9,7 +9,7 @@ import sheep.graphics.Image;
  */
 public class BasicMonster extends Monster {
     private static final float standardVelocity = 50;
-    private static final Image image = new Image(R.drawable.monster1);
+    public static final Image image = new Image(R.drawable.monster1);
 
     /**
      * @param path The path the monster is to walk

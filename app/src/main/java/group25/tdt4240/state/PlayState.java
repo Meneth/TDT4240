@@ -30,6 +30,7 @@ public class PlayState extends SuperState {
     private float timer = 0.0f;
     public TowerButton selectedTower;
     private List<TowerButton> buyableTowers = new ArrayList<>();
+    private List<MonsterButton> buyableMonsters = new ArrayList<>();
 
 
 
@@ -113,6 +114,38 @@ public class PlayState extends SuperState {
         }
     }
 
+    private void initializeMonsters() {
+        buyableMonsters.add(new MonsterButton(BasicMonster.image, new Factory() {
+            @Override
+            public Monster get() {
+                return new BasicMonster(currentMap.path);
+            }
+        }));
+        buyableMonsters.add(new MonsterButton(Monster2.image, new Factory() {
+            @Override
+            public Monster get() {
+                return new Monster2(currentMap.path);
+            }
+        }));
+        buyableMonsters.add(new MonsterButton(Monster3.image, new Factory() {
+            @Override
+            public Monster get() {
+                return new Monster3(currentMap.path);
+            }
+        }));
+        buyableMonsters.add(new MonsterButton(Monster4.image, new Factory() {
+            @Override
+            public Monster get() {
+                return new Monster4(currentMap.path);
+            }
+        }));
+        for (int i = 0; i < buyableMonsters.size(); i++) {
+            MonsterButton button = buyableMonsters.get(i);
+            button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
+                    buyButton.getY() - button.getOffset().getY() * 2);
+        }
+    }
+
     private void initializeBuyableTowers() {
         buyableTowers.add(new TowerButton(CrossTower.image, new Factory() {
             @Override
@@ -138,7 +171,6 @@ public class PlayState extends SuperState {
                     buyButton.getY() - button.getOffset().getY() * 2);
         }
     }
-
     public void selectTower(TowerButton t){
         if (this.selectedTower != null){
             this.selectedTower.toggleButton();

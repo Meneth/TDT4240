@@ -25,7 +25,7 @@ import java.util.Queue;
 public class PlayState extends SuperState {
     private Map currentMap;
     private int defenderMoney= 500;
-    private int defenderHealth = 150;
+    private int defenderHealth = 20;
     private float timer = 0.0f;
     private TowerButton selectedTower;
     private List<TowerButton> buyableTowers = new ArrayList<>();
@@ -103,6 +103,7 @@ public class PlayState extends SuperState {
                 break;
             case PLAY:
                 hideTowersToBuy();
+                setAction(action.NONE);
                 removeEntities(upgradeButton, sellButton, buyButton, doneButton);
                 break;
         }
@@ -177,6 +178,10 @@ public class PlayState extends SuperState {
         currentMonsterQueue.offer(m);
     }
 
+    public void monsterDied(Monster m) {
+        defenderMoney += m.getCost();
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -187,11 +192,15 @@ public class PlayState extends SuperState {
 
     @Override
     public void update(float dt) {
-        if (round == Round.PLAY){
-            timer += dt;
-            if (timer > 2) {
-                addEntity(currentMonsterQueue.poll());
-                timer = 0.0f;
+        if (round == Round.PLAY) {
+            if (getMonsters().isEmpty() && currentMonsterQueue.isEmpty()) {
+                advanceRound();
+            } else {
+                timer += dt;
+                if (timer > 2) {
+                    addEntity(currentMonsterQueue.poll());
+                    timer = 0.0f;
+                }
             }
         }
         super.update(dt);

@@ -46,8 +46,10 @@ public abstract class Monster extends MovableEntity {
 
     public void takeDamage(int damage) {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0){
             die();
+            ((PlayState)getContainer()).monsterDied(this);
+        }
     }
 
     public int getPriority() {

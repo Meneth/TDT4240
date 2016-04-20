@@ -4,11 +4,9 @@ package group25.tdt4240.entity.tile;
 
 import java.util.ArrayList;
 
-import group25.tdt4240.Constants;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.monster.Monster;
 import sheep.graphics.Image;
-import sheep.math.BoundingBox;
 
 /**
  * Created by Meneth on 2016-03-31.

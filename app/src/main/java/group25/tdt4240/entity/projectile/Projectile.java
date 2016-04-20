@@ -1,6 +1,6 @@
 package group25.tdt4240.entity.projectile;
 
-import group25.tdt4240.Constants;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.MovableEntity;
 import group25.tdt4240.entity.monster.Monster;
 import sheep.graphics.Image;

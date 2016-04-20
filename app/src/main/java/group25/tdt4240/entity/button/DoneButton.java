@@ -7,18 +7,20 @@ import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
 /**
- * Created by Ole on 11/04/2016.
+ * Created by Meneth on 2016-04-20.
  */
-public class BuyButton extends ToggleButton{
-    public BuyButton(Image image){
+public class DoneButton extends Button {
+    public static Image image = new Image(R.drawable.back_button); // TODO - Actual image
+
+    public DoneButton() {
         super(image);
     }
 
     @Override
     public boolean onTouchDown(MotionEvent event) {
-        if (checkClick(event)) {
-            System.out.println("buy_button clicked");
-            ((PlayState) getContainer()).setAction(PlayState.Action.BUY);
+        if (this.checkClick(event)) {
+            ((PlayState) getContainer()).advanceRound();
+            System.out.println("Done clicked");
             return true;
         }
         return false;

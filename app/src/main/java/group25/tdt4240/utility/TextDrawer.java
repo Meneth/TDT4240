@@ -1,4 +1,4 @@
-package group25.tdt4240;
+package group25.tdt4240.utility;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

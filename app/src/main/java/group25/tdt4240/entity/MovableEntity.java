@@ -1,6 +1,6 @@
 package group25.tdt4240.entity;
 
-import group25.tdt4240.Constants;
+import group25.tdt4240.utility.Constants;
 import sheep.graphics.Image;
 import sheep.math.Vector2;
 

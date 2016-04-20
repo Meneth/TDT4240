@@ -8,27 +8,30 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import group25.tdt4240.Constants;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Drawable;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
-import group25.tdt4240.entity.factory.TowerFactory;
-import group25.tdt4240.entity.monster.BasicMonster;
-import group25.tdt4240.entity.tower.CrossTower;
+import group25.tdt4240.factory.Factory;
+import group25.tdt4240.entity.monster.*;
+import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.BuildTile;
-import group25.tdt4240.entity.tower.Tower;
 import sheep.graphics.Image;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayState extends SuperState {
     private Map currentMap;
-    private int defenderMoney= 2100;
+    private int defenderMoney= 500;
     private int defenderHealth = 150;
     private float timer = 0.0f;
     public TowerButton selectedTower;
+    private List<TowerButton> buyableTowers = new ArrayList<>();
+
+
 
     public enum Action {
         BUY, SELL, UPGRADE, NONE;
@@ -36,13 +39,19 @@ public class PlayState extends SuperState {
     Action action = Action.NONE;
 
     private Image upgradeButtonImage = new Image(R.drawable.upgrade_button);
-    Button upgradeButton = new UpgradeButton(upgradeButtonImage);
+    ToggleButton upgradeButton = new UpgradeButton(upgradeButtonImage);
 
     private Image sellButtonImage = new Image(R.drawable.sell_button);
-    Button sellButton = new SellButton(sellButtonImage);
+    ToggleButton sellButton = new SellButton(sellButtonImage);
 
     private Image buyButtonImage = new Image((R.drawable.buy_button));
-    Button buyButton = new BuyButton(buyButtonImage);
+    ToggleButton buyButton = new BuyButton(buyButtonImage);
+
+    Button doneButton = new DoneButton();
+
+    private Round round;
+
+    private Paint p;
 
     public PlayState() {
         this.currentMap = new Map();
@@ -56,30 +65,88 @@ public class PlayState extends SuperState {
         buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
+        doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 7);
 
+        initializeBuyableTowers();
 
-        addEntities(upgradeButton, sellButton, buyButton);
-        buyButton.setPosition(Constants.SCREEN_WIDTH/7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT/5);
-        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 5);
-        addEntities(upgradeButton,sellButton,buyButton);
+        p = new Paint();
+        p.setColor(Color.WHITE);
+        p.setTextSize(20);
 
+        startRound(Round.MONSTER);
+    }
+
+    private enum Round {
+        TOWER, MONSTER, PLAY;
+    }
+
+    public void advanceRound() {
+        switch (round) {
+            case TOWER:
+                startRound(Round.PLAY);
+                break;
+            case MONSTER:
+                startRound(Round.TOWER);
+                break;
+            case PLAY:
+                startRound(Round.MONSTER);
+                break;
+        }
+    }
+
+    /**
+     * Starts a given round
+     * @param round The round to start
+     */
+    private void startRound(Round round) {
+        this.round = round;
+        switch (round) {
+            case TOWER:
+                addEntities(upgradeButton, sellButton, buyButton);
+                break;
+            case MONSTER:
+                addEntities(doneButton);
+                break;
+            case PLAY:
+                removeEntities(upgradeButton, sellButton, buyButton, doneButton);
+                break;
+        }
+    }
+
+    private void initializeBuyableTowers() {
+        buyableTowers.add(new TowerButton(CrossTower.image, new Factory() {
+            @Override
+            public Tower get() {
+                return new CrossTower();
+            }
+        }));
+        buyableTowers.add(new TowerButton(CrosserTower.image, new Factory() {
+            @Override
+            public Tower get() {
+                return new CrosserTower();
+            }
+        }));
+        for (int i = 0; i < buyableTowers.size(); i++) {
+            TowerButton button = buyableTowers.get(i);
+            button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
+                    buyButton.getY() - button.getOffset().getY() * 2);
+        }
     }
 
     public void selectTower(TowerButton t){
+        if (this.selectedTower != null){
+            this.selectedTower.toggleButton();
+        }
+        t.toggleButton();
         this.selectedTower = t;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
-        Paint p = new Paint();
-        p.setColor(Color.WHITE);
-        p.setTextSize(20);
+        super.draw(canvas);
+
         canvas.drawText("Gs: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7) * 6, (Constants.SCREEN_HEIGHT / 7) * 6, p);
         canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6, p);
-        for (Drawable entity : entities)
-            entity.draw(canvas);
     }
 
     @Override
@@ -89,9 +156,7 @@ public class PlayState extends SuperState {
             addEntity(new BasicMonster(currentMap.path));
             timer = 0.0f;
         }
-        updateEntityLists();
-        for (Drawable entity : new ArrayList<>(entities))
-            entity.update(dt);
+        super.update(dt);
     }
 
     public void buyTower(BuildTile tile) {
@@ -113,15 +178,15 @@ public class PlayState extends SuperState {
     }
 
     public void displayTowersToBuy() {
-        TowerButton buyableTower = new TowerButton(CrossTower.image, new TowerFactory() {
-            @Override
-            public Tower getTower() {
-                return new CrossTower();
-            }
-        });
-        buyableTower.setPosition(Constants.SCREEN_WIDTH / 6, Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT / 4);
-        buyableTower.setScale(0.5f, 0.5f);
-        addEntity(buyableTower);
+        for (TowerButton button : buyableTowers) {
+            addEntity(button);
+        }
+    }
+
+    public void hideTowersToBuy() {
+        for (TowerButton button : buyableTowers) {
+            removeEntity(button);
+        }
     }
 
 
@@ -136,16 +201,36 @@ public class PlayState extends SuperState {
     }
 
     public boolean setAction(Action action) {
+        switch (this.action) {
+            case BUY:
+                buyButton.toggleButton();
+                hideTowersToBuy();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
+                break;
+        }
         if (action == this.action) {
             this.action = Action.NONE;
             return false;
         }
+
+
         switch (action) {
             case BUY:
                 displayTowersToBuy();
+                buyButton.toggleButton();
+                break;
+            case SELL:
+                sellButton.toggleButton();
+                break;
+            case UPGRADE:
+                upgradeButton.toggleButton();
                 break;
             default:
-                // TODO - Hide buy towers
                 break;
         }
         this.action = action;

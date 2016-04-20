@@ -1,4 +1,4 @@
-package group25.tdt4240.entity.factory;
+package group25.tdt4240.factory;
 
 import group25.tdt4240.entity.tower.Tower;
 

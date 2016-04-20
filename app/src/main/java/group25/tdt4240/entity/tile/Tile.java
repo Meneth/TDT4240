@@ -1,6 +1,6 @@
 package group25.tdt4240.entity.tile;
 
-import group25.tdt4240.Constants;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Entity;
 import sheep.graphics.Image;
 

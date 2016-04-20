@@ -1,14 +1,9 @@
 package group25.tdt4240.entity.tower;
 
-import android.view.MotionEvent;
-
-import group25.tdt4240.Constants;
-import group25.tdt4240.entity.Clickable;
-import group25.tdt4240.entity.Drawable;
+import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.monster.Monster;
 import group25.tdt4240.entity.projectile.Projectile;
-import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;
 
 /**

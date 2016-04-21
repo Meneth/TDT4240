@@ -34,15 +34,29 @@ public class Map {
     public Map() {
         this.tiles = new ArrayList<>();
 
-        String exampleMapString = "10 4\n" +
-                "wbbbsbbbbw\n" +
-                "wbbbpppbbw\n" +
-                "wbbbbbpbbw\n" +
-                "wbbbgppbbw";
+        String exampleMapString = "10 10\n" +
+                "bsbbbbbbbb\n" +
+                "bpbbbppppp\n" +
+                "bpbbbpbbbp\n" +
+                "bpppppbbbp\n" +
+                "bwwwwwbbbp\n" +
+                "bwwwwwbbbp\n" +
+                "bbbbbbbbbp\n" +
+                "bbbppppppp\n" +
+                "bbbpbbbbbb\n" +
+                "bbbgbbbbbb\n";
         readMap(exampleMapString);
-        String examplePath = "4 0\n4 1\n5 1\n" +
-                "6 1\n6 2\n6 3\n" +
-                "5 3\n4 3";
+        String examplePath =
+                "1 0\n1 1\n1 2\n" +
+                        "3 1\n3 2\n3 3\n" +
+                        "3 5\n3 5\n2 5\n" +
+                        "1 5\n1 6\n1 6\n" +
+                        "1 7\n1 8\n1 9\n" +
+                        "2 9\n3 9\n4 9\n" +
+                        "5 9\n6 9\n7 9\n" +
+                        "7 8\n7 7\n7 6\n" +
+                        "7 5\n7 4\n7 3\n" +
+                        "8 3\n9 3";
         readPath(examplePath);
     }
 

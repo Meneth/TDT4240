@@ -2,9 +2,11 @@ package group25.tdt4240.map;
 
 import java.util.ArrayList;
 
+import group25.tdt4240.R;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.entity.tile.PathTile;
 import group25.tdt4240.entity.tile.Tile;
+import sheep.graphics.Image;
 
 /**
  * Created by Meneth on 2016-03-31.
@@ -13,10 +15,12 @@ import group25.tdt4240.entity.tile.Tile;
  * to play on.
  */
 public class Map {
+    private static final Image waterTile = new Image(R.drawable.watertile);
 
     /*for debugging purposes
     b = buildtile
     p = pathtile
+    w = water tile (non-buildable)
     n = new line
     s = start(pathtile)
     g = goal(pathtile)
@@ -31,10 +35,10 @@ public class Map {
         this.tiles = new ArrayList<>();
 
         String exampleMapString = "10 4\n" +
-                "bbbbsbbbbb\n" +
-                "bbbbpppbbb\n" +
-                "bbbbbbpbbb\n" +
-                "bbbbgppbbb";
+                "wbbbsbbbbw\n" +
+                "wbbbpppbbw\n" +
+                "wbbbbbpbbw\n" +
+                "wbbbgppbbw";
         readMap(exampleMapString);
         String examplePath = "4 0\n4 1\n5 1\n" +
                 "6 1\n6 2\n6 3\n" +
@@ -70,6 +74,9 @@ public class Map {
                         break;
                     case 'b':
                         tiles.add(new BuildTile(j, i));
+                        break;
+                    case 'w':
+                        tiles.add(new Tile(waterTile, j, i));
                         break;
                 }
             }

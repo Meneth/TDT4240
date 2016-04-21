@@ -22,7 +22,7 @@ public class TextDrawer extends AbstractDrawable {
         this.xPos = xPos;
         this.yPos = yPos;
         paint.setARGB(255, 255, 255, 255);
-        paint.setTextSize(30.0f);
+        paint.setTextSize(30.0f * Constants.SCALE);
         paint.setTextAlign(Paint.Align.CENTER);
     }
 

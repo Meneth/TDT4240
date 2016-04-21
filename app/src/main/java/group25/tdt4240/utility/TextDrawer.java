@@ -2,7 +2,6 @@ package group25.tdt4240.utility;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
 
 import group25.tdt4240.entity.AbstractDrawable;
 import group25.tdt4240.entity.Drawable;
@@ -23,7 +22,7 @@ public class TextDrawer extends AbstractDrawable {
         this.xPos = xPos;
         this.yPos = yPos;
         paint.setARGB(255, 255, 255, 255);
-        paint.setTextSize(30.0f);
+        paint.setTextSize(30.0f * Constants.SCALE);
         paint.setTextAlign(Paint.Align.CENTER);
     }
 
@@ -48,7 +47,7 @@ public class TextDrawer extends AbstractDrawable {
     }
 
     @Override
-    public int compareTo(@NonNull Drawable another) {
+    public int compareTo(Drawable another) {
         return another.getPriority() - getPriority();
     }
 }

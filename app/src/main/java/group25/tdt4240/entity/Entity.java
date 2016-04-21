@@ -1,6 +1,5 @@
 package group25.tdt4240.entity;
 
-import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 
 import group25.tdt4240.state.SuperState;
@@ -27,7 +26,7 @@ public abstract class Entity extends Sprite implements Drawable {
     }
 
     @Override
-    public int compareTo(@NonNull Drawable another) {
+    public int compareTo(Drawable another) {
         return another.getPriority() - getPriority();
     }
 

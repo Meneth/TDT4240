@@ -13,14 +13,22 @@ public class TextDrawer extends AbstractDrawable {
     //private Canvas canvas;
     private final Paint paint = new Paint();
     private final String string;
-    private final float xPos;
-    private final float yPos;
+    private float xPos;
+    private float yPos;
 
     public TextDrawer(String string, float xPos, float yPos) {
         //this.canvas = new Canvas();
         this.string = string;
         this.xPos = xPos;
         this.yPos = yPos;
+        paint.setARGB(255, 255, 255, 255);
+        paint.setTextSize(30.0f * Constants.SCALE);
+        paint.setTextAlign(Paint.Align.CENTER);
+    }
+
+    public TextDrawer(String string) {
+        //this.canvas = new Canvas();
+        this.string = string;
         paint.setARGB(255, 255, 255, 255);
         paint.setTextSize(30.0f * Constants.SCALE);
         paint.setTextAlign(Paint.Align.CENTER);
@@ -34,6 +42,10 @@ public class TextDrawer extends AbstractDrawable {
 
     @Override
     public void draw(Canvas canvas) {
+        canvas.drawText(string, xPos, yPos, paint);
+    }
+
+    public void draw(Canvas canvas, float xPos, float yPos) {
         canvas.drawText(string, xPos, yPos, paint);
     }
 

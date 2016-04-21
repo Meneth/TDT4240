@@ -275,7 +275,6 @@ public class PlayState extends SuperState {
     }
 
     private void displayMonsterButtons() {
-        // TODO - Show monster cost
         for (MonsterButton button : monsters) {
             addEntity(button);
         }

@@ -17,7 +17,7 @@ public abstract class Projectile extends MovableEntity {
      * @param target The monster the projectile is targeting
      */
     public Projectile(Image image, Monster target, int damage, float velocity) {
-        super(image, velocity); // TODO - Velocity is placeholder
+        super(image, velocity);
         this.target = target;
         this.damage = damage;
 
@@ -50,6 +50,6 @@ public abstract class Projectile extends MovableEntity {
     }
 
     public int getPriority() {
-        return 5; // TODO - placeholder
+        return 5;
     }
 }

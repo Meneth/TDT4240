@@ -63,7 +63,7 @@ public abstract class Monster extends MovableEntity {
     }
 
     public int getPriority() {
-        return 10; // TODO - placeholder
+        return 10;
     }
 
     public int getCost() {

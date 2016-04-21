@@ -70,6 +70,6 @@ public abstract class Tower extends Entity {
 
 
     public int getPriority() {
-        return 10; // TODO - Placeholder
+        return 10;
     }
 }

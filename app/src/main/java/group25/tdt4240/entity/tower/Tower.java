@@ -19,6 +19,7 @@ public abstract class Tower extends Entity {
     private float timePassed = 0;
     private final float cooldown;
     private TextDrawer costText;
+    private TextDrawer sellText;
     /**
      * @param image The image the sprite is to be generated from
      */
@@ -31,6 +32,7 @@ public abstract class Tower extends Entity {
         float scaleY = 0.9f * Constants.TILE_HEIGHT / image.getHeight();
         setScale(scaleX, scaleY);
         costText = new TextDrawer(Integer.toString(getNextUpgradeCost()));
+        sellText = new TextDrawer(Integer.toString(cost));
     }
 
     private float getRange() {
@@ -57,10 +59,14 @@ public abstract class Tower extends Entity {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (((PlayState)getContainer()).getAction() == PlayState.Action.UPGRADE
-                && this.getNextUpgradeCost() > 0
-                && this.getNextUpgradeCost() != Integer.MAX_VALUE) {
-            costText.draw(canvas, this.getX(), this.getY());
+        switch (((PlayState)getContainer()).getAction()) {
+            case UPGRADE:
+                if (this.getNextUpgradeCost() > 0 && this.getNextUpgradeCost() != Integer.MAX_VALUE)
+                    costText.draw(canvas, this.getX(), this.getY());
+                break;
+            case SELL:
+                sellText.draw(canvas, this.getX(), this.getY());
+                break;
         }
     }
 

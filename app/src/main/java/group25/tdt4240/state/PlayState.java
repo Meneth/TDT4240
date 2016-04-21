@@ -325,11 +325,9 @@ public class PlayState extends SuperState {
                 buyButton.toggleButton();
                 break;
             case SELL:
-                // TODO - Show sell value
                 sellButton.toggleButton();
                 break;
             case UPGRADE:
-                // TODO - Show upgrade cost
                 upgradeButton.toggleButton();
                 break;
         }

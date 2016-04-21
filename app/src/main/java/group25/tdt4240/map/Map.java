@@ -48,15 +48,15 @@ public class Map {
         readMap(exampleMapString);
         String examplePath =
                 "1 0\n1 1\n1 2\n" +
-                        "3 1\n3 2\n3 3\n" +
-                        "3 5\n3 5\n2 5\n" +
-                        "1 5\n1 6\n1 6\n" +
-                        "1 7\n1 8\n1 9\n" +
-                        "2 9\n3 9\n4 9\n" +
-                        "5 9\n6 9\n7 9\n" +
-                        "7 8\n7 7\n7 6\n" +
-                        "7 5\n7 4\n7 3\n" +
-                        "8 3\n9 3";
+                        "1 3\n2 3\n3 3\n" +
+                        "4 3\n5 3\n5 2\n" +
+                        "5 1\n6 1\n7 1\n" +
+                        "8 1\n9 1\n9 2\n" +
+                        "9 3\n9 4\n9 5\n" +
+                        "9 6\n9 7\n8 7\n" +
+                        "7 7\n6 7\n5 7\n" +
+                        "4 7\n3 7\n3 8\n" +
+                        "3 9";
         readPath(examplePath);
     }
 

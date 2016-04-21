@@ -98,7 +98,7 @@ public class PlayState extends SuperState {
         switch (round) {
             case TOWER:
                 addEntities(upgradeButton, sellButton, buyButton);
-                hideMonstersButtons();
+                hideMonsterButtons();
                 for (MonsterImageButton mb: monsterImageQueue){
                     mb.die();
                 }
@@ -282,7 +282,7 @@ public class PlayState extends SuperState {
         }
     }
 
-    private void hideMonstersButtons() {
+    private void hideMonsterButtons() {
         for (MonsterButton button : monsters) {
             removeEntity(button);
         }

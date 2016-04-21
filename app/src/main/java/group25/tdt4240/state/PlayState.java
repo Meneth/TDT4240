@@ -264,7 +264,6 @@ public class PlayState extends SuperState {
     }
 
     private void displayTowerButtons() {
-        // TODO - Show tower cost
         for (TowerButton button : towers) {
             addEntity(button);
         }

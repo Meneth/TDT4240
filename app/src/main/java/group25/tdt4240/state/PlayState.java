@@ -188,6 +188,10 @@ public class PlayState extends SuperState {
         this.selectedTower = t;
     }
 
+    public Action getAction() {
+        return this.action;
+    }
+
     public void clickMonster(Monster m) {
         if (attackerMoney >= m.getCost()){
             attackerMoney -= m.getCost();

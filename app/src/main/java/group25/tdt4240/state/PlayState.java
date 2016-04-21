@@ -57,10 +57,10 @@ public class PlayState extends SuperState {
         addEntities((Entity[]) map.tiles.toArray(new Entity[map.tiles.size()]));
 
         System.out.println("created new playstate");
-        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT * 4 / 5);
-        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT * 4 / 5);
-        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 4 / 5);
-        doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 7 / 8);
+        buyButton.setPosition(Constants.SCREEN_WIDTH / 7, Constants.SCREEN_HEIGHT * 10.5f / 12);
+        upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT * 10.5f / 12);
+        sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 10.5f / 12);
+        doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 11.5f / 12);
 
         initializeTowers();
         initializeMonsters();
@@ -150,7 +150,7 @@ public class PlayState extends SuperState {
         for (int i = 0; i < monsters.size(); i++) {
             MonsterButton button = monsters.get(i);
             button.setPosition(Constants.SCREEN_WIDTH * (i + 0.5f) / 7,
-                    buyButton.getY() - button.getOffset().getY() * 2);
+                    buyButton.getY());
         }
     }
 
@@ -198,7 +198,7 @@ public class PlayState extends SuperState {
             monsterQueue.offer(m);
             MonsterImageButton mb = new MonsterImageButton(m.getImage(), m);
             mb.setPosition(((Constants.SCREEN_WIDTH / 18) * (monsterImageQueue.size() % 18 + 0.5f)),
-                    Constants.SCREEN_HEIGHT * (18 + monsterImageQueue.size() / 18) / 30);
+                    Constants.SCREEN_HEIGHT * (19 + monsterImageQueue.size() / 18) / 30);
             addEntity(mb);
             monsterImageQueue.add(mb);
         }
@@ -228,9 +228,13 @@ public class PlayState extends SuperState {
                 monsterImageQueue.get(i).draw(canvas);
             }
         }*/
-        canvas.drawText("Attacker Cash: " + Integer.toString(attackerMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.1f, p);
-        canvas.drawText("Defender Moneeeyh: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.3f, p);
-        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 7), (Constants.SCREEN_HEIGHT / 7) * 6.5f, p);
+        // TODO - Switch to TextDrawer
+        canvas.drawText("Attacker Cash: " + Integer.toString(attackerMoney), (Constants.SCREEN_WIDTH / 20),
+                (Constants.SCREEN_HEIGHT / 7) * 6.5f, p);
+        canvas.drawText("Defender Moneeeyh: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 20),
+                (Constants.SCREEN_HEIGHT / 7) * 6.7f, p);
+        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 20),
+                (Constants.SCREEN_HEIGHT / 7) * 6.9f, p);
     }
 
     @Override

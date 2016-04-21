@@ -2,7 +2,6 @@ package group25.tdt4240.utility;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.NonNull;
 
 import group25.tdt4240.entity.AbstractDrawable;
 import group25.tdt4240.entity.Drawable;
@@ -48,7 +47,7 @@ public class TextDrawer extends AbstractDrawable {
     }
 
     @Override
-    public int compareTo(@NonNull Drawable another) {
+    public int compareTo(Drawable another) {
         return another.getPriority() - getPriority();
     }
 }

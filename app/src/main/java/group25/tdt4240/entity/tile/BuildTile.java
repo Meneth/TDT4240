@@ -4,7 +4,7 @@ package group25.tdt4240.entity.tile;
 import android.view.MotionEvent;
 
 import group25.tdt4240.R;
-import group25.tdt4240.entity.Clickable;
+import group25.tdt4240.drawable.Clickable;
 import group25.tdt4240.entity.tower.Tower;
 import group25.tdt4240.state.PlayState;
 import sheep.graphics.Image;

@@ -73,7 +73,7 @@ public class PlayState extends SuperState {
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 10.5f / 12);
         doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 11.5f / 12);
 
-        attackerMoneyText = new TextDrawer("Attacker $: " + Integer.toString(this.attackerMoney),(Constants.SCREEN_WIDTH / 12),
+        attackerMoneyText = new TextDrawer("Attacker $: " + Integer.toString(this.attackerMoney),(Constants.SCREEN_WIDTH / 10),
                 (Constants.SCREEN_HEIGHT / 7) * 6.5f);
         defenderMoneyText = new TextDrawer("Defender $: " + Integer.toString(this.defenderMoney),(Constants.SCREEN_WIDTH / 10),
                 (Constants.SCREEN_HEIGHT / 7) * 6.7f);

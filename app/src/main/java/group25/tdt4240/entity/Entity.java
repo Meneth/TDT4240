@@ -2,6 +2,7 @@ package group25.tdt4240.entity;
 
 import android.view.MotionEvent;
 
+import group25.tdt4240.drawable.Drawable;
 import group25.tdt4240.state.SuperState;
 import sheep.game.Sprite;
 import sheep.graphics.Image;

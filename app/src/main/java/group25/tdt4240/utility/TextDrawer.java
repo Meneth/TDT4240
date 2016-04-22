@@ -3,8 +3,8 @@ package group25.tdt4240.utility;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import group25.tdt4240.entity.AbstractDrawable;
-import group25.tdt4240.entity.Drawable;
+import group25.tdt4240.drawable.AbstractDrawable;
+import group25.tdt4240.drawable.Drawable;
 
 /**
  * Created by mariusbang on 15/04/16.

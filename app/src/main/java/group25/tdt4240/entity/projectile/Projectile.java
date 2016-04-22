@@ -50,6 +50,6 @@ public abstract class Projectile extends MovableEntity {
     }
 
     public int getPriority() {
-        return 5;
+        return 11;
     }
 }

@@ -1,4 +1,4 @@
-package group25.tdt4240;
+package group25.tdt4240.game;
 
 
 import android.app.ActionBar;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import group25.tdt4240.R;
 import group25.tdt4240.state.TitleState;
 import sheep.game.*;
 

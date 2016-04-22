@@ -8,8 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import org.w3c.dom.Text;
-
 import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
@@ -20,10 +18,7 @@ import group25.tdt4240.map.Map;
 import group25.tdt4240.entity.tile.BuildTile;
 import group25.tdt4240.utility.TextDrawer;
 
-import java.lang.reflect.Array;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -143,10 +138,10 @@ public class PlayState extends SuperState {
     }
 
     private void initializeMonsters() {
-        monsters.add(new MonsterButton(BasicMonster.image, new Factory<Monster>() {
+        monsters.add(new MonsterButton(Monster1.image, new Factory<Monster>() {
             @Override
             public Monster get() {
-                return new BasicMonster(map.path);
+                return new Monster1(map.path);
             }
         }));
         monsters.add(new MonsterButton(Monster2.image, new Factory<Monster>() {

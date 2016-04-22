@@ -7,14 +7,14 @@ import sheep.graphics.Image;
 /**
  * Created by Meneth on 2016-04-13.
  */
-public class BasicMonster extends Monster {
+public class Monster1 extends Monster {
     private static final float standardVelocity = 75;
     public static final Image image = new Image(R.drawable.micon1);
 
     /**
      * @param path The path the monster is to walk
      */
-    public BasicMonster(Path path) {
+    public Monster1(Path path) {
         super(image, path, standardVelocity, 25, 100);
     }
 }

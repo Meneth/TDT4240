@@ -8,6 +8,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import org.w3c.dom.Text;
+
 import group25.tdt4240.utility.Constants;
 import group25.tdt4240.entity.Entity;
 import group25.tdt4240.entity.button.*;
@@ -16,8 +18,13 @@ import group25.tdt4240.entity.monster.*;
 import group25.tdt4240.entity.tower.*;
 import group25.tdt4240.map.Map;
 import group25.tdt4240.entity.tile.BuildTile;
+import group25.tdt4240.utility.TextDrawer;
 
+import java.lang.reflect.Array;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -27,7 +34,11 @@ public class PlayState extends SuperState {
     private int attackerMoney = 500;
     private int defenderMoney= 500;
     private int defenderHealth = 20;
+    private TextDrawer attackerMoneyText;
+    private TextDrawer defenderMoneyText;
+    private TextDrawer defenderHealthText;
 
+    private HashMap<TextDrawer,Float> monsterDeath = new HashMap<>();
     private int roundCounter = 0;
 
     private float timer = 0.0f;
@@ -61,6 +72,13 @@ public class PlayState extends SuperState {
         upgradeButton.setPosition(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT * 10.5f / 12);
         sellButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 10.5f / 12);
         doneButton.setPosition(Constants.SCREEN_WIDTH * 6 / 7, Constants.SCREEN_HEIGHT * 11.5f / 12);
+
+        attackerMoneyText = new TextDrawer("Attacker $: " + Integer.toString(this.attackerMoney),(Constants.SCREEN_WIDTH / 12),
+                (Constants.SCREEN_HEIGHT / 7) * 6.5f);
+        defenderMoneyText = new TextDrawer("Defender $: " + Integer.toString(this.defenderMoney),(Constants.SCREEN_WIDTH / 10),
+                (Constants.SCREEN_HEIGHT / 7) * 6.7f);
+        defenderHealthText = new TextDrawer("Health: " + Integer.toString(this.defenderHealth),(Constants.SCREEN_WIDTH / 12),
+                (Constants.SCREEN_HEIGHT / 7) * 6.9f);
 
         initializeTowers();
         initializeMonsters();
@@ -107,7 +125,9 @@ public class PlayState extends SuperState {
             case MONSTER:
                 // Both players get money when new round starts
                 defenderMoney += roundCounter * 30;
+                defenderMoneyText.setString("Defender $: " + Integer.toString(this.defenderMoney));
                 attackerMoney = (roundCounter + 1) * 500; // No saving between rounds. Easy to exploit
+                attackerMoneyText.setString("Attacker $: " + Integer.toString(this.attackerMoney));
                 addEntities(doneButton);
                 monsterQueue.clear();
                 displayMonsterButtons();
@@ -195,6 +215,7 @@ public class PlayState extends SuperState {
     public void clickMonster(Monster m) {
         if (attackerMoney >= m.getCost()){
             attackerMoney -= m.getCost();
+            attackerMoneyText.setString("Attacker $: " + Integer.toString(this.attackerMoney));
             monsterQueue.offer(m);
             MonsterImageButton mb = new MonsterImageButton(m.getImage(), m);
             mb.setPosition(((Constants.SCREEN_WIDTH / 18) * (monsterImageQueue.size() % 18 + 0.5f)),
@@ -212,12 +233,16 @@ public class PlayState extends SuperState {
         mb.die();
         monsterImageQueue.remove(mb);
         for (int i = 0; i < monsterImageQueue.size(); i++){
-            monsterImageQueue.get(i).setPosition(((Constants.SCREEN_WIDTH / 18) * (i + 0.5f)), (Constants.SCREEN_HEIGHT / 7) * 4);
+            monsterImageQueue.get(i).setPosition(((Constants.SCREEN_WIDTH / 18) * (i % 18 + 0.5f)),
+                    Constants.SCREEN_HEIGHT * (19 + i / 18) / 30);
         }
     }
 
     public void monsterDied(Monster m) {
+
+        monsterDeath.put(new TextDrawer("+" + Integer.toString(m.getCost()), m.getX(), m.getY()), 0.200f);
         defenderMoney += m.getCost();
+        defenderMoneyText.setString("Defender $: " + Integer.toString(defenderMoney));
     }
 
     @Override
@@ -228,13 +253,18 @@ public class PlayState extends SuperState {
                 monsterImageQueue.get(i).draw(canvas);
             }
         }*/
-        // TODO - Switch to TextDrawer
-        canvas.drawText("Attacker Cash: " + Integer.toString(attackerMoney), (Constants.SCREEN_WIDTH / 20),
-                (Constants.SCREEN_HEIGHT / 7) * 6.5f, p);
-        canvas.drawText("Defender Moneeeyh: " + Integer.toString(defenderMoney), (Constants.SCREEN_WIDTH / 20),
-                (Constants.SCREEN_HEIGHT / 7) * 6.7f, p);
-        canvas.drawText("HP: " + Integer.toString(defenderHealth), (Constants.SCREEN_WIDTH / 20),
-                (Constants.SCREEN_HEIGHT / 7) * 6.9f, p);
+        /*
+        for (java.util.Map.Entry<TextDrawer, Float> entry : monsterDeath.entrySet()) {
+            TextDrawer key = entry.getKey();
+            Float value = entry.getValue();
+            // ...
+        }*/
+        for (TextDrawer td: monsterDeath.keySet()) {
+            td.draw(canvas);
+        }
+        attackerMoneyText.draw(canvas);
+        defenderMoneyText.draw(canvas);
+        defenderHealthText.draw(canvas);
     }
 
     @Override
@@ -242,13 +272,22 @@ public class PlayState extends SuperState {
         if (round == Round.PLAY) {
             if (getMonsters().isEmpty() && monsterQueue.isEmpty()) {
                 advanceRound();
+                monsterDeath.clear();
             } else {
+                for (java.util.Map.Entry<TextDrawer, Float> entry : monsterDeath.entrySet()) {
+                    Float value = entry.getValue();
+                    entry.setValue(value - dt);
+                    if (entry.getValue() < 0.0f) {
+                        monsterDeath.remove(entry.getKey());
+                    }
+                }
                 timer += dt;
                 if (timer > 0.5f) {
                     addEntity(monsterQueue.poll());
                     timer = 0.0f;
                 }
             }
+
         }
         super.update(dt);
     }
@@ -261,6 +300,7 @@ public class PlayState extends SuperState {
         if (selectedTower.getCost() > defenderMoney)
             return;
         defenderMoney -= selectedTower.getCost();
+        defenderMoneyText.setString("Attacker $: " + Integer.toString(this.defenderMoney));
         tile.setTower(selectedTower.getTower());
     }
 
@@ -268,6 +308,7 @@ public class PlayState extends SuperState {
         Tower t = tile.getTower();
         if (t != null)
             defenderMoney += t.getCost();
+            defenderMoneyText.setString("Defender $: " + Integer.toString(this.defenderMoney));
             tile.setTower(null);
         System.out.println("Sell selected tower");
     }
@@ -299,6 +340,7 @@ public class PlayState extends SuperState {
         Tower t = tile.getTower();
         if (t != null && defenderMoney >= t.getNextUpgradeCost()) {
             defenderMoney -= t.getNextUpgradeCost();
+            defenderMoneyText.setString("Attacker $: " + Integer.toString(this.defenderMoney));
             tile.setTower(t.upgrade());
             System.out.println("Upgrading tower");
         }
@@ -340,6 +382,7 @@ public class PlayState extends SuperState {
     public void loseHealth(int h) {
         System.out.println("losing health");
         this.defenderHealth -= h;
+        defenderHealthText.setString("Health: " + Integer.toString(this.defenderHealth));
         if (defenderHealth <= 0) {
             gameOver();
         }

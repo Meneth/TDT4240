@@ -1,4 +1,4 @@
-package group25.tdt4240.entity;
+package group25.tdt4240.drawable;
 
 import android.graphics.Canvas;
 

@@ -1,7 +1,7 @@
 package group25.tdt4240.entity.button;
 
 
-import group25.tdt4240.entity.Clickable;
+import group25.tdt4240.drawable.Clickable;
 import group25.tdt4240.entity.Entity;
 import sheep.graphics.Image;
 

@@ -10,8 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
-import group25.tdt4240.entity.Clickable;
-import group25.tdt4240.entity.Drawable;
+import group25.tdt4240.drawable.Clickable;
+import group25.tdt4240.drawable.Drawable;
 import group25.tdt4240.entity.monster.Monster;
 import sheep.game.State;
 import sheep.input.TouchListener;

@@ -12,7 +12,7 @@ import group25.tdt4240.entity.Drawable;
 public class TextDrawer extends AbstractDrawable {
     //private Canvas canvas;
     private final Paint paint = new Paint();
-    private final String string;
+    private String string;
     private float xPos;
     private float yPos;
 
@@ -39,6 +39,9 @@ public class TextDrawer extends AbstractDrawable {
         canvas.drawText(string, xPos, yPos, paint);
     }*/
 
+    public void setString(String s) {
+        this.string = s;
+    }
 
     @Override
     public void draw(Canvas canvas) {

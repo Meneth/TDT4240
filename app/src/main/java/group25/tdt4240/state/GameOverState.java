@@ -14,6 +14,7 @@ public class GameOverState extends SuperState {
         Button backButton = new BackButton();
         backButton.setPosition(Constants.SCREEN_WIDTH / 2, (Constants.SCREEN_HEIGHT / 8) * 6);
         addEntity(backButton);
-        addEntity(new TextDrawer("Game over! The tower player lost!", Constants.SCREEN_WIDTH/2, (Constants.SCREEN_HEIGHT / 8)*2));
+        addEntity(new TextDrawer("Game over!\n The tower player did not build a wall tall enough!",
+                Constants.SCREEN_WIDTH/2, (Constants.SCREEN_HEIGHT / 8)*2));
     }
 }

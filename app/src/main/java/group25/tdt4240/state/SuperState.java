@@ -19,7 +19,7 @@ import sheep.input.TouchListener;
 /**
  * Created by Meneth on 2016-04-04.
  */
-public class SuperState extends State implements Iterable<Drawable> {
+public class SuperState extends State {
     private final List<Clickable> clickableEntities = new ArrayList<>();
     private final List<Monster> shootableMonsters = new ArrayList<>();
     private final List<Drawable> entities = new ArrayList<>();
@@ -108,10 +108,5 @@ public class SuperState extends State implements Iterable<Drawable> {
         for (Drawable entity : entities) {
             removeEntity(entity);
         }
-    }
-
-    @Override
-    public Iterator<Drawable> iterator() {
-        return entities.iterator();
     }
 }

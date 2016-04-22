@@ -49,9 +49,4 @@ public class MonsterButton extends Button {
     public int getCost() {
         return monster.getCost();
     }
-
-    @Override
-    public int getPriority(){
-        return 21;
-    }
 }

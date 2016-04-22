@@ -25,9 +25,4 @@ public class BackButton extends Button {
         }
         return false;
     }
-
-    @Override
-    public int getPriority() {
-        return 10;
-    }
 }

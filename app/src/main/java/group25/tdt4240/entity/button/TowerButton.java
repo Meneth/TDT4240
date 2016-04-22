@@ -54,12 +54,6 @@ public class TowerButton extends ToggleButton {
     public int getCost() {
         return tower.getCost();
     }
-
-    @Override
-    public int getPriority() {
-        return 21;
-    }
-
 }
 
 

@@ -33,9 +33,4 @@ public class MonsterImageButton extends Button {
         }
         return false;
     }
-
-    @Override
-    public int getPriority() {
-        return 21;
-    }
 }

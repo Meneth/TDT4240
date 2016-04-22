@@ -44,7 +44,8 @@ public class TowerButton extends ToggleButton {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawText(Integer.toString(this.getTower().getCost()), this.getX()-10, this.getY()-50, costPaint);
+        canvas.drawText(Integer.toString(this.getTower().getCost()),
+                this.getX()-10*Constants.SCALE, this.getY()-50*Constants.SCALE, costPaint);
     }
 
     public Tower getTower() {

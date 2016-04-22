@@ -39,7 +39,7 @@ public class MonsterButton extends Button {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        costText.draw(canvas, this.getX()-10, this.getY()-50);
+        costText.draw(canvas, this.getX()-10*Constants.SCALE, this.getY()-70*Constants.SCALE);
     }
 
     public Monster getMonster() {

@@ -8,8 +8,8 @@ import sheep.graphics.Image;
  * Created by Meneth on 2016-04-13.
  */
 public class BasicMonster extends Monster {
-    private static final float standardVelocity = 50;
-    public static final Image image = new Image(R.drawable.monster1);
+    private static final float standardVelocity = 75;
+    public static final Image image = new Image(R.drawable.micon1);
 
     /**
      * @param path The path the monster is to walk

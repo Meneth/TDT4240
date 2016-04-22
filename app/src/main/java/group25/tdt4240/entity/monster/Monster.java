@@ -3,6 +3,7 @@ package group25.tdt4240.entity.monster;
 import group25.tdt4240.map.Path;
 import group25.tdt4240.entity.MovableEntity;
 import group25.tdt4240.state.PlayState;
+import group25.tdt4240.utility.Constants;
 import sheep.graphics.Image;
 
 /**
@@ -42,6 +43,9 @@ public abstract class Monster extends MovableEntity {
         this.path = path;
         position = 0;
         // Spawn monster at start
+        float scaleX = 0.6f * Constants.TILE_WIDTH / image.getWidth();
+        float scaleY = 0.6f * Constants.TILE_HEIGHT / image.getHeight();
+        setScale(scaleX, scaleY);
         setPosition(path.get(0).getX(), path.get(0).getY());
         setTarget(path.get(position + 1).getPosition());
         this.health = health;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 
 import group25.tdt4240.R;
-import group25.tdt4240.TDActivity;
+import group25.tdt4240.game.TDActivity;
 import sheep.graphics.Image;
 
 /**
